@@ -2,13 +2,15 @@ import React from "react";
 import TeamMemberCard from "./other/TeamMemberCard";
 import PixelBlast from "./other/PixelBlast";
 import SplitText from "./other/SplitText";
+import { teamMembers } from "./other/constants";
+import { AnimatedTooltip } from "./ui/animated-tooltip";
 
 const Hero = () => {
   const handleAnimationComplete = () => {
     console.log("All letters have animated!");
   };
   return (
-    <main className="relative h-[900px] overflow-hidden bg-black">
+    <main className="relative h-[900px] overflow-hidden bg-black ">
       <div className="absolute inset-0 z-0">
         <PixelBlast
           variant="square"
@@ -42,6 +44,9 @@ const Hero = () => {
           </div>
           <div className="lg:absolute lg:top-[26rem] lg:left-[50rem] lg:-translate-x-[10rem] lg:translate-y-[3.7rem] flex justify-start pt-10 lg:pt-0 pointer-events-auto">
             <TeamMemberCard />
+          </div>
+          <div className="lg:absolute lg:top-[45rem] lg:left-[18rem] lg:-translate-x-[10rem] lg:translate-y-[3.7rem] flex justify-start pt-10 lg:pt-0 pointer-events-auto">
+            <AnimatedTooltip items={teamMembers} />
           </div>
           <div className="hidden lg:block w-[34rem] absolute bottom-16 right-20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
             <SplitText

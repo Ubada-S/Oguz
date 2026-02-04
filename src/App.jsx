@@ -1,7 +1,8 @@
 import Approach from "./components/Approach";
-import EOTC from "./components/EOTC";
+
 import Hero from "./components/Hero";
 import GradualBlurMemo from "./components/other/GradualBlur";
+import AnimatedMenu from "./components/ui/AnimatedMenu";
 
 export default function App() {
   return (
@@ -10,7 +11,7 @@ export default function App() {
       <div className="overflow-hidden">
         <Hero />
         <Approach />
-        <EOTC />
+        <AnimatedMenu />
       </div>
 
       {/* Fixed blur effect at bottom of viewport */}
