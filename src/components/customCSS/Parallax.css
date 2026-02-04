@@ -1,0 +1,189 @@
+.bodyy-ahhh {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  font-family: "raleway";
+  color: white;
+}
+
+.image-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transform: translateY(0) scale(1.25);
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.h11 {
+  color: white;
+  font-size: 80px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.paraah {
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.butan {
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0.25rem 0;
+  padding: 0.3rem 0.75rem 0.25rem 0.75rem;
+  color: black;
+  background-color: white;
+  border-radius: 2em;
+  cursor: pointer;
+}
+
+.sectionn {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sectionn.projects {
+  width: 100vw;
+  height: 125vh;
+  display: flex;
+  gap: 10em;
+}
+
+.projects-brief {
+  position: absolute;
+  width: 25%;
+  top: 35%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.projects .col {
+  position: relative;
+}
+
+.col.projects-cover {
+  flex: 1;
+  height: 50%;
+}
+
+.col.projects-list {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.project {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.aboutt {
+  display: flex;
+  background-color: black;
+}
+
+.intro,
+.portrait {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.intro p {
+  width: 50%;
+  text-align: center;
+}
+
+.intro p:nth-child(1) {
+  text-decoration: underline;
+  margin-bottom: 0.5em;
+}
+
+.portrait .portrait-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-copy {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.banner-copy h1 {
+  text-transform: uppercase;
+}
+
+.banner-copy p:nth-child(3) {
+  width: 75%;
+  margin: 1em auto;
+}
+
+.footerr {
+  display: flex;
+  padding: 1em;
+}
+
+.footerr h1 {
+  text-transform: uppercase;
+}
+
+.footerr .col:nth-child(1) {
+  flex: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footerr .col:nth-child(2) {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.shopp {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
