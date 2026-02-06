@@ -254,7 +254,7 @@ export default function AnimatedMenu() {
               >
                 <div className="absolute inset-0 w-full h-full z-[2]">
                   <img
-                    src="/assets/images/img 1.jpg"
+                    src={bgimage}
                     alt=""
                     className="w-full h-full object-cover"
                   />

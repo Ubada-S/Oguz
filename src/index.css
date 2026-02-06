@@ -16,3 +16,9 @@
 .font-google {
   font-family: "Google Sans", sans-serif;
 }
+
+.font-stylish {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
