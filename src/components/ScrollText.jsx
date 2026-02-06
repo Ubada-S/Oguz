@@ -43,7 +43,8 @@ const ScrollTextAnimation = () => {
         start: "top top",
         end: "+=300%",
         pin: true,
-        scrub: 1.5, // Smoothing factor
+        pinSpacing: true,
+        scrub: 1.5,
         onUpdate: (self) => {
           const progress = self.progress;
           const isMobile = window.innerWidth < 768;
@@ -113,11 +114,11 @@ const ScrollTextAnimation = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full bg-black text-[#f5f4ed] font-google relative"
+      className="w-full bg-black text-[#f5f4ed] font-stylish relative"
     >
       {/* Animated noise texture overlay */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-[0.08] mix-blend-overlay z-0"
+        className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-overlay z-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
@@ -128,15 +129,15 @@ const ScrollTextAnimation = () => {
 
       {/* Additional paper texture layer */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        className="absolute inset-0 pointer-events-none opacity-[0.03] z-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -1.5 1.5' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='1' /%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Subtle gradient vignette - increased opacity */}
+      {/* Subtle gradient vignette */}
       <div
-        className="fixed inset-0 pointer-events-none z-0"
+        className="absolute inset-0 pointer-events-none z-0"
         style={{
           background:
             "radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.6) 100%)",
@@ -180,11 +181,11 @@ const ScrollTextAnimation = () => {
       `}</style>
 
       {/* Scrolling Animation Section */}
-      <section className="scrolling w-full h-[100vh] flex items-center overflow-hidden relative z-10">
-        <div className="content-wrapper w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-16">
-            {/* Big Text: Left 65% on Desktop */}
-            <div className="w-full md:w-[65%] text-[clamp(4rem,12vw,10rem)] leading-[0.85] flex flex-col uppercase font-bold tracking-tight">
+      <section className="scrolling w-full h-[100vh] flex items-center overflow-hidden relative z-[1]">
+        <div className="content-wrapper w-full max-w-[90rem] mx-auto px-6 md:px-12 lg:px-20">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-12 lg:gap-20">
+            {/* Big Text: Left 70% on Desktop - WIDER CONTAINER */}
+            <div className="w-full md:w-[70%] text-[clamp(3.5rem,11vw,9rem)] leading-[0.85] flex flex-col uppercase font-bold tracking-tight">
               {/* Line 1: Rational -> Emotion */}
               <div className="overflow-hidden relative h-[1em] mb-2">
                 <span className="primary-text block will-change-transform">
@@ -215,10 +216,10 @@ const ScrollTextAnimation = () => {
               </div>
             </div>
 
-            {/* Small Text: Right 30% on Desktop */}
+            {/* Small Text: Right 25% on Desktop */}
             <div
               ref={smallTextRef}
-              className="w-full md:w-[30%] text-base md:text-lg lg:text-xl leading-relaxed md:mt-24 lg:mt-32 will-change-transform"
+              className="w-full md:w-[25%] text-base md:text-lg lg:text-xl leading-relaxed md:mt-24 lg:mt-32 will-change-transform"
             >
               <p className="indent-10 text-[#f5f4ed]/80 font-light">
                 We bring B2C creativity into the deepest corners of B2B. Because
@@ -226,20 +227,6 @@ const ScrollTextAnimation = () => {
                 out of their people.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Outro */}
-      <section className="w-full h-[100dvh] flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl opacity-20 uppercase tracking-wider">
-            Scroll Back Up
-          </h2>
-          <div className="flex gap-2 justify-center">
-            <span className="w-1 h-1 rounded-full bg-[#f5f4ed]/20 animate-pulse" />
-            <span className="w-1 h-1 rounded-full bg-[#f5f4ed]/20 animate-pulse delay-100" />
-            <span className="w-1 h-1 rounded-full bg-[#f5f4ed]/20 animate-pulse delay-200" />
           </div>
         </div>
       </section>

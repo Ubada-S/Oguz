@@ -216,7 +216,7 @@ export default function AnimatedMenu() {
       {/* Hamburger Button - Fixed/Sticky on viewport */}
       <button
         ref={hamburgerRef}
-        className={`w-10 h-10 flex bg-transparent border-none cursor-pointer fixed overflow-hidden top-8 right-12 z-50 transition-opacity duration-300 ${
+        className={`w-10 h-10 flex bg-transparent border-none cursor-pointer fixed overflow-hidden top-8 right-12 z-[9998] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
@@ -228,7 +228,7 @@ export default function AnimatedMenu() {
       {/* Menu */}
       <section
         ref={menuRef}
-        className="w-full h-[100dvh] bg-black z-10 fixed inset-0 text-white will-change-[clip-path]"
+        className="w-full h-[100dvh] bg-black z-[9999] fixed inset-0 text-white will-change-[clip-path]"
         style={{ clipPath: "inset(100% 0 0 0)" }}
       >
         {/* Close Button */}
