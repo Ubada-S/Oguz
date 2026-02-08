@@ -1,7 +1,9 @@
 import Approach from "./components/Approach";
 
 import Hero from "./components/Hero";
+
 import GradualBlurMemo from "./components/other/GradualBlur";
+import ScrollMaskTransition from "./components/ScrollMaskTransition";
 import ScrollTextAnimation from "./components/ScrollText";
 
 import AnimatedMenu from "./components/ui/AnimatedMenu";
@@ -15,6 +17,7 @@ export default function App() {
         <Approach />
         <AnimatedMenu />
         <ScrollTextAnimation />
+        <ScrollMaskTransition />
       </div>
 
       {/* Fixed blur effect at bottom of viewport */}
