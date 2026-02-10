@@ -145,7 +145,7 @@ const ScrollMaskTransition = () => {
         start: "top top",
         end: () => `+=${window.innerHeight * (totalImage - 1)}`,
         scrub: 1,
-        pin: true,
+        pin: false,
         invalidateOnRefresh: true,
       },
       defaults: {
