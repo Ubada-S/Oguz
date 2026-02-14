@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import imagetest from "../components/other/test.jpg";
+import imagetest from "../components/other/card.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +17,7 @@ const Projects = () => {
       category: "Brand Strategy & Product Design",
       year: "2025",
       tag: "[O1]",
-      image: { imagetest },
+      image: imagetest,
       logo: "Quantum²",
       speed: 0.3,
     },
@@ -27,7 +27,7 @@ const Projects = () => {
       category: "Brand Strategy & Product Design",
       year: "2025",
       tag: "[O2]",
-      image: { imagetest },
+      image: imagetest,
       logo: "Cubedlt",
       speed: 0.5,
     },
@@ -37,7 +37,7 @@ const Projects = () => {
       category: "Brand Strategy & Product Design",
       year: "2025",
       tag: "[O3]",
-      image: { imagetest },
+      image: imagetest,
       logo: "Ephemeral",
       speed: 0.4,
     },
@@ -47,7 +47,7 @@ const Projects = () => {
       category: "Brand Strategy & Product Design",
       year: "2024",
       tag: "[O4]",
-      image: { imagetest },
+      image: imagetest,
       logo: "Warpspeed",
       speed: 0.6,
     },
@@ -57,7 +57,7 @@ const Projects = () => {
       category: "Digital Marketing & Design System",
       year: "2025",
       tag: "[O6]",
-      image: { imagetest },
+      image: imagetest,
       logo: "GlobalBank",
       speed: 0.35,
     },
@@ -67,7 +67,7 @@ const Projects = () => {
       category: "Brand Strategy & Web Design",
       year: "2025",
       tag: "[O6]",
-      image: { imagetest },
+      image: imagetest,
       logo: "Magnolia",
       speed: 0.45,
     },
@@ -182,7 +182,7 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="parallax-img absolute w-full h-[115%] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="parallax-img absolute w-full h-[115%] object-cover transition-transform duration-700 ease-out  group-hover:scale-110"
                     style={{ top: "-7.5%" }}
                   />
 
@@ -211,7 +211,7 @@ const Projects = () => {
                 <div className="absolute bottom-0 left-0 right-0 bg-black z-10 p-6">
                   <div className="flex items-end justify-between">
                     <div className="flex-1">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+                      <h3 className="text-2xl lg:text-3xl  text-white mb-2 leading-tighter">
                         {project.title}
                       </h3>
                       <p className="text-xs text-gray-400 font-light tracking-wide">
@@ -227,7 +227,7 @@ const Projects = () => {
                   </div>
 
                   {/* Plus to Arrow Icon */}
-                  <div className="absolute bottom-32 right-6 w-10 h-10">
+                  <div className="absolute bottom-32 right-6 w-4 h-4">
                     {/* Plus Icon */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-all duration-500 group-hover:rotate-90">
                       <svg
@@ -295,10 +295,8 @@ const Projects = () => {
 
       {/* Global Styles */}
       <style jsx>{`
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-
         * {
-          font-family: "Inter", sans-serif;
+          font-family: "Google Sans", sans-serif;
         }
 
         .project-card {
