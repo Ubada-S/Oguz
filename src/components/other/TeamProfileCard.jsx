@@ -53,7 +53,7 @@ export default function TeamProfileCard() {
       </div>
 
       {/* Info Section */}
-      <div className="p-6 md:h-[5.773rem] max-h-[5.773rem]">
+      <div className="p-6 md:h-[5.773rem] max-h-[5.773rem] overflow-hidden">
         <h3 className="text-white text-2xl font-semibold -mt-1.5">
           Ubada Siddiqi
         </h3>

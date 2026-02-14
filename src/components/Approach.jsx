@@ -3,7 +3,7 @@ import TeamProfileCard from "./other/TeamProfileCard";
 
 const Approach = () => {
   return (
-    <section className="relative h-[1100px] border-b border-white/10 bg-black">
+    <section className="relative min-h-[1100px] border-b border-white/10 bg-black">
       <div className="max-w-[1920px] mx-auto">
         <div className="px-6 pt-32">
           {/* Your content goes here */}

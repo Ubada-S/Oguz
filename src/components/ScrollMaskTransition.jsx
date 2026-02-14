@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import imagebg from "../components/other/card.jpg";
+import imagebg from "../components/other/card.png";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -18,8 +18,8 @@ const ScrollMaskTransition = () => {
 
   const titles = [
     "Curly Shadows Gaze",
-    "Projected Quiet Mystery",
-    "Painted Identity Layers",
+    "Projected Quiet",
+    "Painted Identity",
     "Golden Still Soul",
     "Backlit Silent Strength",
   ];
@@ -301,7 +301,7 @@ const ScrollMaskTransition = () => {
         </div>
 
         {/* Poster Card */}
-        <div className="poster absolute z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ced1bf] text-[#2b3530] text-center overflow-hidden w-full max-w-[clamp(20rem,32.77vw,32.77rem)] h-[calc(100%-clamp(3rem,5.27vw,5.27rem))] max-h-[clamp(35rem,47.77vw,47.77rem)] p-[clamp(1.5rem,2.22vw,2.22rem)] shadow-2xl">
+        <div className="poster absolute z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ffffff] text-[#2b3530] text-center overflow-hidden w-full max-w-[clamp(20rem,32.77vw,32.77rem)] h-[calc(100%-clamp(3rem,5.27vw,5.27rem))] max-h-[clamp(35rem,47.77vw,47.77rem)] p-[clamp(1.5rem,2.22vw,2.22rem)] shadow-2xl">
           {/* Title Wrapper */}
           <div className="title-wrapper relative w-full max-w-[clamp(15rem,18.88vw,18.88rem)] h-[clamp(2rem,3.05vw,3.05rem)] mx-auto my-[15%_auto_10%] overflow-hidden">
             {titles.map((title, index) => (
