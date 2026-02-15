@@ -2,18 +2,19 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import imagebg from "../components/other/card.png";
+import imagebg from "../components/other/test.jpg";
+import imagebgg from "../components/other/card.jpg";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const ScrollMaskTransition = () => {
   // Image data - replace with your own images
   const images = [
-    { bg: imagebg, poster: imagebg },
-    { bg: imagebg, poster: imagebg },
-    { bg: imagebg, poster: imagebg },
-    { bg: imagebg, poster: imagebg },
-    { bg: imagebg, poster: imagebg },
+    { bg: imagebg, poster: imagebgg },
+    { bg: imagebg, poster: imagebgg },
+    { bg: imagebg, poster: imagebgg },
+    { bg: imagebg, poster: imagebgg },
+    { bg: imagebg, poster: imagebgg },
   ];
 
   const titles = [
