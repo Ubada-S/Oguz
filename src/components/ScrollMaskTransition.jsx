@@ -260,7 +260,7 @@ const ScrollMaskTransition = () => {
   }, []);
 
   return (
-    <section className="scroll-mask-section relative w-full bg-[#2b3530]">
+    <section className="scroll-mask-section relative w-full max-w-[1920px] mx-auto bg-[#2b3530]">
       {/* Intro Section */}
       <div className="w-full h-sm bg-black text-[#d1ccbf] flex justify-center items-end pb-4">
         <h1 className="max-w-[90vw] text-[clamp(1.5rem,2.77vw,2.77rem)] font-['Basis_Grotesque',sans-serif] indent-[5em] font-light">

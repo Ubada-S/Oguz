@@ -273,7 +273,7 @@ const Projects = () => {
               href="#"
               className="group flex items-center gap-3 text-sm font-light tracking-wide text-white/60 hover:text-white transition-colors duration-300"
             >
-              <span>[02]</span>
+              <span>[12]</span>
               <span>All Case Studies</span>
               <svg
                 className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
