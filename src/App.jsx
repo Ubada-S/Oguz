@@ -1,6 +1,7 @@
 import Approach from "./components/Approach";
 
 import Hero from "./components/Hero";
+import ParallaxGallery from "./components/parllaxGallery";
 
 /* import GradualBlurMemo from "./components/other/GradualBlur"; */
 import Projects from "./components/Projects";
@@ -17,6 +18,7 @@ export default function App() {
         <AnimatedMenu />
         <Projects />
         <WhyChooseUs />
+        <ParallaxGallery />
       </div>
 
       {/* Fixed blur effect at bottom of viewport */}

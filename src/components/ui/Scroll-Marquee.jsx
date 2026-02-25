@@ -5,9 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollMarquee = ({
-  text = "Ubada Siddiqi is a nice guy",
+  text = "Google OpenAI chatGPT Google OpenAI chatGPT",
   speed = 0.1,
-  textSize = "text-[120px] md:text-[150px]",
+  textSize = "text-[100px] md:text-[150px]",
   fontWeight = "font-medium",
   gap = "mr-12", // switched to margin
   direction = "left",

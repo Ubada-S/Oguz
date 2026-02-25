@@ -161,11 +161,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-      <ScrollMarquee
-        textSize="text-[180px] md:text-[150px]"
-        speed={0.12}
-        className="bg-black -mt-32"
-      />
+      <ScrollMarquee speed={0.02} className="bg-black -mt-32" />
     </section>
   );
 };
