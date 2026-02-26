@@ -86,7 +86,7 @@ export default function ParallaxGallery() {
       {/* Gallery */}
       <div
         ref={gallery}
-        className="relative flex overflow-hidden bg-[rgb(0,0,0)]"
+        className="relative flex overflow-hidden bg-[rgb(39,34,29)]"
         style={{
           height: "175vh",
           gap: "2vw",
@@ -115,9 +115,6 @@ export default function ParallaxGallery() {
           top={columnTops[3]}
         />
       </div>
-
-      {/* Spacer */}
-      <div className="h-screen bg-black" />
     </main>
   );
 }

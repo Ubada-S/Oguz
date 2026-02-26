@@ -3,8 +3,9 @@ import Approach from "./components/Approach";
 import Hero from "./components/Hero";
 import ParallaxGallery from "./components/parllaxGallery";
 
-/* import GradualBlurMemo from "./components/other/GradualBlur"; */
+import GradualBlurMemo from "./components/other/GradualBlur";
 import Projects from "./components/Projects";
+import ScrollMaskTransition from "./components/ScrollMaskTransition";
 import AnimatedMenu from "./components/ui/AnimatedMenu";
 import WhyChooseUs from "./components/WhyChoose";
 
@@ -19,10 +20,11 @@ export default function App() {
         <Projects />
         <WhyChooseUs />
         <ParallaxGallery />
+        <ScrollMaskTransition />
       </div>
 
       {/* Fixed blur effect at bottom of viewport */}
-      {/* <div className="fixed bottom-0 left-0 right-0 pointer-events-none z-50">
+      <div className="fixed bottom-0 left-0 right-0 pointer-events-none z-50">
         <GradualBlurMemo
           position="bottom"
           height="10rem"
@@ -32,7 +34,7 @@ export default function App() {
           exponential
           opacity={0.8}
         />
-      </div> */}
+      </div>
     </>
   );
 }

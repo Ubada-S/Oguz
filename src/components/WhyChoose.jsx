@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
         ease: "elastic.out(1, 0.6)",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 50%",
           toggleActions: "play none none none",
         },
       },
@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-black text-white py-20 lg:py-32"
+      className="min-h-screen  bg-black border-t -mb-32 border-white/10 text-white py-20 lg:py-32"
     >
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
         {/* Header */}

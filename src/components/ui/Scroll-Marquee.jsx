@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ScrollMarquee = ({
   text = "Google OpenAI chatGPT Google OpenAI chatGPT",
   speed = 0.1,
-  textSize = "text-[100px] md:text-[150px]",
+  textSize = "text-[70px] md:text-[150px]",
   fontWeight = "font-medium",
   gap = "mr-12", // switched to margin
   direction = "left",
@@ -55,7 +55,9 @@ const ScrollMarquee = ({
   }, [speed]);
 
   return (
-    <div className={`relative w-full overflow-hidden py-12 ${className}`}>
+    <div
+      className={`relative w-full max-md:mt-10 max-md:mb-4 overflow-hidden py-12 ${className}`}
+    >
       <div ref={slider} className="flex whitespace-nowrap">
         <p
           ref={firstText}

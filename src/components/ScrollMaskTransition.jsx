@@ -2,27 +2,25 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import imagebg from "../components/other/test.jpg";
-import imagebgg from "../components/other/card.jpg";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const ScrollMaskTransition = () => {
   // Image data - replace with your own images
   const images = [
-    { bg: imagebg, poster: imagebgg },
-    { bg: imagebg, poster: imagebgg },
-    { bg: imagebg, poster: imagebgg },
-    { bg: imagebg, poster: imagebgg },
-    { bg: imagebg, poster: imagebgg },
+    { bg: "images/test1.jpg", poster: "images/test6.jpg" },
+    { bg: "images/test2.jpeg", poster: "images/test7.jpg" },
+    { bg: "images/test3.jpeg", poster: "images/test8.jpg" },
+    { bg: "images/test4.jpg", poster: "images/test9.jpg" },
+    { bg: "images/test5.jpg", poster: "images/test10.jpg" },
   ];
 
   const titles = [
-    "Curly Shadows Gaze",
+    "Curly Shadows ",
     "Projected Quiet",
     "Painted Identity",
-    "Golden Still Soul",
-    "Backlit Silent Strength",
+    "Golden Still ",
+    "Backlit Silent ",
   ];
 
   const descriptions = [
@@ -260,19 +258,24 @@ const ScrollMaskTransition = () => {
   }, []);
 
   return (
-    <section className="scroll-mask-section relative w-full max-w-[1920px] mx-auto bg-[#2b3530]">
-      {/* Intro Section */}
-      <div className="w-full h-sm bg-black text-[#d1ccbf] flex justify-center items-end pb-4">
-        <h1 className="max-w-[90vw] text-[clamp(1.5rem,2.77vw,2.77rem)] font-['Basis_Grotesque',sans-serif] indent-[5em] font-light">
-          Faces are stories waiting to be seen. In every shadow, in every line,
-          a deeper truth emerges. This is a collection of raw expressions,
-          captured moments, and silent voices where light meets vulnerability,
-          and identity becomes art.
-        </h1>
-      </div>
+    <section className="scroll-mask-section relative w-full max-w-[1920px] mx-auto bg-[#000000]">
+      <div className="pb-10">
+        <div className="absolute left-0 top-0 text-white lg:pl-20 pl-7 pt-7 lg:pt-24 z-10">
+          <p className="font-bold text-sm lg:text-base">[03] The Team</p>
+        </div>
 
+        {/* Center Content */}
+        <div className="text-center pt-16 lg:pt-24 px-7 mb-12">
+          <h1 className="lg:text-[72px] xl:text-[96px] text-[40px] text-white -tracking-widest leading-tight">
+            Behind the screen
+          </h1>
+          <p className="text-white text-center lg:text-xl mt-2 opacity-60">
+            your projects are in safe hands!
+          </p>
+        </div>
+      </div>
       {/* Scrolling Wrapper Section */}
-      <div className="scrolling-wrapper relative w-full h-screen min-h-[800px] bg-[#2b3530] text-[#d1ccbf] overflow-hidden">
+      <div className="scrolling-wrapper relative w-full h-screen min-h-[800px] bg-[#000000] text-[#d1ccbf] overflow-hidden">
         {/* Background Images */}
         <div className="bg absolute inset-0 w-full h-full pointer-events-none">
           <div className="bg-wrapper w-full h-full overflow-hidden">
@@ -302,7 +305,7 @@ const ScrollMaskTransition = () => {
         </div>
 
         {/* Poster Card */}
-        <div className="poster absolute z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ffffff] text-[#2b3530] text-center overflow-hidden w-full max-w-[clamp(20rem,32.77vw,32.77rem)] h-[calc(100%-clamp(3rem,5.27vw,5.27rem))] max-h-[clamp(35rem,47.77vw,47.77rem)] p-[clamp(1.5rem,2.22vw,2.22rem)] shadow-2xl">
+        <div className="poster absolute z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#000000] border border-white/10 text-[#ffffff] text-center overflow-hidden w-full max-w-[clamp(20rem,32.77vw,32.77rem)] h-[calc(100%-clamp(3rem,5.27vw,5.27rem))] max-h-[clamp(35rem,47.77vw,47.77rem)] p-[clamp(1.5rem,2.22vw,2.22rem)] shadow-2xl">
           {/* Title Wrapper */}
           <div className="title-wrapper relative w-full max-w-[clamp(15rem,18.88vw,18.88rem)] h-[clamp(2rem,3.05vw,3.05rem)] mx-auto my-[15%_auto_10%] overflow-hidden">
             {titles.map((title, index) => (
@@ -354,17 +357,8 @@ const ScrollMaskTransition = () => {
           </div>
         </div>
       </div>
-
       {/* Outro Section */}
-      <div className="outro w-full h-screen bg-[#2b3530] text-[#d1ccbf] flex justify-center items-end pb-4">
-        <h1 className="max-w-[90vw] text-[clamp(1.5rem,2.77vw,2.77rem)] font-['Basis_Grotesque',sans-serif] indent-[5em] font-light">
-          Thank you for exploring these faces and fragments. Each image is a
-          quiet dialogue between the seen and unseen. May these portraits stay
-          with you haunting, inspiring, and reminding you of the beauty in being
-          unapologetically human.
-        </h1>
-      </div>
-
+      <div className="outro w-full h-screen bg-[#000000] text-[#ffffff] flex justify-center items-end pb-4"></div>
       {/* Custom Styles */}
       <style jsx>{`
         .lines {
