@@ -1,6 +1,7 @@
 import Approach from "./components/Approach";
 
 import Hero from "./components/Hero";
+import ServicesSection from "./components/Services";
 import ParallaxGallery from "./components/parllaxGallery";
 
 import GradualBlurMemo from "./components/other/GradualBlur";
@@ -20,6 +21,7 @@ export default function App() {
         <Projects />
         <WhyChooseUs />
         <ParallaxGallery />
+        <ServicesSection />
         <ScrollMaskTransition />
       </div>
 
