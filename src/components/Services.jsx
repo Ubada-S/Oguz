@@ -637,7 +637,7 @@ export default function ServicesSection() {
               "
             >
               {/* ── TOP: eyebrow / headline / tagline ── */}
-              <div>
+              <div className="max-md:mt-12">
                 <div className="svc-eyebrow flex items-center gap-2.5 text-[10px] tracking-[.2em] uppercase text-white/25 mb-6">
                   <span className="text-white/40">[03]</span>
                   <span>Services</span>
@@ -645,7 +645,7 @@ export default function ServicesSection() {
 
                 <h2
                   ref={headlineRef}
-                  className="fs-headline font-google font-bold tracking-[-0.04em] leading-[1.04] text-white mb-3"
+                  className="fs-headline font-google  tracking-[-0.04em] leading-[1.04] text-white mb-3"
                 >
                   Services
                 </h2>
@@ -667,7 +667,7 @@ export default function ServicesSection() {
                     <div
                       key={s.id}
                       ref={(el) => (panelsRef.current[i] = el)}
-                      className="absolute bottom-0 left-0 w-full wc-all"
+                      className="absolute bottom-6 left-0 w-full wc-all"
                       // hide all but first; GSAP controls display after init
                       style={{ display: i === 0 ? "block" : "none" }}
                     >
@@ -717,15 +717,15 @@ export default function ServicesSection() {
               </div>
 
               {/* ── BOTTOM: meta + tab nav ── */}
-              <div className="flex items-end justify-between gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:gap-2.5">
+              <div className="flex  lg:py-12 items-end justify-between gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:gap-2.5">
                 {/* meta */}
-                <div className="svc-meta-row flex items-center gap-3.5 text-[9px] tracking-[.16em] uppercase text-white/15 shrink-0">
+                <div className="svc-meta-row flex lg:mb-12 items-center gap-3.5 text-[9px] tracking-[.16em] uppercase text-white/15 shrink-0">
                   <span>OGUZ©</span>
                   <span className="w-[3px] h-[3px] bg-white/15" />
                   <span>Since 2016</span>
-                  <span className="w-[3px] h-[3px] bg-white/15" />
+                  <span className="w-[3px] h-[3px] bg-white/15 lg:hidden" />
                   {/* mobile dots */}
-                  <div className="hidden max-lg:flex items-center gap-1.5">
+                  <div className="hidden py-32 max-lg:flex items-center gap-1.5">
                     {SERVICES.map((_, i) => (
                       <span
                         key={i}

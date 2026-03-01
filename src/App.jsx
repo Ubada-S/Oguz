@@ -18,10 +18,10 @@ export default function App() {
         <Hero />
         <Approach />
         <AnimatedMenu />
+        <ServicesSection />
         <Projects />
         <WhyChooseUs />
         <ParallaxGallery />
-        <ServicesSection />
         <ScrollMaskTransition />
       </div>
 
