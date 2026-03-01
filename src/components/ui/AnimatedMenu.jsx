@@ -1,6 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import bgimage from "../other/card.jpg";
+
+const images = [
+  "1.jpg",
+  "2.jpg",
+  "3.jpg",
+  "4.jpg",
+  "5.jpg",
+  "6.jpg",
+  "7.jpg",
+  "8.jpg",
+  "9.jpg",
+  "10.jpg",
+  "11.jpg",
+  "12.jpg",
+];
 
 export default function AnimatedMenu() {
   const hamburgerRef = useRef(null);
@@ -254,7 +268,7 @@ export default function AnimatedMenu() {
               >
                 <div className="absolute inset-0 w-full h-full z-[2]">
                   <img
-                    src={bgimage}
+                    src={`/images/${images[0]}`}
                     alt=""
                     className="w-full h-full object-cover"
                   />
@@ -269,101 +283,48 @@ export default function AnimatedMenu() {
               <h1 className="text-[clamp(1.5rem,3vw,3rem)]">Discover Page</h1>
 
               {/* Menu List */}
+              {/* Menu List */}
               <div className="pt-6 mb-6 fade-out flex flex-col md:flex-row gap-2 md:gap-2 text-[clamp(1.5rem,3vw,3rem)]">
                 <ul className="w-full md:w-1/2 h-full flex flex-col gap-4 md:gap-2 md:justify-center">
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Home
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Destinations
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Wellness
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Inovation
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Nature
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
+                  {[
+                    "Home",
+                    "Destinations",
+                    "Wellness",
+                    "Inovation",
+                    "Nature",
+                  ].map((item, i) => (
+                    <li
+                      key={item}
+                      className="hover-link fade-out cursor-pointer h-max relative w-max group"
+                      data-image={`/images/${images[i]}`}
+                    >
+                      <span className="relative">
+                        {item}
+                        <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
+                      </span>
+                    </li>
+                  ))}
                 </ul>
 
                 <ul className="w-full md:w-1/2 h-full flex flex-col gap-4 md:gap-2 md:justify-center">
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Community
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      The Story
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      New Developments
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Press Room
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
-                  <li
-                    className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                    data-image={bgimage}
-                  >
-                    <span className="relative">
-                      Careers
-                      <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                    </span>
-                  </li>
+                  {[
+                    "Community",
+                    "The Story",
+                    "New Developments",
+                    "Press Room",
+                    "Careers",
+                  ].map((item, i) => (
+                    <li
+                      key={item}
+                      className="hover-link fade-out cursor-pointer h-max relative w-max group"
+                      data-image={`/images/${images[i + 5]}`}
+                    >
+                      <span className="relative">
+                        {item}
+                        <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -401,12 +362,12 @@ export default function AnimatedMenu() {
                 </h2>
                 <div className="mt-4 flex gap-3 md:gap-4 items-center text-[clamp(1rem,3vw,1.35rem)] flex-wrap">
                   <a
-                    href="https://balsss.vercel.app"
+                    href=""
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative w-max group"
                   >
-                    info@creativeclub.co
+                    info@oguz.co
                     <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
                   </a>
                   <span>|</span>
