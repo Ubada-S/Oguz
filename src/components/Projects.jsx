@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import imagetest from "../components/other/card.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -159,6 +158,7 @@ const Projects = () => {
         </div>
 
         {/* Center Content */}
+
         <div className="text-center pt-16 lg:pt-24 px-7 ">
           <h1 className="lg:text-[72px] xl:text-[96px] text-[40px] text-white -tracking-widest leading-tight">
             Case Studies

@@ -10,7 +10,7 @@ const Hero = () => {
     console.log("All letters have animated!");
   };
   return (
-    <main className="relative h-[900px] overflow-hidden bg-black ">
+    <main className="relative min-h-screen overflow-hidden bg-black ">
       <div className="absolute inset-0 z-0">
         <PixelBlast
           variant="square"
