@@ -29,7 +29,7 @@ export default function App() {
       <div className="fixed bottom-0 left-0 right-0 pointer-events-none z-50">
         <GradualBlurMemo
           position="bottom"
-          height="10rem"
+          height="6rem"
           strength={1.5}
           divCount={5}
           curve="bezier"
