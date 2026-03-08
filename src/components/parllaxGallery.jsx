@@ -86,7 +86,7 @@ export default function ParallaxGallery() {
       {/* Gallery */}
       <div
         ref={gallery}
-        className="relative flex overflow-hidden bg-[rgb(39,34,29)]"
+        className="relative flex overflow-hidden touch-none bg-[rgb(39,34,29)]"
         style={{
           height: "175vh",
           gap: "2vw",
