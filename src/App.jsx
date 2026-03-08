@@ -1,8 +1,7 @@
 import Approach from "./components/Approach";
+import Services from "./components/Services";
 
 import Hero from "./components/Hero";
-import ServicesSection from "./components/Services";
-import ParallaxGallery from "./components/parllaxGallery";
 
 import GradualBlurMemo from "./components/other/GradualBlur";
 import Projects from "./components/Projects";
@@ -14,14 +13,15 @@ export default function App() {
   return (
     <>
       {/* Main scrollable content - no container restrictions */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden bg-black">
         <Hero />
         <Approach />
         <AnimatedMenu />
-        <ServicesSection />
+
         <Projects />
+      
         <WhyChooseUs />
-        <ParallaxGallery />
+        <Services />
         <ScrollMaskTransition />
       </div>
 

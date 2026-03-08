@@ -149,7 +149,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black font-google tracking-tighter">
+    <main className="min-h-screen bg-black border-t border-white/20 font-google tracking-tighter">
       {/* Center Canvas */}
       <div className="relative w-full max-w-[1920px] mx-auto">
         {/* Left Label */}

@@ -38,9 +38,9 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen  bg-black border-t -mb-32 border-white/10 text-white py-20 lg:py-32"
+      className="min-h-screen  bg-black border-t  border-white/20 text-white py-20 lg:py-32"
     >
-      <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
+      <div className="max-w-[1920px]  mx-auto px-7 lg:px-20">
         {/* Header */}
         <div className="mb-16 lg:mb-24">
           <div className="text-sm lg:text-base font-google mb-8 text-white/80">
@@ -161,7 +161,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-      <ScrollMarquee speed={0.02} className="bg-black -mt-32" />
+      {/* <ScrollMarquee speed={0.02} className="bg-black -mt-32" /> */}
     </section>
   );
 };
