@@ -1,11 +1,12 @@
 import Approach from "./components/Approach";
 import Services from "./components/Services";
+import ProcessSection from "./components/ProcessSection";
 
 import Hero from "./components/Hero";
 
 import GradualBlurMemo from "./components/other/GradualBlur";
 import Projects from "./components/Projects";
-import ScrollMaskTransition from "./components/ScrollMaskTransition";
+
 import AnimatedMenu from "./components/ui/AnimatedMenu";
 import WhyChooseUs from "./components/WhyChoose";
 
@@ -22,7 +23,8 @@ export default function App() {
       
         <WhyChooseUs />
         <Services />
-        <ScrollMaskTransition />
+        <ProcessSection />
+        
       </div>
 
       {/* Fixed blur effect at bottom of viewport */}

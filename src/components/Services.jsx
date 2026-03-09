@@ -40,12 +40,12 @@ const services = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 const Services = () => {
-  const sectionRef      = useRef(null);
-  const leftColRef      = useRef(null);   // the element GSAP pins
-  const rightColRef     = useRef(null);   // scrolling right column
-  const navItemsRef     = useRef([]);
-  const rightBlocksRef  = useRef([]);
-  const activeIndexRef  = useRef(0);
+  const sectionRef     = useRef(null);
+  const leftColRef     = useRef(null);
+  const rightColRef    = useRef(null);
+  const navItemsRef    = useRef([]);
+  const rightBlocksRef = useRef([]);
+  const activeIndexRef = useRef(0);
 
   // ── GSAP ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -55,39 +55,47 @@ const Services = () => {
       // ── DESKTOP ────────────────────────────────────────────────────────
       mm.add("(min-width: 1024px)", () => {
 
-        // ── Set initial nav states ──
+        // Set initial nav states
         navItemsRef.current.forEach((item, i) => {
           if (!item) return;
           gsap.set(item, {
-            rotationX: 0,
-            y:         0,
-            opacity:    i === 0 ? 1        : 0.25,
-            color:      i === 0 ? "#ffffff": "#404040",
-            fontWeight: i === 0 ? 600      : 400,
+            opacity:    i === 0 ? 1       : 0.25,
+            color:      i === 0 ? "#ffffff" : "#404040",
+            fontWeight: i === 0 ? 600     : 400,
           });
+          const t1 = item.querySelector(".svc-text-1");
+          const t2 = item.querySelector(".svc-text-2");
+          if (t1) gsap.set(t1, { yPercent: 0 });
+          if (t2) gsap.set(t2, { yPercent: 100 });
         });
 
-        // ── GSAP pin left column for the full scroll height of the right column ──
+        // ── GSAP pin ──
         ScrollTrigger.create({
           trigger:    rightColRef.current,
           start:      "top top",
           end:        "bottom bottom",
           pin:        leftColRef.current,
-          pinSpacing: false,           // no extra space injected — right col drives the height
+          pinSpacing: false,
         });
 
-        // ── Per-block triggers + parallax ──
-        rightBlocksRef.current.forEach((block, i) => {
+        // ── Single progress-based ScrollTrigger for nav ──
+        ScrollTrigger.create({
+          trigger: rightColRef.current,
+          start:   "top top",
+          end:     "bottom bottom",
+          onUpdate: (self) => {
+            const rawIndex  = self.progress * (services.length - 1);
+            const newIndex  = Math.round(rawIndex);
+            const direction = newIndex > activeIndexRef.current ? "down" : "up";
+            if (newIndex !== activeIndexRef.current) {
+              transitionTo(newIndex, direction);
+            }
+          },
+        });
+
+        // ── Image parallax ──
+        rightBlocksRef.current.forEach((block) => {
           if (!block) return;
-
-          ScrollTrigger.create({
-            trigger: block,
-            start:   "top 45%",
-            end:     "bottom 45%",
-            onEnter:     () => transitionTo(i, "down"),
-            onEnterBack: () => transitionTo(i, "up"),
-          });
-
           const img = block.querySelector(".svc-img");
           if (img) {
             gsap.fromTo(img,
@@ -130,24 +138,22 @@ const Services = () => {
     return () => ctx.revert();
   }, []);
 
-  // ── Flip transition ────────────────────────────────────────────────────────
+  // ── Transition ────────────────────────────────────────────────────────────
   //
-  // SCROLL DOWN
-  //   outgoing: tilts forward (rotationX → +80), slides up a touch, fades → ghost
-  //   incoming: arrives from below tilted back (rotationX -80 → 0), slides up into place
+  // Model:
+  //   t1 = always the "visible" span, resting at yPercent: 0
+  //   t2 = always the "incoming" span, parked off-screen
   //
-  // SCROLL UP
-  //   outgoing: tilts backward (rotationX → -80), slides down a touch, fades → ghost
-  //   incoming: arrives from above tilted forward (rotationX +80 → 0), slides down into place
+  // On transition:
+  //   t2 slides in from the scroll direction, t1 slides out the other way.
+  //   On complete, t1 snaps back to 0 and t2 parks off-screen again — ready
+  //   for the next transition in either direction.
   //
-  // Extra polish:
-  //   - A very slight blur on exit reinforces depth
-  //   - Incoming uses a short initial delay so exit finishes visually first
-  //   - fontWeight is interpolated via a quick second tween so it doesn't snap
+  // We kill all tweens on item + spans before starting, so rapid scrolling
+  // never causes stale onComplete callbacks to corrupt positions.
   //
   function transitionTo(newIndex, direction) {
     const prevIndex = activeIndexRef.current;
-    if (newIndex === prevIndex) return;
     activeIndexRef.current = newIndex;
 
     const isDown = direction === "down";
@@ -155,58 +161,97 @@ const Services = () => {
     navItemsRef.current.forEach((item, i) => {
       if (!item) return;
 
+      const t1 = item.querySelector(".svc-text-1");
+      const t2 = item.querySelector(".svc-text-2");
+
+      // Kill any running tweens on this item's elements to prevent stale callbacks
+      gsap.killTweensOf(item);
+      if (t1) gsap.killTweensOf(t1);
+      if (t2) gsap.killTweensOf(t2);
+
       if (i === newIndex) {
         // ── Incoming ──────────────────────────────────────────────────────
-        gsap.fromTo(item,
-          {
-            rotationX: isDown ? -80 : 80,
-            y:         isDown ?  22 : -22,
-            opacity:   0,
-            filter:    "blur(2px)",
+        const enterFrom = isDown ? 100 : -100;  // t2 enters from here
+        const exitTo    = isDown ? -100 : 100;   // t1 exits to here
+
+        // Park t2 at starting position before animating
+        if (t2) gsap.set(t2, { yPercent: enterFrom });
+
+        // Fade/color the wrapper in
+        gsap.to(item, {
+          opacity:    1,
+          color:      "#ffffff",
+          fontWeight: 600,
+          duration:   0.6,
+          ease:       "expo.out",
+        });
+
+        // t1 slides out
+        if (t1) gsap.to(t1, {
+          yPercent: exitTo,
+          duration: 0.6,
+          ease:     "expo.out",
+        });
+
+        // t2 slides in, then reset both spans to resting positions
+        if (t2) gsap.to(t2, {
+          yPercent: 0,
+          duration: 0.6,
+          ease:     "expo.out",
+          onComplete: () => {
+            // Silently swap: t1 back to visible position, t2 parked off-screen
+            if (t1) gsap.set(t1, { yPercent: 0 });
+            if (t2) gsap.set(t2, { yPercent: 100 });
           },
-          {
-            rotationX: 0,
-            y:         0,
-            opacity:   1,
-            filter:    "blur(0px)",
-            color:     "#ffffff",
-            fontWeight: 600,
-            duration:  0.7,
-            ease:      "expo.out",
-            overwrite: true,
-            delay:     0.06,           // slight delay — lets exit start first
-          }
-        );
+        });
+
       } else if (i === prevIndex) {
         // ── Outgoing ──────────────────────────────────────────────────────
+        const exitDir  = isDown ? -100 : 100;    // t1 exits this way
+        const enterDir = isDown ? 100  : -100;   // t2 enters from opposite
+
+        // Park t2
+        if (t2) gsap.set(t2, { yPercent: enterDir });
+
+        // Fade/color the wrapper out
         gsap.to(item, {
-          rotationX:  isDown ?  80 : -80,
-          y:          isDown ? -16 :  16,
-          opacity:    0,
-          filter:     "blur(3px)",
+          opacity:    0.25,
           color:      "#404040",
           fontWeight: 400,
-          duration:   0.42,
-          ease:       "expo.in",
-          overwrite:  true,
+          duration:   0.45,
+          ease:       "expo.inOut",
+        });
+
+        // t1 slides out
+        if (t1) gsap.to(t1, {
+          yPercent: exitDir,
+          duration: 0.45,
+          ease:     "expo.inOut",
+        });
+
+        // t2 slides in to keep the text visible while fading, then reset
+        if (t2) gsap.to(t2, {
+          yPercent: 0,
+          duration: 0.45,
+          ease:     "expo.inOut",
           onComplete: () => {
-            // Reset to clean flat state for future re-entry
-            gsap.set(item, { rotationX: 0, y: 0, opacity: 0.25, filter: "blur(0px)" });
+            if (t1) gsap.set(t1, { yPercent: 0 });
+            if (t2) gsap.set(t2, { yPercent: 100 });
           },
         });
+
       } else {
-        // ── All other items — ensure resting dim state ─────────────────
+        // ── All others — snap to resting state ────────────────────────────
         gsap.to(item, {
-          rotationX:  0,
-          y:          0,
           opacity:    0.25,
-          filter:     "blur(0px)",
           color:      "#404040",
           fontWeight: 400,
-          duration:   0.5,
+          duration:   0.4,
           ease:       "power2.out",
-          overwrite:  true,
         });
+        // Force spans to clean resting positions (no animation needed)
+        if (t1) gsap.set(t1, { yPercent: 0 });
+        if (t2) gsap.set(t2, { yPercent: 100 });
       }
     });
   }
@@ -257,23 +302,8 @@ const Services = () => {
       </div>
 
       {/* ── DESKTOP LAYOUT ───────────────────────────────────────────────── */}
-      {/*
-          Structure:
-          ┌─────────────────────────────────────────────────────────┐
-          │  relative wrapper (full width, drives section height)   │
-          │  ┌──────────────────┐  │  ┌──────────────────────────┐ │
-          │  │  left col        │  │  │  right col               │ │
-          │  │  (GSAP-pinned)   │  │  │  (normal scroll)         │ │
-          │  └──────────────────┘  │  └──────────────────────────┘ │
-          │          absolute 1px border at left:30%               │
-          └─────────────────────────────────────────────────────────┘
-
-          The absolute border div has top-0/bottom-0 so it always spans
-          the full height of the wrapper regardless of pin state.
-      */}
       <div className="hidden lg:block max-w-[1920px] mx-auto relative">
 
-        {/* Full-height divider — NOT on the sticky element, lives on the wrapper */}
         <div
           className="absolute top-0 bottom-0 w-px bg-white/10 pointer-events-none z-10"
           style={{ left: "30%" }}
@@ -284,23 +314,23 @@ const Services = () => {
           {/* ── Left col — GSAP pins this ── */}
           <div
             ref={leftColRef}
-            className="w-[30%] shrink-0 h-screen flex flex-col justify-start
-                       pt-10 pl-16 xl:pl-20 pr-10"
-            style={{ perspective: "700px" }}
+            className="w-[30%] shrink-0 h-screen flex flex-col justify-start pt-10 pl-16 xl:pl-20 pr-10"
           >
             <div className="space-y-4">
               {services.map((service, i) => (
                 <div
                   key={service.id}
                   ref={(el) => (navItemsRef.current[i] = el)}
-                  className="text-2xl xl:text-[28px] tracking-tight cursor-default select-none"
-                  style={{
-                    willChange:      "transform, opacity, filter",
-                    transformStyle:  "preserve-3d",
-                    transformOrigin: "50% 50%",
-                  }}
+                  className="relative block w-fit overflow-hidden text-2xl xl:text-[28px] tracking-tight cursor-default select-none"
+                  style={{ willChange: "opacity, filter, color" }}
                 >
-                  {service.title}
+                  <span className="invisible">{service.title}</span>
+                  <span className="svc-text-1 absolute left-0 top-0 w-full h-full">
+                    {service.title}
+                  </span>
+                  <span className="svc-text-2 absolute left-0 top-0 w-full h-full">
+                    {service.title}
+                  </span>
                 </div>
               ))}
             </div>
@@ -312,7 +342,7 @@ const Services = () => {
               <div
                 key={service.id}
                 ref={(el) => (rightBlocksRef.current[i] = el)}
-                className="px-10 xl:px-16 py-10 border-b border-white/5"
+                className="px-10 xl:px-16 py-10 border-b border-white/20"
               >
                 {/* Image */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden mb-8">
@@ -382,7 +412,7 @@ const Services = () => {
             </p>
             <div className="flex flex-wrap gap-2">
               {service.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 text-xs border border-white/15 text-neutral-400">
+                <span key={tag} className="px-3 py-1 text-xs border border-white/20 text-neutral-400">
                   {tag}
                 </span>
               ))}
