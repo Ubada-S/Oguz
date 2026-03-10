@@ -9,6 +9,7 @@ import Projects from "./components/Projects";
 
 import AnimatedMenu from "./components/ui/AnimatedMenu";
 import WhyChooseUs from "./components/WhyChoose";
+import PricingSection from "./components/Pricing";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <WhyChooseUs />
         <Services />
         <ProcessSection />
+        <PricingSection/>
         
       </div>
 

@@ -342,7 +342,7 @@ const Services = () => {
               <div
                 key={service.id}
                 ref={(el) => (rightBlocksRef.current[i] = el)}
-                className="px-10 xl:px-16 py-10 border-b border-white/20"
+                className="px-10 xl:px-16 py-10 border-b border-white/10" 
               >
                 {/* Image */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden mb-8">
