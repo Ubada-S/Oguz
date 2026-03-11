@@ -7,7 +7,6 @@ import Hero from "./components/Hero";
 /* import GradualBlurMemo from "./components/other/GradualBlur"; */
 import Projects from "./components/Projects";
 
-import AnimatedMenu from "./components/ui/AnimatedMenu";
 import WhyChooseUs from "./components/WhyChoose";
 import PricingSection from "./components/Pricing";
 import FAQSection from "./components/FAQsection";
@@ -15,11 +14,14 @@ import FAQSection from "./components/FAQsection";
 export default function App() {
   return (
     <>
+      {/* Fixed vertical border rails */}
+      <div className="fixed inset-0 pointer-events-none z-[9999]">
+        <div className="h-full mx-[7px] lg:mx-[20px] border-x border-white/20" />
+      </div>
       {/* Main scrollable content - no container restrictions */}
       <div className="overflow-hidden bg-black">
         <Hero />
         <Approach />
-        <AnimatedMenu />
 
         <Projects />
 

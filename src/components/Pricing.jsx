@@ -6,14 +6,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const plans = [
- 
   {
     id: "basic",
     name: "Basic",
     monthlyPrice: 1500,
     yearlyPrice: 1200,
     unit: " /month",
-    description: "Perfect for startups and growing brands looking for consistent design and marketing support.",
+    description:
+      "Perfect for startups and growing brands looking for consistent design and marketing support.",
     features: [
       "Up to 20 design & marketing requests",
       "Brand, social & web design support",
@@ -32,7 +32,8 @@ const plans = [
     yearlyPrice: 2000,
     originalPrice: 3000,
     unit: " /month",
-    description: "Ideal for established brands seeking dedicated creative partnership and full-scale marketing.",
+    description:
+      "Ideal for established brands seeking dedicated creative partnership and full-scale marketing.",
     features: [
       "Unlimited design & marketing requests",
       "Dedicated project manager",
@@ -49,7 +50,8 @@ const plans = [
     monthlyPrice: 3500,
     yearlyPrice: 3000,
     unit: " /project",
-    description: "Best for one-time projects like branding, web design, or campaign launches.",
+    description:
+      "Best for one-time projects like branding, web design, or campaign launches.",
     features: [
       "Custom proposal & timeline",
       "End-to-end creative execution",
@@ -64,9 +66,21 @@ const plans = [
 
 // ─── Check Icon ───────────────────────────────────────────────────────────────
 const CheckIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    className="shrink-0 mt-0.5"
+  >
     <circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4" />
-    <path d="M5 8.5L7 10.5L11 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M5 8.5L7 10.5L11 6"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -77,8 +91,20 @@ const ArrowIcon = ({ refEl }) => (
     className="w-10 h-10 shrink-0 border border-white/30 flex items-center justify-center"
     style={{ display: "inline-flex" }}
   >
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="arrow-svg">
-      <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      className="arrow-svg"
+    >
+      <path
+        d="M2 12L12 2M12 2H5M12 2V9"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   </span>
 );
@@ -102,8 +128,8 @@ const Toggle = ({ checked, onChange }) => (
 // ─── Animated Price ───────────────────────────────────────────────────────────
 const AnimatedPrice = ({ plan, yearly }) => {
   const containerRef = useRef(null);
-  const currentRef   = useRef(null);
-  const prevRef      = useRef(null);
+  const currentRef = useRef(null);
+  const prevRef = useRef(null);
   const isFirstRender = useRef(true);
 
   const price = yearly ? plan.yearlyPrice : plan.monthlyPrice;
@@ -120,15 +146,30 @@ const AnimatedPrice = ({ plan, yearly }) => {
     if (!curr || !prev) return;
 
     const tl = gsap.timeline();
-    tl.to(prev, { y: -40, opacity: 0, duration: 0.45, ease: "power3.out" }, 0)
-      .fromTo(curr, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0);
+    tl.to(
+      prev,
+      { y: -40, opacity: 0, duration: 0.45, ease: "power3.out" },
+      0,
+    ).fromTo(
+      curr,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+      0,
+    );
   }, [yearly, plan.id]);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden" style={{ height: "3rem" }}>
+    <div
+      ref={containerRef}
+      className="relative overflow-hidden"
+      style={{ height: "3rem" }}
+    >
       <div ref={prevRef} className="absolute inset-0 flex items-end">
         <span className="text-[42px] font-semibold tracking-tight leading-none">
-          ${yearly ? plan.monthlyPrice.toLocaleString() : plan.yearlyPrice.toLocaleString()}
+          $
+          {yearly
+            ? plan.monthlyPrice.toLocaleString()
+            : plan.yearlyPrice.toLocaleString()}
         </span>
       </div>
       <div ref={currentRef} className="absolute inset-0 flex items-end">
@@ -143,7 +184,7 @@ const AnimatedPrice = ({ plan, yearly }) => {
 // ─── Card ─────────────────────────────────────────────────────────────────────
 const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
   const innerRef = useRef(null);
-  const btnRef   = useRef(null);
+  const btnRef = useRef(null);
   const arrowRef = useRef(null);
 
   const handleEnter = useCallback(() => {
@@ -155,8 +196,17 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
       duration: 0.35,
       ease: "power2.out",
     });
-    gsap.to(btnRef.current, { backgroundColor: "#ffffff", color: "#000000", duration: 0.3, ease: "power2.out" });
-    gsap.to(arrowRef.current, { backgroundColor: "rgba(0,0,0,0.15)", borderColor: "rgba(0,0,0,0.3)", duration: 0.3 });
+    gsap.to(btnRef.current, {
+      backgroundColor: "#ffffff",
+      color: "#000000",
+      duration: 0.3,
+      ease: "power2.out",
+    });
+    gsap.to(arrowRef.current, {
+      backgroundColor: "rgba(0,0,0,0.15)",
+      borderColor: "rgba(0,0,0,0.3)",
+      duration: 0.3,
+    });
   }, []);
 
   const handleLeave = useCallback(() => {
@@ -168,17 +218,28 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
       duration: 0.35,
       ease: "power2.out",
     });
-    gsap.to(btnRef.current, { backgroundColor: "#000000", color: "#ffffff", duration: 0.3, ease: "power2.out" });
-    gsap.to(arrowRef.current, { backgroundColor: "transparent", borderColor: "rgba(255,255,255,0.3)", duration: 0.3 });
+    gsap.to(btnRef.current, {
+      backgroundColor: "#000000",
+      color: "#ffffff",
+      duration: 0.3,
+      ease: "power2.out",
+    });
+    gsap.to(arrowRef.current, {
+      backgroundColor: "transparent",
+      borderColor: "rgba(255,255,255,0.3)",
+      duration: 0.3,
+    });
   }, []);
 
   const handleCardEnter = useCallback(() => {
     if (!innerRef.current) return;
     gsap.to(innerRef.current, {
       y: -2,
-      borderColor: plan.highlighted ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.4)",
+      borderColor: plan.highlighted
+        ? "rgba(255,255,255,0.7)"
+        : "rgba(255,255,255,0.4)",
       duration: 0.2,
-      ease: "power2.out"
+      ease: "power2.out",
     });
   }, [plan.highlighted]);
 
@@ -186,9 +247,11 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
     if (!innerRef.current) return;
     gsap.to(innerRef.current, {
       y: 0,
-      borderColor: plan.highlighted ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
+      borderColor: plan.highlighted
+        ? "rgba(255,255,255,0.4)"
+        : "rgba(255,255,255,0.2)",
       duration: 0.2,
-      ease: "power2.out"
+      ease: "power2.out",
     });
   }, [plan.highlighted]);
 
@@ -201,13 +264,17 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
       onMouseEnter={handleCardEnter}
       onMouseLeave={handleCardLeave}
       className={`relative flex flex-col bg-black p-8 ${
-        plan.highlighted ? "border border-dashed border-white/40" : "border border-white/20"
+        plan.highlighted
+          ? "border border-dashed border-white/40"
+          : "border border-white/20"
       }`}
     >
       {/* Plan name row */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <span className="text-base font-semibold text-white">{plan.name}</span>
+          <span className="text-base font-semibold text-white">
+            {plan.name}
+          </span>
           {plan.badge && (
             <span className="text-xs text-white/50 font-normal border border-white/20 px-2 py-0.5">
               {plan.badge}
@@ -227,9 +294,12 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
             ${plan.originalPrice.toLocaleString()}
           </span>
         )}
-        <div className="flex items-end gap-2 overflow-hidden" style={{ height: "52px" }}>
+        <div
+          className="flex items-end gap-2 overflow-hidden"
+          style={{ height: "52px" }}
+        >
           <PriceNumber plan={plan} yearly={yearly} />
-          <span className="text-sm text-white/40 mb-1.5">{plan.unit}</span>
+          <span className="text-sm text-white/40 ml-2 mb-1.5">{plan.unit}</span>
         </div>
       </div>
 
@@ -243,10 +313,15 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
 
       {/* Features */}
       <div className="mb-auto">
-        <p className="text-xs text-white/40 uppercase tracking-widest mb-4">What's included:</p>
+        <p className="text-xs text-white/40 uppercase tracking-widest mb-4">
+          What's included:
+        </p>
         <ul className="space-y-3">
           {plan.features.map((f) => (
-            <li key={f} className="feature-item flex items-start gap-3 text-sm text-white/70">
+            <li
+              key={f}
+              className="feature-item flex items-start gap-3 text-sm text-white/70"
+            >
               <CheckIcon />
               <span>{f}</span>
             </li>
@@ -274,20 +349,30 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
 
 // ─── Price Number (with GSAP flip animation) ──────────────────────────────────
 const PriceNumber = ({ plan, yearly }) => {
-  const wrapRef    = useRef(null);
-  const currRef    = useRef(null);
-  const prevRef    = useRef(null);
-  const initiated  = useRef(false);
+  const wrapRef = useRef(null);
+  const currRef = useRef(null);
+  const prevRef = useRef(null);
+  const initiated = useRef(false);
   const prevYearly = useRef(yearly);
 
-  const price     = yearly ? plan.yearlyPrice : plan.monthlyPrice;
+  const price = yearly ? plan.yearlyPrice : plan.monthlyPrice;
   const prevPrice = yearly ? plan.monthlyPrice : plan.yearlyPrice;
 
+  // ── INITIAL STATE FIX ─────────────────────────
+  useEffect(() => {
+    if (!currRef.current || !prevRef.current) return;
+
+    gsap.set(currRef.current, { y: 0, opacity: 1 });
+    gsap.set(prevRef.current, { y: 0, opacity: 0 }); // hide prev initially
+  }, []);
+
+  // ── TOGGLE ANIMATION ─────────────────────────
   useEffect(() => {
     if (!initiated.current) {
       initiated.current = true;
       return;
     }
+
     if (prevYearly.current === yearly) return;
     prevYearly.current = yearly;
 
@@ -296,19 +381,40 @@ const PriceNumber = ({ plan, yearly }) => {
     if (!curr || !prev) return;
 
     const tl = gsap.timeline();
-    tl.to(prev, { y: -44, opacity: 0, duration: 0.45, ease: "power3.out" }, 0)
-      .fromTo(curr, { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0);
+
+    tl.to(
+      prev,
+      {
+        y: -44,
+        opacity: 0,
+        duration: 0.45,
+        ease: "power3.out",
+      },
+      0,
+    )
+
+      .fromTo(
+        curr,
+        { y: 44, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+        0,
+      );
   }, [yearly]);
 
   return (
-    <div ref={wrapRef} className="relative" style={{ height: "52px", minWidth: "120px" }}>
-      {/* Previous price — animates out */}
+    <div
+      ref={wrapRef}
+      className="relative"
+      style={{ height: "52px", minWidth: "120px" }}
+    >
+      {/* Previous price */}
       <div ref={prevRef} className="absolute inset-0 flex items-end">
         <span className="text-[42px] font-semibold tracking-tight leading-none text-white">
           ${prevPrice.toLocaleString()}
         </span>
       </div>
-      {/* Current price — animates in */}
+
+      {/* Current price */}
       <div ref={currRef} className="absolute inset-0 flex items-end">
         <span className="text-[42px] font-semibold tracking-tight leading-none text-white">
           ${price.toLocaleString()}
@@ -317,16 +423,15 @@ const PriceNumber = ({ plan, yearly }) => {
     </div>
   );
 };
-
 // ─── Main Component ───────────────────────────────────────────────────────────
 const PricingSection = () => {
-  const sectionRef   = useRef(null);
-  const rect1Ref     = useRef(null);
-  const rect2Ref     = useRef(null);
-  const rect3Ref     = useRef(null);
-  const headerRef    = useRef(null);
+  const sectionRef = useRef(null);
+  const rect1Ref = useRef(null);
+  const rect2Ref = useRef(null);
+  const rect3Ref = useRef(null);
+  const headerRef = useRef(null);
   const cardsWrapRef = useRef(null);
-  const cardRefs     = useRef([]);
+  const cardRefs = useRef([]);
 
   // individual toggle states
   const [yearlyStates, setYearlyStates] = useState({
@@ -337,9 +442,9 @@ const PricingSection = () => {
 
   // toggle single card
   const handleCardToggle = useCallback((id, value) => {
-    setYearlyStates(prev => ({
+    setYearlyStates((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }));
   }, []);
 
@@ -348,19 +453,16 @@ const PricingSection = () => {
     setYearlyStates({
       basic: val,
       premium: val,
-      project: val
+      project: val,
     });
   }, []);
 
   const globalState =
-    yearlyStates.basic &&
-    yearlyStates.premium &&
-    yearlyStates.project;
+    yearlyStates.basic && yearlyStates.premium && yearlyStates.project;
 
   // ── GSAP ─────────────────────────────────────────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
-
       gsap.fromTo(
         headerRef.current?.children,
         { opacity: 0, y: 32 },
@@ -370,8 +472,12 @@ const PricingSection = () => {
           duration: 0.8,
           ease: "power3.out",
           stagger: 0.12,
-          scrollTrigger: { trigger: headerRef.current, start: "top 80%", once: true },
-        }
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        },
       );
 
       const rectTl = gsap.timeline({
@@ -380,20 +486,28 @@ const PricingSection = () => {
           start: "top 95%",
           end: "top 45%",
           scrub: true,
-        }
+        },
       });
 
-      rectTl.to([rect1Ref.current, rect3Ref.current], {
-        height: 0,
-        y: 80,
-        ease: "none",
-      }, 0);
+      rectTl.to(
+        [rect1Ref.current, rect3Ref.current],
+        {
+          height: 0,
+          y: 80,
+          ease: "none",
+        },
+        0,
+      );
 
-      rectTl.to(rect2Ref.current, {
-        height: 0,
-        y: 60,
-        ease: "none",
-      }, 0);
+      rectTl.to(
+        rect2Ref.current,
+        {
+          height: 0,
+          y: 60,
+          ease: "none",
+        },
+        0,
+      );
 
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
@@ -401,19 +515,36 @@ const PricingSection = () => {
         const features = card.querySelectorAll(".feature-item");
 
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: cardsWrapRef.current, start: "top 80%", once: true }
+          scrollTrigger: {
+            trigger: cardsWrapRef.current,
+            start: "top 80%",
+            once: true,
+          },
         });
 
-        tl.fromTo(card,
+        tl.fromTo(
+          card,
           { opacity: 0, y: 48 },
-          { opacity: 1, y: 0, duration: 0.75, ease: "power3.out", delay: i * 0.1 }
-        ).fromTo(features,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            delay: i * 0.1,
+          },
+        ).fromTo(
+          features,
           { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out" },
-          "-=0.4"
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: "power2.out",
+          },
+          "-=0.4",
         );
       });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -425,7 +556,6 @@ const PricingSection = () => {
       className="relative bg-black text-white py-20 lg:py-32 overflow-hidden border-t border-white/20"
     >
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
-
         {/* HEADER */}
         <div
           ref={headerRef}
@@ -451,9 +581,21 @@ const PricingSection = () => {
 
         {/* RECTANGLES */}
         <div className="grid grid-cols-3 gap-8 mb-0 relative z-0">
-          <div ref={rect1Ref} className="bg-white/[0.04] border border-white/[0.08]" style={{ height: "80px" }} />
-          <div ref={rect2Ref} className="bg-white/[0.06] border border-white/[0.1]" style={{ height: "70px" }} />
-          <div ref={rect3Ref} className="bg-white/[0.04] border border-white/[0.08]" style={{ height: "80px" }} />
+          <div
+            ref={rect1Ref}
+            className="bg-white/[0.04] border border-white/[0.08]"
+            style={{ height: "80px" }}
+          />
+          <div
+            ref={rect2Ref}
+            className="bg-white/[0.06] border border-white/[0.1]"
+            style={{ height: "70px" }}
+          />
+          <div
+            ref={rect3Ref}
+            className="bg-white/[0.04] border border-white/[0.08]"
+            style={{ height: "80px" }}
+          />
         </div>
 
         {/* CARDS */}
@@ -489,7 +631,6 @@ const PricingSection = () => {
             — Premium saves $6,000/yr
           </span>
         </div>
-
       </div>
     </section>
   );
