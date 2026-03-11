@@ -452,7 +452,7 @@ const PricingSection = () => {
         {/* RECTANGLES */}
         <div className="grid grid-cols-3 gap-8 mb-0 relative z-0">
           <div ref={rect1Ref} className="bg-white/[0.04] border border-white/[0.08]" style={{ height: "80px" }} />
-          <div ref={rect2Ref} className="bg-white/[0.06] border border-white/[0.1]" style={{ height: "60px" }} />
+          <div ref={rect2Ref} className="bg-white/[0.06] border border-white/[0.1]" style={{ height: "70px" }} />
           <div ref={rect3Ref} className="bg-white/[0.04] border border-white/[0.08]" style={{ height: "80px" }} />
         </div>
 
