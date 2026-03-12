@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../data/projects";
 import AnimatedMenu from "./ui/AnimatedMenu";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -174,6 +175,30 @@ const ProjectDetails = () => {
   if (!project) return <Navigate to="/" replace />;
   const otherProjects = projects.filter((p) => p.slug !== slug);
 
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    const tickerFn = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerFn);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(tickerFn);
+    };
+  }, []);
+
   // ── GSAP ──────────────────────────────────────────────────────────────────
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -181,13 +206,24 @@ const ProjectDetails = () => {
     const ctx = gsap.context(() => {
       // ── 1. HEADING ONLY parallax — scrolls at ~55% speed of page ──────
       gsap.to(heroHeadingRef.current, {
-        yPercent: -22,
+        yPercent: 180,
         ease: "none",
         scrollTrigger: {
           trigger: heroRef.current,
           start: "top top",
-          end: "bottom top",
-          scrub: 1.6,
+          end: "bottom+=900 top", // ← keeps animating 600px past the hero's end
+          scrub: 0.3, // ← less float, more friction
+        },
+      });
+
+      gsap.to(heroHeadingRef.current, {
+        opacity: 0.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top", // starts fading the moment you scroll
+          end: "center top", // fully gone by the time hero center hits viewport top
+          scrub: 0.3, // same friction as the parallax
         },
       });
       // Everything else in the hero scrolls at normal speed — no parallax on sub-content

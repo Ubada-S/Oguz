@@ -191,6 +191,7 @@ export const projects = [
     numbers: [
       { value: "12k", label: "App installs in first 72 hours" },
       { value: "40%", label: "Unaided brand recognition in week one" },
+      { value: "40%", label: "Unaided brand recognition in week one" },
     ],
     testimonial: {
       quote:
