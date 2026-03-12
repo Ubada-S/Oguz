@@ -118,7 +118,7 @@ const Hero = () => {
     <>
       <Navbar />
 
-      <main className="relative min-h-screen overflow-hidden bg-black">
+      <main className="relative min-h-[900px] overflow-hidden bg-black">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <PixelBlast

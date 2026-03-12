@@ -1,0 +1,203 @@
+export const projects = [
+  {
+    slug: "quantum-ai",
+    title: "Demystifying AI through thoughtful design",
+    intro:
+      "Quantum's breakthrough AI needed a brand that balanced cutting-edge technology with human understanding.",
+    description:
+      "Quantum is solving problems most people don't understand with technology few can explain. In the AI gold rush, standing apart requires more than algorithms — it requires a brand that earns trust at first glance.",
+    services: [
+      "Brand positioning",
+      "Visual identity",
+      "Platform design",
+      "Investor deck",
+    ],
+    metadata: {
+      date: "Aug 2025",
+      client: "Quantum",
+      industry: "AI / Machine Learning",
+      timeline: "24 Months",
+    },
+    liveUrl: "#",
+    sections: [
+      {
+        type: "image",
+        src: "/images/1.jpg",
+        label: "Brand positioning",
+      },
+      {
+        type: "text",
+        title: "The Challenge",
+        heading:
+          "Quantum is solving problems most people don't understand with technology few can explain.",
+        body: "In the AI gold rush, most companies compete on technical complexity. Quantum needed a brand that translated dense machine-learning concepts into a visual language non-technical stakeholders could immediately grasp and trust.",
+      },
+      {
+        type: "image",
+        src: "/images/2.jpg",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        heading:
+          "We developed a visual language inspired by neural networks and data flows.",
+        body: "We created a brand system that demystifies AI through thoughtful design — clean geometry, purposeful motion, and a typographic voice that sounds confident without sounding cold. Every asset was built to work from pitch decks to production UIs.",
+      },
+      {
+        type: "image",
+        src: "/images/3.jpg",
+        label: "Marketing website",
+      },
+      {
+        type: "text",
+        title: "The Process",
+        heading:
+          "Brand positioning, visual identity, platform design, and investor deck delivered over 24 weeks.",
+        body: "Through extensive stakeholder interviews, competitive audits, and three rounds of identity exploration, we landed on a system that has since been used in Series B materials, conference keynotes, and a full product redesign.",
+      },
+    ],
+    numbers: [
+      { value: "85%", label: "Non-technical stakeholder comprehension" },
+      { value: "2.1x", label: "Investor meeting success rate" },
+      { value: "2.1x", label: "Investor meeting success rate" },
+    ],
+    testimonial: {
+      quote:
+        "Explaining AI to investors is hard enough without fighting your own brand identity. Oguz gave us a system that finally does the talking for us.",
+      author: "Dr. Michael Cohen",
+      role: "CEO & Co-founder, Quantum",
+      image: "/images/4.jpg",
+    },
+  },
+
+  {
+    slug: "cubekit",
+    title: "A design system built for teams that move fast",
+    intro:
+      "CubeKit needed a component library and brand that scaled with their product without slowing it down.",
+    description:
+      "CubeKit is a SaaS design system platform. Their brand and documentation had fallen behind their product. We rebuilt both from scratch — in parallel.",
+    services: [
+      "Brand identity",
+      "Design system",
+      "Documentation design",
+      "Web design",
+    ],
+    metadata: {
+      date: "Mar 2025",
+      client: "CubeKit",
+      industry: "SaaS / Design Tools",
+      timeline: "12 Months",
+    },
+    liveUrl: "#",
+    sections: [
+      {
+        type: "image",
+        src: "/images/5.jpg",
+        label: "Identity system",
+      },
+      {
+        type: "text",
+        title: "The Challenge",
+        heading: "A product loved by its users but invisible to everyone else.",
+        body: "CubeKit had strong retention but poor acquisition. The brand communicated nothing — a generic logo, no visual hierarchy, and documentation that felt like it was written for robots. New users bounced before they ever experienced the value.",
+      },
+      {
+        type: "image",
+        src: "/images/6.jpg",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        heading:
+          "We rebuilt the brand and documentation as a single unified system.",
+        body: "A new identity rooted in modularity — reflecting the product's own composable nature. Documentation was redesigned to feel like a product, not a wiki. Every touchpoint was rebuilt with conversion in mind.",
+      },
+      {
+        type: "image",
+        src: "/images/7.jpg",
+        label: "Documentation redesign",
+      },
+      {
+        type: "text",
+        title: "The Outcome",
+        heading: "Trial signups increased 3x within 60 days of launch.",
+        body: "The rebrand coincided with a Product Hunt launch that hit #1 for the day. More importantly, the new onboarding experience reduced time-to-value from 4 days to under 6 hours.",
+      },
+    ],
+    numbers: [
+      { value: "3x", label: "Trial signup increase in 60 days" },
+      { value: "#1", label: "Product Hunt launch day ranking" },
+    ],
+    testimonial: {
+      quote:
+        "We always knew the product was good. Oguz made it look like it too.",
+      author: "Priya Sharma",
+      role: "Head of Product, CubeKit",
+      image: "/images/8.jpg",
+    },
+  },
+
+  {
+    slug: "warpspeed",
+    title: "Branding a logistics startup that never slows down",
+    intro:
+      "Warpspeed needed an identity as fast and decisive as their delivery network.",
+    description:
+      "Warpspeed is a next-generation last-mile logistics company. They came to us with a name, a funding round, and no brand. We had eight weeks.",
+    services: ["Brand identity", "Motion design", "Vehicle livery", "Campaign"],
+    metadata: {
+      date: "Jan 2025",
+      client: "Warpspeed",
+      industry: "Logistics / Mobility",
+      timeline: "8 Weeks",
+    },
+    liveUrl: "#",
+    sections: [
+      {
+        type: "image",
+        src: "/images/9.jpg",
+        label: "Identity launch",
+      },
+      {
+        type: "text",
+        title: "The Challenge",
+        heading: "Eight weeks from zero to a brand ready for the streets.",
+        body: "Warpspeed was preparing a city-wide launch. They needed a brand that worked on everything from a 5mm app icon to the side of a cargo van. Speed and clarity were non-negotiable.",
+      },
+      {
+        type: "image",
+        src: "/images/10.jpg",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        heading: "An identity built on forward motion — literally.",
+        body: "Every element of the brand system angles forward. The wordmark, the icon, the motion language — all derived from a single directional geometry. The result is a brand that communicates speed without saying a word.",
+      },
+      {
+        type: "image",
+        src: "/images/11.jpg",
+        label: "Fleet livery",
+      },
+      {
+        type: "text",
+        title: "The Outcome",
+        heading:
+          "Launched in three cities simultaneously. Brand recognition hit 40% in week one.",
+        body: "The campaign drove 12,000 app installs in the first 72 hours. Riders reported stopping Warpspeed vehicles on the street to ask about the brand before the PR had even landed.",
+      },
+    ],
+    numbers: [
+      { value: "12k", label: "App installs in first 72 hours" },
+      { value: "40%", label: "Unaided brand recognition in week one" },
+    ],
+    testimonial: {
+      quote:
+        "Every agency promised fast. Oguz was actually fast — and the work was better for it.",
+      author: "James Okafor",
+      role: "Founder & CEO, Warpspeed",
+      image: "/images/12.jpg",
+    },
+  },
+];

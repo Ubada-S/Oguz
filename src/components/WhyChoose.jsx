@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen  bg-black border-t  border-white/20 text-white py-20 lg:py-32"
+      className="min-h-[900px]  bg-black border-t  border-white/20 text-white py-20 lg:py-32"
     >
       <div className="max-w-[1920px]  mx-auto px-7 lg:px-20">
         {/* Header */}

@@ -7,43 +7,94 @@ gsap.registerPlugin(ScrollTrigger);
 // ─── Service Data ─────────────────────────────────────────────────────────────
 const services = [
   {
-    id: 1, index: "01", title: "Brand Identity",
-    description: "Crafting visual identities that resonate and endure. We build brands from the ground up — logos, systems, and strategies that become unforgettable.",
-    tags: ["Logo Design", "Visual Identity", "Brand Guidelines", "Typography Systems", "Color Systems", "Brand Strategy"],
+    id: 1,
+    index: "01",
+    title: "Brand Identity",
+    description:
+      "Crafting visual identities that resonate and endure. We build brands from the ground up — logos, systems, and strategies that become unforgettable.",
+    tags: [
+      "Logo Design",
+      "Visual Identity",
+      "Brand Guidelines",
+      "Typography Systems",
+      "Color Systems",
+      "Brand Strategy",
+    ],
     image: "/images/7.jpg",
   },
   {
-    id: 2, index: "02", title: "Digital Design",
-    description: "Websites and digital experiences that convert. We design with purpose, creating user journeys that turn visitors into customers.",
-    tags: ["Web Design", "Landing Pages", "E-commerce", "Email Design", "Digital Campaigns", "Microsites", "Web Apps"],
+    id: 2,
+    index: "02",
+    title: "Digital Design",
+    description:
+      "Websites and digital experiences that convert. We design with purpose, creating user journeys that turn visitors into customers.",
+    tags: [
+      "Web Design",
+      "Landing Pages",
+      "E-commerce",
+      "Email Design",
+      "Digital Campaigns",
+      "Microsites",
+      "Web Apps",
+    ],
     image: "/images/8.jpg",
   },
   {
-    id: 3, index: "03", title: "Product Design",
-    description: "End-to-end product design from concept to launch. We obsess over every pixel and interaction to ship products people love.",
-    tags: ["UX Research", "UI Design", "Design Systems", "Prototyping", "User Testing", "Interaction Design"],
+    id: 3,
+    index: "03",
+    title: "Product Design",
+    description:
+      "End-to-end product design from concept to launch. We obsess over every pixel and interaction to ship products people love.",
+    tags: [
+      "UX Research",
+      "UI Design",
+      "Design Systems",
+      "Prototyping",
+      "User Testing",
+      "Interaction Design",
+    ],
     image: "/images/9.jpg",
   },
   {
-    id: 4, index: "04", title: "Marketing & Growth",
-    description: "Data-driven creative that scales. We combine sharp design with growth strategy to fuel acquisition and retention.",
-    tags: ["Social Media", "Content Strategy", "Performance Creative", "Campaign Design", "Analytics", "SEO"],
+    id: 4,
+    index: "04",
+    title: "Marketing & Growth",
+    description:
+      "Data-driven creative that scales. We combine sharp design with growth strategy to fuel acquisition and retention.",
+    tags: [
+      "Social Media",
+      "Content Strategy",
+      "Performance Creative",
+      "Campaign Design",
+      "Analytics",
+      "SEO",
+    ],
     image: "/images/10.jpg",
   },
   {
-    id: 5, index: "05", title: "Development",
-    description: "Clean, performant code that brings design to life. We build fast, accessible, and scalable digital products.",
-    tags: ["React", "Next.js", "Headless CMS", "API Integration", "Performance", "Accessibility"],
+    id: 5,
+    index: "05",
+    title: "Development",
+    description:
+      "Clean, performant code that brings design to life. We build fast, accessible, and scalable digital products.",
+    tags: [
+      "React",
+      "Next.js",
+      "Headless CMS",
+      "API Integration",
+      "Performance",
+      "Accessibility",
+    ],
     image: "/images/11.jpg",
   },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 const Services = () => {
-  const sectionRef     = useRef(null);
-  const leftColRef     = useRef(null);
-  const rightColRef    = useRef(null);
-  const navItemsRef    = useRef([]);
+  const sectionRef = useRef(null);
+  const leftColRef = useRef(null);
+  const rightColRef = useRef(null);
+  const navItemsRef = useRef([]);
   const rightBlocksRef = useRef([]);
   const activeIndexRef = useRef(0);
 
@@ -54,14 +105,13 @@ const Services = () => {
 
       // ── DESKTOP ────────────────────────────────────────────────────────
       mm.add("(min-width: 1024px)", () => {
-
         // Set initial nav states
         navItemsRef.current.forEach((item, i) => {
           if (!item) return;
           gsap.set(item, {
-            opacity:    i === 0 ? 1       : 0.25,
-            color:      i === 0 ? "#ffffff" : "#404040",
-            fontWeight: i === 0 ? 600     : 400,
+            opacity: i === 0 ? 1 : 0.25,
+            color: i === 0 ? "#ffffff" : "#404040",
+            fontWeight: i === 0 ? 600 : 400,
           });
           const t1 = item.querySelector(".svc-text-1");
           const t2 = item.querySelector(".svc-text-2");
@@ -71,21 +121,21 @@ const Services = () => {
 
         // ── GSAP pin ──
         ScrollTrigger.create({
-          trigger:    rightColRef.current,
-          start:      "top top",
-          end:        "bottom bottom",
-          pin:        leftColRef.current,
+          trigger: rightColRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          pin: leftColRef.current,
           pinSpacing: false,
         });
 
         // ── Single progress-based ScrollTrigger for nav ──
         ScrollTrigger.create({
           trigger: rightColRef.current,
-          start:   "top top",
-          end:     "bottom bottom",
+          start: "top top",
+          end: "bottom bottom",
           onUpdate: (self) => {
-            const rawIndex  = self.progress * (services.length - 1);
-            const newIndex  = Math.round(rawIndex);
+            const rawIndex = self.progress * (services.length - 1);
+            const newIndex = Math.round(rawIndex);
             const direction = newIndex > activeIndexRef.current ? "down" : "up";
             if (newIndex !== activeIndexRef.current) {
               transitionTo(newIndex, direction);
@@ -98,13 +148,19 @@ const Services = () => {
           if (!block) return;
           const img = block.querySelector(".svc-img");
           if (img) {
-            gsap.fromTo(img,
+            gsap.fromTo(
+              img,
               { yPercent: -8 },
               {
                 yPercent: 8,
                 ease: "none",
-                scrollTrigger: { trigger: block, start: "top bottom", end: "bottom top", scrub: 1.2 },
-              }
+                scrollTrigger: {
+                  trigger: block,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1.2,
+                },
+              },
             );
           }
         });
@@ -112,27 +168,43 @@ const Services = () => {
 
       // ── MOBILE ─────────────────────────────────────────────────────────
       mm.add("(max-width: 1023px)", () => {
-        sectionRef.current?.querySelectorAll(".svc-mobile-block").forEach((panel) => {
-          gsap.fromTo(panel,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1, y: 0, duration: 0.85, ease: "power3.out",
-              scrollTrigger: { trigger: panel, start: "top 85%", toggleActions: "play none none none" },
-            }
-          );
-          const img = panel.querySelector(".svc-img");
-          if (img) {
-            gsap.fromTo(img,
-              { yPercent: -6 },
+        sectionRef.current
+          ?.querySelectorAll(".svc-mobile-block")
+          .forEach((panel) => {
+            gsap.fromTo(
+              panel,
+              { opacity: 0, y: 50 },
               {
-                yPercent: 6, ease: "none",
-                scrollTrigger: { trigger: panel, start: "top bottom", end: "bottom top", scrub: 1.2 },
-              }
+                opacity: 1,
+                y: 0,
+                duration: 0.85,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: panel,
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                },
+              },
             );
-          }
-        });
+            const img = panel.querySelector(".svc-img");
+            if (img) {
+              gsap.fromTo(
+                img,
+                { yPercent: -6 },
+                {
+                  yPercent: 6,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: panel,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2,
+                  },
+                },
+              );
+            }
+          });
       });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -171,83 +243,85 @@ const Services = () => {
 
       if (i === newIndex) {
         // ── Incoming ──────────────────────────────────────────────────────
-        const enterFrom = isDown ? 100 : -100;  // t2 enters from here
-        const exitTo    = isDown ? -100 : 100;   // t1 exits to here
+        const enterFrom = isDown ? 100 : -100; // t2 enters from here
+        const exitTo = isDown ? -100 : 100; // t1 exits to here
 
         // Park t2 at starting position before animating
         if (t2) gsap.set(t2, { yPercent: enterFrom });
 
         // Fade/color the wrapper in
         gsap.to(item, {
-          opacity:    1,
-          color:      "#ffffff",
+          opacity: 1,
+          color: "#ffffff",
           fontWeight: 600,
-          duration:   0.6,
-          ease:       "expo.out",
+          duration: 0.6,
+          ease: "expo.out",
         });
 
         // t1 slides out
-        if (t1) gsap.to(t1, {
-          yPercent: exitTo,
-          duration: 0.6,
-          ease:     "expo.out",
-        });
+        if (t1)
+          gsap.to(t1, {
+            yPercent: exitTo,
+            duration: 0.6,
+            ease: "expo.out",
+          });
 
         // t2 slides in, then reset both spans to resting positions
-        if (t2) gsap.to(t2, {
-          yPercent: 0,
-          duration: 0.6,
-          ease:     "expo.out",
-          onComplete: () => {
-            // Silently swap: t1 back to visible position, t2 parked off-screen
-            if (t1) gsap.set(t1, { yPercent: 0 });
-            if (t2) gsap.set(t2, { yPercent: 100 });
-          },
-        });
-
+        if (t2)
+          gsap.to(t2, {
+            yPercent: 0,
+            duration: 0.6,
+            ease: "expo.out",
+            onComplete: () => {
+              // Silently swap: t1 back to visible position, t2 parked off-screen
+              if (t1) gsap.set(t1, { yPercent: 0 });
+              if (t2) gsap.set(t2, { yPercent: 100 });
+            },
+          });
       } else if (i === prevIndex) {
         // ── Outgoing ──────────────────────────────────────────────────────
-        const exitDir  = isDown ? -100 : 100;    // t1 exits this way
-        const enterDir = isDown ? 100  : -100;   // t2 enters from opposite
+        const exitDir = isDown ? -100 : 100; // t1 exits this way
+        const enterDir = isDown ? 100 : -100; // t2 enters from opposite
 
         // Park t2
         if (t2) gsap.set(t2, { yPercent: enterDir });
 
         // Fade/color the wrapper out
         gsap.to(item, {
-          opacity:    0.25,
-          color:      "#404040",
+          opacity: 0.5,
+          color: "#404040",
           fontWeight: 400,
-          duration:   0.45,
-          ease:       "expo.inOut",
+          duration: 0.45,
+          ease: "expo.inOut",
         });
 
         // t1 slides out
-        if (t1) gsap.to(t1, {
-          yPercent: exitDir,
-          duration: 0.45,
-          ease:     "expo.inOut",
-        });
+        if (t1)
+          gsap.to(t1, {
+            yPercent: exitDir,
+            duration: 0.45,
+            ease: "expo.inOut",
+          });
 
         // t2 slides in to keep the text visible while fading, then reset
-        if (t2) gsap.to(t2, {
-          yPercent: 0,
-          duration: 0.45,
-          ease:     "expo.inOut",
-          onComplete: () => {
-            if (t1) gsap.set(t1, { yPercent: 0 });
-            if (t2) gsap.set(t2, { yPercent: 100 });
-          },
-        });
-
+        if (t2)
+          gsap.to(t2, {
+            yPercent: 0,
+            duration: 0.45,
+            ease: "expo.inOut",
+            onComplete: () => {
+              if (t1) gsap.set(t1, { yPercent: 0 });
+              if (t2) gsap.set(t2, { yPercent: 100 });
+            },
+          });
       } else {
         // ── All others — snap to resting state ────────────────────────────
         gsap.to(item, {
-          opacity:    0.25,
-          color:      "#404040",
+          opacity: 0.5,
+          color: "#404040",
           fontWeight: 400,
-          duration:   0.4,
-          ease:       "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
         // Force spans to clean resting positions (no animation needed)
         if (t1) gsap.set(t1, { yPercent: 0 });
@@ -261,10 +335,8 @@ const Services = () => {
       ref={sectionRef}
       className="relative bg-black text-white border-t border-white/20"
     >
-
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20 pt-12 lg:pt-24 pb-10 lg:pb-20">
-
         {/* Desktop */}
         <div className="hidden lg:flex items-start gap-10">
           <p className="text-base font-google text-white/60 font-bold pt-[6px] shrink-0">
@@ -275,8 +347,8 @@ const Services = () => {
               Services
             </h2>
             <p className="text-base text-neutral-400 leading-relaxed max-w-xl">
-              Full-spectrum design capabilities under one roof. Whether you need a
-              complete brand overhaul or ongoing creative support, we have the
+              Full-spectrum design capabilities under one roof. Whether you need
+              a complete brand overhaul or ongoing creative support, we have the
               expertise to deliver. No outsourcing, no excuses, just exceptional
               work from our senior team.
             </p>
@@ -298,23 +370,20 @@ const Services = () => {
             work from our senior team.
           </p>
         </div>
-
       </div>
 
       {/* ── DESKTOP LAYOUT ───────────────────────────────────────────────── */}
       <div className="hidden lg:block max-w-[1920px] mx-auto relative">
-
         <div
           className="absolute top-0 bottom-0 w-px bg-white/10 pointer-events-none z-10"
           style={{ left: "30%" }}
         />
 
         <div className="flex">
-
           {/* ── Left col — GSAP pins this ── */}
           <div
             ref={leftColRef}
-            className="w-[30%] shrink-0 h-screen flex flex-col justify-start pt-10 pl-16 xl:pl-20 pr-10"
+            className="w-[30%] shrink-0 h-screen flex flex-col justify-start pt-24 pl-16 xl:pl-20 pr-10"
           >
             <div className="space-y-4">
               {services.map((service, i) => (
@@ -342,7 +411,7 @@ const Services = () => {
               <div
                 key={service.id}
                 ref={(el) => (rightBlocksRef.current[i] = el)}
-                className="px-10 xl:px-16 py-10 border-b border-white/10" 
+                className="px-10 xl:px-16 py-10 border-b border-white/10"
               >
                 {/* Image */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden mb-8">
@@ -357,7 +426,9 @@ const Services = () => {
 
                 {/* Title */}
                 <h3 className="text-2xl xl:text-3xl tracking-tight mb-4">
-                  <span className="text-white/30 mr-2 font-light">[{service.index}]</span>
+                  <span className="text-white/30 mr-2 font-light">
+                    [{service.index}]
+                  </span>
                   <span className="font-semibold">{service.title}</span>
                 </h3>
 
@@ -386,7 +457,6 @@ const Services = () => {
               </div>
             ))}
           </div>
-
         </div>
       </div>
 
@@ -404,7 +474,9 @@ const Services = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>
             <h3 className="text-2xl tracking-tight mb-3">
-              <span className="text-white/30 mr-2 font-light">[{service.index}]</span>
+              <span className="text-white/30 mr-2 font-light">
+                [{service.index}]
+              </span>
               <span className="font-semibold">{service.title}</span>
             </h3>
             <p className="text-sm text-neutral-400 leading-relaxed mb-5">
@@ -412,7 +484,10 @@ const Services = () => {
             </p>
             <div className="flex flex-wrap gap-2">
               {service.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 text-xs border border-white/20 text-neutral-400">
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-xs border border-white/20 text-neutral-400"
+                >
                   {tag}
                 </span>
               ))}
@@ -420,7 +495,6 @@ const Services = () => {
           </div>
         ))}
       </div>
-
     </section>
   );
 };
