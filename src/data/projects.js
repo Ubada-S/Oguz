@@ -1,6 +1,10 @@
 export const projects = [
   {
     slug: "quantum-ai",
+    tag: "[O1]",
+    image: "/images/6.jpg",
+    logo: "Quantum²",
+    speed: 0.3,
     title: "Demystifying AI through thoughtful design",
     intro:
       "Quantum's breakthrough AI needed a brand that balanced cutting-edge technology with human understanding.",
@@ -20,11 +24,7 @@ export const projects = [
     },
     liveUrl: "#",
     sections: [
-      {
-        type: "image",
-        src: "/images/1.jpg",
-        label: "Brand positioning",
-      },
+      { type: "image", src: "/images/1.jpg", label: "Brand positioning" },
       {
         type: "text",
         title: "The Challenge",
@@ -32,10 +32,7 @@ export const projects = [
           "Quantum is solving problems most people don't understand with technology few can explain.",
         body: "In the AI gold rush, most companies compete on technical complexity. Quantum needed a brand that translated dense machine-learning concepts into a visual language non-technical stakeholders could immediately grasp and trust.",
       },
-      {
-        type: "image",
-        src: "/images/2.jpg",
-      },
+      { type: "image", src: "/images/2.jpg" },
       {
         type: "text",
         title: "The Solution",
@@ -43,11 +40,7 @@ export const projects = [
           "We developed a visual language inspired by neural networks and data flows.",
         body: "We created a brand system that demystifies AI through thoughtful design — clean geometry, purposeful motion, and a typographic voice that sounds confident without sounding cold. Every asset was built to work from pitch decks to production UIs.",
       },
-      {
-        type: "image",
-        src: "/images/3.jpg",
-        label: "Marketing website",
-      },
+      { type: "image", src: "/images/3.jpg", label: "Marketing website" },
       {
         type: "text",
         title: "The Process",
@@ -69,9 +62,12 @@ export const projects = [
       image: "/images/4.jpg",
     },
   },
-
   {
     slug: "cubekit",
+    tag: "[O2]",
+    image: "/images/6.jpg",
+    logo: "Cubedlt",
+    speed: 0.5,
     title: "A design system built for teams that move fast",
     intro:
       "CubeKit needed a component library and brand that scaled with their product without slowing it down.",
@@ -91,21 +87,14 @@ export const projects = [
     },
     liveUrl: "#",
     sections: [
-      {
-        type: "image",
-        src: "/images/5.jpg",
-        label: "Identity system",
-      },
+      { type: "image", src: "/images/5.jpg", label: "Identity system" },
       {
         type: "text",
         title: "The Challenge",
         heading: "A product loved by its users but invisible to everyone else.",
         body: "CubeKit had strong retention but poor acquisition. The brand communicated nothing — a generic logo, no visual hierarchy, and documentation that felt like it was written for robots. New users bounced before they ever experienced the value.",
       },
-      {
-        type: "image",
-        src: "/images/6.jpg",
-      },
+      { type: "image", src: "/images/6.jpg" },
       {
         type: "text",
         title: "The Solution",
@@ -113,11 +102,7 @@ export const projects = [
           "We rebuilt the brand and documentation as a single unified system.",
         body: "A new identity rooted in modularity — reflecting the product's own composable nature. Documentation was redesigned to feel like a product, not a wiki. Every touchpoint was rebuilt with conversion in mind.",
       },
-      {
-        type: "image",
-        src: "/images/7.jpg",
-        label: "Documentation redesign",
-      },
+      { type: "image", src: "/images/7.jpg", label: "Documentation redesign" },
       {
         type: "text",
         title: "The Outcome",
@@ -137,9 +122,28 @@ export const projects = [
       image: "/images/8.jpg",
     },
   },
-
+  {
+    slug: "ephemeral",
+    tag: "[O3]",
+    image: "/images/6.jpg",
+    logo: "Ephemeral",
+    speed: 0.4,
+    title: "Ephemeral",
+    intro: "",
+    description: "",
+    services: [],
+    metadata: { date: "2025", client: "Ephemeral", industry: "", timeline: "" },
+    liveUrl: "#",
+    sections: [],
+    numbers: [],
+    testimonial: { quote: "", author: "", role: "", image: "" },
+  },
   {
     slug: "warpspeed",
+    tag: "[O4]",
+    image: "/images/6.jpg",
+    logo: "Warpspeed",
+    speed: 0.6,
     title: "Branding a logistics startup that never slows down",
     intro:
       "Warpspeed needed an identity as fast and decisive as their delivery network.",
@@ -154,32 +158,21 @@ export const projects = [
     },
     liveUrl: "#",
     sections: [
-      {
-        type: "image",
-        src: "/images/9.jpg",
-        label: "Identity launch",
-      },
+      { type: "image", src: "/images/9.jpg", label: "Identity launch" },
       {
         type: "text",
         title: "The Challenge",
         heading: "Eight weeks from zero to a brand ready for the streets.",
         body: "Warpspeed was preparing a city-wide launch. They needed a brand that worked on everything from a 5mm app icon to the side of a cargo van. Speed and clarity were non-negotiable.",
       },
-      {
-        type: "image",
-        src: "/images/10.jpg",
-      },
+      { type: "image", src: "/images/10.jpg" },
       {
         type: "text",
         title: "The Solution",
         heading: "An identity built on forward motion — literally.",
         body: "Every element of the brand system angles forward. The wordmark, the icon, the motion language — all derived from a single directional geometry. The result is a brand that communicates speed without saying a word.",
       },
-      {
-        type: "image",
-        src: "/images/11.jpg",
-        label: "Fleet livery",
-      },
+      { type: "image", src: "/images/11.jpg", label: "Fleet livery" },
       {
         type: "text",
         title: "The Outcome",
@@ -200,5 +193,47 @@ export const projects = [
       role: "Founder & CEO, Warpspeed",
       image: "/images/12.jpg",
     },
+  },
+  {
+    slug: "global-bank",
+    tag: "[O5]",
+    image: "/images/6.jpg",
+    logo: "GlobalBank",
+    speed: 0.35,
+    title: "Global Bank",
+    intro: "",
+    description: "",
+    services: [],
+    metadata: {
+      date: "2025",
+      client: "Global Bank",
+      industry: "Digital Marketing & Design System",
+      timeline: "",
+    },
+    liveUrl: "#",
+    sections: [],
+    numbers: [],
+    testimonial: { quote: "", author: "", role: "", image: "" },
+  },
+  {
+    slug: "magnolia",
+    tag: "[O6]",
+    image: "/images/6.jpg",
+    logo: "Magnolia",
+    speed: 0.45,
+    title: "Magnolia",
+    intro: "",
+    description: "",
+    services: [],
+    metadata: {
+      date: "2025",
+      client: "Magnolia",
+      industry: "Brand Strategy & Web Design",
+      timeline: "",
+    },
+    liveUrl: "#",
+    sections: [],
+    numbers: [],
+    testimonial: { quote: "", author: "", role: "", image: "" },
   },
 ];
