@@ -171,9 +171,7 @@ const Projects = () => {
       <div className="relative w-full max-w-[1920px] mx-auto">
         {/* Section Label */}
         <div className="absolute left-0 top-0 text-white lg:pl-20 pl-7 pt-7 lg:pt-24 z-10">
-          <p className="text-sm lg:text-base tracking-wide">
-            [01] Featured Work
-          </p>
+          <p className="text-sm lg:text-sm tracking-wide">[01] Featured Work</p>
         </div>
 
         {/* Title Header */}

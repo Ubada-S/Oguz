@@ -1,13 +1,13 @@
-import { useEffect } from "react"; // Added useEffect
+import { useEffect, useRef } from "react"; // Added useRef
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import Lenis from "lenis"; // Added Lenis
-import gsap from "gsap"; // Added GSAP for syncing
-import { ScrollTrigger } from "gsap/ScrollTrigger"; // Added ScrollTrigger for syncing
+import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Approach from "./components/Approach";
 import Services from "./components/Services";
@@ -23,52 +23,57 @@ import GradualBlurMemo from "./components/other/GradualBlur";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Helper to reset scroll on route change
-function ScrollToTop() {
+// ─── SPECIAL LENIS HANDLING FOR ROUTE CHANGES ───────────────────
+function ScrollToTop({ lenisRef }) {
   const { pathname } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (lenisRef.current) {
+      // Use Lenis specific scrollTo for a clean reset
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      // Fallback
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, lenisRef]);
+
   return null;
 }
 
 export default function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     // 1. Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      // Add these for extra stability
       orientation: "vertical",
       gestureOrientation: "vertical",
     });
 
+    lenisRef.current = lenis;
+
     // 2. The critical Syncing Logic
-    // Using time * 1000 ensures Lenis gets milliseconds
     const tickerFn = (time) => {
       lenis.raf(time * 1000);
     };
 
-    // Connect to ScrollTrigger so GSAP animations know where the scroll is
     lenis.on("scroll", ScrollTrigger.update);
-
-    // Use GSAP's ticker for the loop (better performance than native RAF)
     gsap.ticker.add(tickerFn);
-
-    // Disable lag smoothing so the scroll doesn't "skip" during heavy loads
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
       gsap.ticker.remove(tickerFn);
+      lenisRef.current = null;
     };
   }, []);
-  // ──────────────────────────────────────────────────
 
   return (
     <Router>
-      <ScrollToTop /> {/* Reset scroll position on navigation */}
+      <ScrollToTop lenisRef={lenisRef} />
       <>
         {/* Fixed vertical border rails */}
         <div className="fixed inset-0 pointer-events-none z-[9999]">
