@@ -6,6 +6,8 @@ import AnimatedMenu from "./ui/AnimatedMenu";
 import { teamMembers } from "./other/constants";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 
+import RollingLink from "./ui/RollingLink";
+
 const useLiveClock = (timeZone = "Asia/Kolkata") => {
   const [time, setTime] = useState("");
 
@@ -49,13 +51,14 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center justify-end gap-6 pointer-events-auto">
-            <a
-              href="#work"
-              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide text-white hover:opacity-70 transition-opacity duration-200"
-            >
-              <span>Our Work</span>
-              <span className="text-white/60">[12]</span>
-            </a>
+            {/* Visble Rolling Link */}
+            <RollingLink
+              to="/projects"
+              label="Our Work"
+              count="12"
+              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide text-white transition-opacity duration-200"
+            />
+
             <div className="invisible pointer-events-none select-none">
               <AnimatedMenu />
             </div>
@@ -77,13 +80,14 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center justify-end gap-6">
-            <a
-              href="#work"
+            {/* Invisible Rolling Link (for layout spacing) */}
+            <RollingLink
+              to="/projects"
+              label="Our Work"
+              count="12"
               className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide invisible"
-            >
-              <span>Our Work</span>
-              <span>[12]</span>
-            </a>
+            />
+
             <div className="pointer-events-auto">
               <AnimatedMenu />
             </div>

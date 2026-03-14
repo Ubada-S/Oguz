@@ -31,3 +31,39 @@
   background: #ffffff;
   color: #000000;
 }
+
+/* --- Reusable Rolling Text Utility --- */
+.roll-link {
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+  vertical-align: top;
+  /* Adjust height to match your line-height to prevent clipping */
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.roll-link .roll-text {
+  position: relative;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* The second "hidden" copy created via pseudo-element */
+.roll-link .roll-text::before {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  content: attr(data-hover);
+  display: block;
+  /* Inherits styles from parent */
+  font-weight: inherit;
+}
+
+/* Trigger move on hover of the parent anchor/button */
+.group:hover .roll-text,
+a:hover .roll-text,
+button:hover .roll-text {
+  transform: translateY(-100%);
+}

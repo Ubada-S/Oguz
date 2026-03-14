@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { projects } from "../data/projects";
 import AnimatedMenu from "./ui/AnimatedMenu";
+import RollingLink from "./ui/RollingLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,20 +42,23 @@ const Navbar = () => {
               OGUZ<sup className="text-[8px] align-super ml-[2px]">®</sup>
             </a>
           </div>
+
           <div className="flex items-center justify-center gap-2 text-[14.5px] tracking-wide select-none max-md:hidden pointer-events-auto">
             <span className="text-white font-medium">Mumbai (IN)</span>
             <span className="text-white/80 font-medium tabular-nums">
               {time}
             </span>
           </div>
+
           <div className="flex items-center justify-end gap-6 pointer-events-auto">
-            <a
-              href="#work"
-              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide text-white hover:opacity-70 transition-opacity duration-200"
-            >
-              <span>Our Work</span>
-              <span className="text-white/60">[12]</span>
-            </a>
+            {/* Visble Rolling Link */}
+            <RollingLink
+              to="/projects"
+              label="Our Work"
+              count="12"
+              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide text-white transition-opacity duration-200"
+            />
+
             <div className="invisible pointer-events-none select-none">
               <AnimatedMenu />
             </div>
@@ -69,18 +73,21 @@ const Navbar = () => {
               OGUZ<sup className="text-[8px] align-super ml-[2px]">®</sup>
             </a>
           </div>
+
           <div className="flex items-center justify-center gap-2 text-[14.5px] tracking-wide max-md:hidden invisible">
             <span className="font-medium">Mumbai (IN)</span>
             <span className="font-medium tabular-nums">{time}</span>
           </div>
+
           <div className="flex items-center justify-end gap-6">
-            <a
-              href="#work"
+            {/* Invisible Rolling Link (for layout spacing) */}
+            <RollingLink
+              to="/projects"
+              label="Our Work"
+              count="12"
               className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide invisible"
-            >
-              <span>Our Work</span>
-              <span>[12]</span>
-            </a>
+            />
+
             <div className="pointer-events-auto">
               <AnimatedMenu />
             </div>

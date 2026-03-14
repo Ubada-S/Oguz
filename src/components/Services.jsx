@@ -109,9 +109,9 @@ const Services = () => {
         navItemsRef.current.forEach((item, i) => {
           if (!item) return;
           gsap.set(item, {
-            opacity: i === 0 ? 1 : 0.25,
+            opacity: i === 0 ? 1 : 0.5,
             color: i === 0 ? "#ffffff" : "#404040",
-            fontWeight: i === 0 ? 600 : 400,
+            fontWeight: 400,
           });
           const t1 = item.querySelector(".svc-text-1");
           const t2 = item.querySelector(".svc-text-2");
@@ -136,7 +136,10 @@ const Services = () => {
           onUpdate: (self) => {
             const rawIndex = self.progress * (services.length - 1);
             const newIndex = Math.round(rawIndex);
-            const direction = newIndex > activeIndexRef.current ? "down" : "up";
+
+            // Use native ScrollTrigger direction: 1 = down, -1 = up
+            const direction = self.direction === 1 ? "down" : "up";
+
             if (newIndex !== activeIndexRef.current) {
               transitionTo(newIndex, direction);
             }
@@ -211,24 +214,15 @@ const Services = () => {
   }, []);
 
   // ── Transition ────────────────────────────────────────────────────────────
-  //
-  // Model:
-  //   t1 = always the "visible" span, resting at yPercent: 0
-  //   t2 = always the "incoming" span, parked off-screen
-  //
-  // On transition:
-  //   t2 slides in from the scroll direction, t1 slides out the other way.
-  //   On complete, t1 snaps back to 0 and t2 parks off-screen again — ready
-  //   for the next transition in either direction.
-  //
-  // We kill all tweens on item + spans before starting, so rapid scrolling
-  // never causes stale onComplete callbacks to corrupt positions.
-  //
   function transitionTo(newIndex, direction) {
     const prevIndex = activeIndexRef.current;
     activeIndexRef.current = newIndex;
 
     const isDown = direction === "down";
+
+    // Snappy duration and easing to match your CSS cubic-bezier perfectly
+    const duration = 0.5;
+    const ease = "power4.inOut";
 
     navItemsRef.current.forEach((item, i) => {
       if (!item) return;
@@ -236,94 +230,69 @@ const Services = () => {
       const t1 = item.querySelector(".svc-text-1");
       const t2 = item.querySelector(".svc-text-2");
 
-      // Kill any running tweens on this item's elements to prevent stale callbacks
       gsap.killTweensOf(item);
       if (t1) gsap.killTweensOf(t1);
       if (t2) gsap.killTweensOf(t2);
 
       if (i === newIndex) {
         // ── Incoming ──────────────────────────────────────────────────────
-        const enterFrom = isDown ? 100 : -100; // t2 enters from here
-        const exitTo = isDown ? -100 : 100; // t1 exits to here
+        const enterFrom = isDown ? 100 : -100;
+        const exitTo = isDown ? -100 : 100;
 
-        // Park t2 at starting position before animating
         if (t2) gsap.set(t2, { yPercent: enterFrom });
 
-        // Fade/color the wrapper in
         gsap.to(item, {
           opacity: 1,
           color: "#ffffff",
-          fontWeight: 600,
-          duration: 0.6,
-          ease: "expo.out",
+          fontWeight: 400,
+          duration,
+          ease,
         });
-
-        // t1 slides out
-        if (t1)
-          gsap.to(t1, {
-            yPercent: exitTo,
-            duration: 0.6,
-            ease: "expo.out",
-          });
-
-        // t2 slides in, then reset both spans to resting positions
+        if (t1) gsap.to(t1, { yPercent: exitTo, duration, ease });
         if (t2)
           gsap.to(t2, {
             yPercent: 0,
-            duration: 0.6,
-            ease: "expo.out",
+            duration,
+            ease,
             onComplete: () => {
-              // Silently swap: t1 back to visible position, t2 parked off-screen
               if (t1) gsap.set(t1, { yPercent: 0 });
               if (t2) gsap.set(t2, { yPercent: 100 });
             },
           });
       } else if (i === prevIndex) {
         // ── Outgoing ──────────────────────────────────────────────────────
-        const exitDir = isDown ? -100 : 100; // t1 exits this way
-        const enterDir = isDown ? 100 : -100; // t2 enters from opposite
+        const exitDir = isDown ? -100 : 100;
+        const enterDir = isDown ? 100 : -100;
 
-        // Park t2
         if (t2) gsap.set(t2, { yPercent: enterDir });
 
-        // Fade/color the wrapper out
         gsap.to(item, {
           opacity: 0.5,
           color: "#404040",
           fontWeight: 400,
-          duration: 0.45,
-          ease: "expo.inOut",
+          duration,
+          ease,
         });
-
-        // t1 slides out
-        if (t1)
-          gsap.to(t1, {
-            yPercent: exitDir,
-            duration: 0.45,
-            ease: "expo.inOut",
-          });
-
-        // t2 slides in to keep the text visible while fading, then reset
+        if (t1) gsap.to(t1, { yPercent: exitDir, duration, ease });
         if (t2)
           gsap.to(t2, {
             yPercent: 0,
-            duration: 0.45,
-            ease: "expo.inOut",
+            duration,
+            ease,
             onComplete: () => {
               if (t1) gsap.set(t1, { yPercent: 0 });
               if (t2) gsap.set(t2, { yPercent: 100 });
             },
           });
       } else {
-        // ── All others — snap to resting state ────────────────────────────
+        // ── All others snap safely ─────────────────────────────────────────
         gsap.to(item, {
           opacity: 0.5,
           color: "#404040",
           fontWeight: 400,
-          duration: 0.4,
+          duration: 0.3,
           ease: "power2.out",
         });
-        // Force spans to clean resting positions (no animation needed)
         if (t1) gsap.set(t1, { yPercent: 0 });
         if (t2) gsap.set(t2, { yPercent: 100 });
       }
@@ -337,7 +306,6 @@ const Services = () => {
     >
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20 pt-12 lg:pt-24 pb-10 lg:pb-20">
-        {/* Desktop */}
         <div className="hidden lg:flex items-start gap-10">
           <p className="text-base font-google text-white/60 font-bold pt-[6px] shrink-0">
             [03] Services
@@ -355,7 +323,6 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Mobile */}
         <div className="lg:hidden">
           <p className="text-sm font-google text-white/60 font-bold mb-5">
             [03] Services
@@ -380,7 +347,7 @@ const Services = () => {
         />
 
         <div className="flex">
-          {/* ── Left col — GSAP pins this ── */}
+          {/* ── Left col ── */}
           <div
             ref={leftColRef}
             className="w-[30%] shrink-0 h-screen flex flex-col justify-start pt-24 pl-16 xl:pl-20 pr-10"
@@ -393,11 +360,12 @@ const Services = () => {
                   className="relative block w-fit overflow-hidden text-2xl xl:text-[28px] tracking-tight cursor-default select-none"
                   style={{ willChange: "opacity, filter, color" }}
                 >
-                  <span className="invisible">{service.title}</span>
-                  <span className="svc-text-1 absolute left-0 top-0 w-full h-full">
+                  {/* Changed from inline spans to block/flex so GSAP transform applies correctly */}
+                  <span className="invisible block">{service.title}</span>
+                  <span className="svc-text-1 absolute left-0 top-0 w-full h-full flex items-center">
                     {service.title}
                   </span>
-                  <span className="svc-text-2 absolute left-0 top-0 w-full h-full">
+                  <span className="svc-text-2 absolute left-0 top-0 w-full h-full flex items-center">
                     {service.title}
                   </span>
                 </div>
@@ -405,7 +373,7 @@ const Services = () => {
             </div>
           </div>
 
-          {/* ── Right col — scrolls normally, drives the pin duration ── */}
+          {/* ── Right col ── */}
           <div ref={rightColRef} className="w-[70%]">
             {services.map((service, i) => (
               <div
@@ -413,7 +381,6 @@ const Services = () => {
                 ref={(el) => (rightBlocksRef.current[i] = el)}
                 className="px-10 xl:px-16 py-10 border-b border-white/10"
               >
-                {/* Image */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden mb-8">
                   <img
                     src={service.image}
@@ -424,7 +391,6 @@ const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
 
-                {/* Title */}
                 <h3 className="text-2xl xl:text-3xl tracking-tight mb-4">
                   <span className="text-white/30 mr-2 font-light">
                     [{service.index}]
@@ -432,7 +398,6 @@ const Services = () => {
                   <span className="font-semibold">{service.title}</span>
                 </h3>
 
-                {/* Description + Tags */}
                 <div className="flex flex-col xl:flex-row xl:items-start gap-6 xl:gap-12">
                   <p className="text-sm xl:text-base text-neutral-400 leading-relaxed max-w-md">
                     {service.description}
