@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe } from "./ui/globe"; // Adjust import path if needed
+import { Globe } from "./ui/globe";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,9 +11,17 @@ const BAR_HEIGHTS = [
   0.63, 0.7, 0.8, 0.92,
 ];
 
+const CHAT_MESSAGES = [
+  { from: "client", text: "Hey, any update on the designs?" },
+  { from: "us", text: "Just sent them over — Notion link in thread 👆" },
+  { from: "client", text: "That was... fast. Looks great 🔥" },
+];
+
 const WhyChooseUs = () => {
   const sectionRef = useRef(null);
   const barsRef = useRef([]);
+  const arcRef = useRef(null);
+  const countRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,6 +54,98 @@ const WhyChooseUs = () => {
           "-=0.6",
         );
       }
+
+      const heroEls = sectionRef.current?.querySelectorAll(".hero-anim");
+      heroEls?.forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          {
+            opacity: 0,
+            y: 52,
+            rotationX: 12,
+            skewY: 2,
+            filter: "blur(7px)",
+            transformOrigin: "50% 100%",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            skewY: 0,
+            filter: "blur(0px)",
+            duration: 1.05,
+            ease: "power3.out",
+            delay: 0.08 + i * 0.09,
+          },
+        );
+      });
+
+      // Arc animation
+      if (arcRef.current) {
+        const radius = 54;
+        const circumference = 2 * Math.PI * radius;
+        const target = circumference * (1 - 0.98);
+
+        gsap.fromTo(
+          arcRef.current,
+          { strokeDashoffset: circumference },
+          {
+            strokeDashoffset: target,
+            duration: 1.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 60%",
+              toggleActions: "play none none none",
+            },
+          },
+        );
+      }
+
+      // Count-up 0 → 98
+      if (countRef.current) {
+        gsap.fromTo(
+          { val: 0 },
+          { val: 0 },
+          {
+            duration: 0,
+          },
+        );
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 98,
+          duration: 1.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            toggleActions: "play none none none",
+          },
+          onUpdate: () => {
+            if (countRef.current)
+              countRef.current.textContent = Math.round(obj.val) + "%";
+          },
+        });
+      }
+
+      // Chat bubbles
+      gsap.fromTo(
+        ".chat-bubble",
+        { opacity: 0, y: 16, filter: "blur(4px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.6,
+          stagger: 0.28,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -63,42 +163,35 @@ const WhyChooseUs = () => {
             [02] Why choose us
           </div>
 
-          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-google tracking-tighter mb-6">
+          <h2 className="hero-anim text-4xl lg:text-6xl xl:text-7xl font-google tracking-tighter mb-6">
             We deliver more than design.
             <br />
             We deliver momentum.
           </h2>
 
-          <p className="text-base lg:text-lg text-gray-400 max-w-2xl leading-relaxed">
+          <p className="hero-anim text-base lg:text-lg text-gray-400 max-w-2xl leading-relaxed">
             Great design accelerates everything. It shortens sales cycles,
             increases conversions, and builds trust before you say a word.
           </p>
         </div>
 
         {/* ── BENTO GRID ────────────────────────────────────────────────── */}
-        {/*
-          Columns:  [graph — 1.7fr] [empty stack — 1fr] [globe — 1.7fr]
-          Rows:     240px / 240px
-        */}
         <div
           className="grid gap-2.5 py-10 grid-cols-1 lg:grid-cols-[1.7fr_1fr_1.7fr]"
-          style={{
-            gridTemplateRows: "auto",
-          }}
+          style={{ gridTemplateRows: "auto" }}
         >
           {/* LEFT — Graph card */}
           <div
             className="reveal-item relative border border-white/20 bg-[#000000] p-6 flex flex-col justify-between overflow-hidden
                lg:col-[1] lg:row-[1/3]"
           >
-            {/* Bar chart */}
             <div className="flex-1 flex flex-col justify-end mt-3">
               <div className="flex items-end gap-[3px] h-[160px] w-full px-0.5">
                 {BAR_HEIGHTS.map((h, i) => (
                   <div
                     key={i}
                     ref={(el) => (barsRef.current[i] = el)}
-                    className="flex-1 transition-colors duration-150 border border-white/20"
+                    className="flex-1 transition-colors duration-150 border m-1 bg-white border-white/40"
                     style={{ height: `${h * 100}%` }}
                   />
                 ))}
@@ -123,33 +216,85 @@ const WhyChooseUs = () => {
             </div>
           </div>
 
-          {/* MIDDLE TOP */}
+          {/* MIDDLE TOP — Satisfaction gauge */}
           <div
-            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[1]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.028) 1px, transparent 1px)",
-              backgroundSize: "20px 20px",
-              height: "240px",
-            }}
-          />
+            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[1] flex flex-col items-center justify-center gap-4 bg-[#000000]"
+            style={{ height: "200px" }}
+          >
+            <svg width="130" height="130" viewBox="0 0 130 130">
+              {/* Track */}
+              <circle
+                cx="65"
+                cy="65"
+                r="54"
+                fill="none"
+                stroke="rgba(255,255,255,0.07)"
+                strokeWidth="6"
+              />
+              {/* Arc */}
+              <circle
+                ref={arcRef}
+                cx="65"
+                cy="65"
+                r="54"
+                fill="none"
+                stroke="white"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeDasharray={2 * Math.PI * 54}
+                strokeDashoffset={2 * Math.PI * 54}
+                transform="rotate(-90 65 65)"
+              />
+              <text
+                ref={countRef}
+                x="65"
+                y="65"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="white"
+                fontSize="22"
+                fontWeight="700"
+                fontFamily="inherit"
+              >
+                0%
+              </text>
+            </svg>
+            <p className="text-[11px] text-gray-500 tracking-widest uppercase absolute bottom-5">
+              Client satisfaction
+            </p>
+          </div>
 
-          {/* MIDDLE BOTTOM */}
+          {/* MIDDLE BOTTOM — Async chat */}
           <div
-            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[2]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.028) 1px, transparent 1px)",
-              backgroundSize: "20px 20px",
-              height: "240px",
-            }}
-          />
+            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[2] flex flex-col justify-center px-5 gap-2.5 bg-[#000000]"
+            style={{ height: "200px" }}
+          >
+            {CHAT_MESSAGES.map((msg, i) => (
+              <div
+                key={i}
+                className={`chat-bubble flex ${msg.from === "us" ? "justify-end" : "justify-start"}`}
+              >
+                <span
+                  className={`text-[11px] px-3 py-1.5 rounded-xl max-w-[85%] leading-relaxed ${
+                    msg.from === "us"
+                      ? "bg-white text-black"
+                      : "bg-white/8 text-white/70 border border-white/10"
+                  }`}
+                >
+                  {msg.text}
+                </span>
+              </div>
+            ))}
+            <p className="text-[9px] text-white/20 tracking-widest uppercase absolute bottom-3 left-5">
+              Async · Always on
+            </p>
+          </div>
 
           {/* RIGHT — Globe */}
           <div
             className="reveal-item relative border rounded-lg overflow-hidden bg-[#080808] border-white/20
                lg:col-[3] lg:row-[1/3]"
-            style={{ height: "490px" }}
+            style={{ height: "410px" }}
           >
             <div className="absolute inset-0 z-0 opacity-60">
               <Globe />
@@ -184,7 +329,6 @@ const WhyChooseUs = () => {
 
         {/* ── BOTTOM ROW — Feature text ──────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 border-t border-white/10 py-16 reveal-item">
-          {/* Fast to launch */}
           <div>
             <h3 className="text-3xl lg:text-4xl font-bold mb-2 leading-tight tracking-tighter">
               Fast to launch.
@@ -193,7 +337,6 @@ const WhyChooseUs = () => {
             </h3>
           </div>
 
-          {/* Speed without sacrifice */}
           <div>
             <div className="w-10 h-10 border border-white/20 flex items-center justify-center mb-6">
               <svg
@@ -210,18 +353,15 @@ const WhyChooseUs = () => {
                 />
               </svg>
             </div>
-
             <h3 className="text-xl lg:text-2xl font-bold mb-4">
               Speed without sacrifice
             </h3>
-
             <p className="text-sm text-gray-400 leading-relaxed">
               We ship in days, not months. Our streamlined process cuts through
               agency theater while maintaining craft.
             </p>
           </div>
 
-          {/* Flexible engagement */}
           <div>
             <div className="w-10 h-10 border border-white/20 flex items-center justify-center mb-6">
               <svg
@@ -238,17 +378,14 @@ const WhyChooseUs = () => {
                 />
               </svg>
             </div>
-
             <h3 className="text-xl lg:text-2xl font-bold mb-4">
               Flexible engagement
             </h3>
-
             <p className="text-sm text-gray-400 leading-relaxed">
               Choose retainers or project-based work. Scale as you grow.
             </p>
           </div>
 
-          {/* Intentional empty column */}
           <div />
         </div>
       </div>
