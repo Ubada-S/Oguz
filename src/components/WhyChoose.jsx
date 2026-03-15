@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const BAR_HEIGHTS = [
   0.08, 0.1, 0.09, 0.13, 0.12, 0.15, 0.14, 0.18, 0.17, 0.2, 0.22, 0.21, 0.25,
   0.24, 0.28, 0.3, 0.29, 0.34, 0.36, 0.38, 0.4, 0.43, 0.46, 0.5, 0.54, 0.58,
-  0.63, 0.7, 0.8, 0.92,
+  0.63, 0.7, 0.8,
 ];
 
 const CHAT_MESSAGES = [
@@ -28,8 +28,9 @@ const WhyChooseUs = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 60%",
+          start: "top 75%",
           toggleActions: "play none none none",
+          once: true,
         },
       });
 
@@ -61,9 +62,9 @@ const WhyChooseUs = () => {
           el,
           {
             opacity: 0,
-            y: 52,
-            rotationX: 12,
-            skewY: 2,
+            y: 68,
+            rotationX: 18,
+            skewY: 4,
             filter: "blur(7px)",
             transformOrigin: "50% 100%",
           },
@@ -76,6 +77,12 @@ const WhyChooseUs = () => {
             duration: 1.05,
             ease: "power3.out",
             delay: 0.08 + i * 0.09,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none none",
+              once: true,
+            },
           },
         );
       });
@@ -93,10 +100,12 @@ const WhyChooseUs = () => {
             strokeDashoffset: target,
             duration: 1.6,
             ease: "power3.out",
+            delay: 0.5,
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 60%",
+              start: "top 75%",
               toggleActions: "play none none none",
+              once: true,
             },
           },
         );
@@ -104,22 +113,17 @@ const WhyChooseUs = () => {
 
       // Count-up 0 → 98
       if (countRef.current) {
-        gsap.fromTo(
-          { val: 0 },
-          { val: 0 },
-          {
-            duration: 0,
-          },
-        );
         const obj = { val: 0 };
         gsap.to(obj, {
           val: 98,
           duration: 1.6,
           ease: "power3.out",
+          delay: 0.5,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 60%",
+            start: "top 75%",
             toggleActions: "play none none none",
+            once: true,
           },
           onUpdate: () => {
             if (countRef.current)
@@ -141,8 +145,9 @@ const WhyChooseUs = () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 60%",
+            start: "top 75%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -182,11 +187,11 @@ const WhyChooseUs = () => {
         >
           {/* LEFT — Graph card */}
           <div
-            className="reveal-item relative border border-white/20 bg-[#000000] p-6 flex flex-col justify-between overflow-hidden
+            className="reveal-item relative border border-white/20 bg-[#000000] min-w-0 p-6 flex flex-col justify-between overflow-hidden
                lg:col-[1] lg:row-[1/3]"
           >
             <div className="flex-1 flex flex-col justify-end mt-3">
-              <div className="flex items-end gap-[3px] h-[160px] w-full px-0.5">
+              <div className="flex items-end gap-[3px] h-[180px] w-full px-0.5 pr-6">
                 {BAR_HEIGHTS.map((h, i) => (
                   <div
                     key={i}
@@ -222,7 +227,6 @@ const WhyChooseUs = () => {
             style={{ height: "200px" }}
           >
             <svg width="130" height="130" viewBox="0 0 130 130">
-              {/* Track */}
               <circle
                 cx="65"
                 cy="65"
@@ -231,7 +235,6 @@ const WhyChooseUs = () => {
                 stroke="rgba(255,255,255,0.07)"
                 strokeWidth="6"
               />
-              {/* Arc */}
               <circle
                 ref={arcRef}
                 cx="65"
@@ -240,7 +243,6 @@ const WhyChooseUs = () => {
                 fill="none"
                 stroke="white"
                 strokeWidth="6"
-                strokeLinecap="round"
                 strokeDasharray={2 * Math.PI * 54}
                 strokeDashoffset={2 * Math.PI * 54}
                 transform="rotate(-90 65 65)"
