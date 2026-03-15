@@ -583,17 +583,17 @@ const PricingSection = () => {
         <div className="grid grid-cols-3 gap-8 mb-0 relative z-0">
           <div
             ref={rect1Ref}
-            className="bg-white/[0.04] border border-white/[0.08]"
+            className="bg-white/[0.02]"
             style={{ height: "80px" }}
           />
           <div
             ref={rect2Ref}
-            className="bg-white/[0.06] border border-white/[0.1]"
+            className="bg-white/[0.02]"
             style={{ height: "70px" }}
           />
           <div
             ref={rect3Ref}
-            className="bg-white/[0.04] border border-white/[0.08]"
+            className="bg-white/[0.02]"
             style={{ height: "80px" }}
           />
         </div>

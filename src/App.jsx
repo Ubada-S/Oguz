@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"; // Added useRef
+import { useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,

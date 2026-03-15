@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Globe } from "./ui/globe"; // Adjust import path if needed
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,37 +12,53 @@ const BAR_HEIGHTS = [
 ];
 
 const WhyChooseUs = () => {
-  const barsRef = useRef([]);
   const sectionRef = useRef(null);
+  const barsRef = useRef([]);
 
   useEffect(() => {
-    if (!barsRef.current.length) return;
-
-    gsap.fromTo(
-      barsRef.current,
-      { scaleY: 0, transformOrigin: "bottom" },
-      {
-        scaleY: 1,
-        duration: 1.2,
-        stagger: 0.04,
-        ease: "elastic.out(1, 0.6)",
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 50%",
+          start: "top 60%",
           toggleActions: "play none none none",
         },
-      },
-    );
+      });
+
+      tl.from(".reveal-item", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+
+      if (barsRef.current.length) {
+        tl.fromTo(
+          barsRef.current,
+          { scaleY: 0, transformOrigin: "bottom" },
+          {
+            scaleY: 1,
+            duration: 1.2,
+            stagger: 0.04,
+            ease: "elastic.out(1, 0.6)",
+          },
+          "-=0.6",
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="min-h-[900px]  bg-black border-t  border-white/20 text-white py-20 lg:py-32"
+      className="bg-black text-white border-t border-white/20 overflow-hidden min-h-[900px]"
     >
-      <div className="max-w-[1920px]  mx-auto px-7 lg:px-20">
-        {/* Header */}
-        <div className="mb-16 lg:mb-24">
+      <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
+        {/* ── HEADER ────────────────────────────────────────────────────── */}
+        <div className="border-b border-white/10 py-20 lg:py-32 reveal-item">
           <div className="text-sm lg:text-base font-google mb-8 text-white/80">
             [02] Why choose us
           </div>
@@ -58,11 +75,118 @@ const WhyChooseUs = () => {
           </p>
         </div>
 
-        {/* Bottom Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
+        {/* ── BENTO GRID ────────────────────────────────────────────────── */}
+        {/*
+          Columns:  [graph — 1.7fr] [empty stack — 1fr] [globe — 1.7fr]
+          Rows:     240px / 240px
+        */}
+        <div
+          className="grid gap-2.5 py-10 grid-cols-1 lg:grid-cols-[1.7fr_1fr_1.7fr]"
+          style={{
+            gridTemplateRows: "auto",
+          }}
+        >
+          {/* LEFT — Graph card */}
+          <div
+            className="reveal-item relative border border-white/20 bg-[#000000] p-6 flex flex-col justify-between overflow-hidden
+               lg:col-[1] lg:row-[1/3]"
+          >
+            {/* Bar chart */}
+            <div className="flex-1 flex flex-col justify-end mt-3">
+              <div className="flex items-end gap-[3px] h-[160px] w-full px-0.5">
+                {BAR_HEIGHTS.map((h, i) => (
+                  <div
+                    key={i}
+                    ref={(el) => (barsRef.current[i] = el)}
+                    className="flex-1 transition-colors duration-150 border border-white/20"
+                    style={{ height: `${h * 100}%` }}
+                  />
+                ))}
+              </div>
+
+              <div className="flex justify-between mt-2 px-0.5">
+                {["2024", "mid-2024", "2025", "mid-2025", "2026"].map(
+                  (year) => (
+                    <span key={year} className="text-[9px] text-gray-600">
+                      {year}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+
+            <div className="mt-5 pt-5 border-t border-white/10">
+              <p className="text-4xl font-bold text-white mb-1 tracking-tight">
+                2 +
+              </p>
+              <p className="text-sm text-gray-400">years of consistency.</p>
+            </div>
+          </div>
+
+          {/* MIDDLE TOP */}
+          <div
+            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[1]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(255,255,255,0.028) 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+              height: "240px",
+            }}
+          />
+
+          {/* MIDDLE BOTTOM */}
+          <div
+            className="relative border border-white/20 overflow-hidden lg:col-[2] lg:row-[2]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(255,255,255,0.028) 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+              height: "240px",
+            }}
+          />
+
+          {/* RIGHT — Globe */}
+          <div
+            className="reveal-item relative border rounded-lg overflow-hidden bg-[#080808] border-white/20
+               lg:col-[3] lg:row-[1/3]"
+            style={{ height: "490px" }}
+          >
+            <div className="absolute inset-0 z-0 opacity-60">
+              <Globe />
+            </div>
+
+            <div className="absolute bottom-0 left-0 right-0 h-[58%] bg-gradient-to-t from-[#080808] via-[#080808]/60 to-transparent pointer-events-none z-10" />
+
+            <div className="absolute bottom-0 left-0 right-0 z-20 p-7 mix-blend-difference">
+              <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-white block mb-3">
+                [ Global · Async-first ]
+              </span>
+
+              <p className="text-sm text-white leading-relaxed max-w-[300px] mb-5">
+                We work across time zones with a fully async-first workflow.
+                Notion, Slack, and Loom keep us aligned.
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {["Mumbai", "New York", "London", "Tokyo"].map((city) => (
+                  <span
+                    key={city}
+                    className="border border-white/20 px-3 py-1 text-[10px] font-mono text-white/50 rounded-sm tracking-wider
+                       transition-colors duration-200 hover:border-white/40 hover:text-white/80"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── BOTTOM ROW — Feature text ──────────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 border-t border-white/10 py-16 reveal-item">
           {/* Fast to launch */}
           <div>
-            <h3 className="text-3xl lg:text-4xl font-bold mb-2 leading-tight">
+            <h3 className="text-3xl lg:text-4xl font-bold mb-2 leading-tight tracking-tighter">
               Fast to launch.
               <br />
               Easy to scale.
@@ -124,43 +248,10 @@ const WhyChooseUs = () => {
             </p>
           </div>
 
-          {/* Stats Card */}
-          <div className="bg-[#111] border border-white/10 lg:bottom-32 rounded-md p-6 flex flex-col justify-between overflow-hidden relative min-h-[260px]">
-            {/* Bars */}
-            <div className="flex-1 flex flex-col justify-center">
-              <div className="flex items-end gap-[3px] h-40 w-full px-1">
-                {BAR_HEIGHTS.map((h, i) => (
-                  <div
-                    key={i}
-                    ref={(el) => (barsRef.current[i] = el)}
-                    className="flex-1 bg-white/70 rounded-t-[1px]"
-                    style={{ height: `${h * 100}%` }}
-                  />
-                ))}
-              </div>
-
-              <div className="flex justify-between mt-2 px-1">
-                {["2024", "mid-2024", "2025", "mid-2025", "2026"].map(
-                  (year) => (
-                    <span key={year} className="text-xs text-gray-500">
-                      {year}
-                    </span>
-                  ),
-                )}
-              </div>
-            </div>
-
-            {/* Bottom text */}
-            <div className="mt-6">
-              <p className="text-4xl font-bold text-white mb-1 tracking-tight">
-                2 +
-              </p>
-              <p className="text-sm text-gray-400">years of consistency.</p>
-            </div>
-          </div>
+          {/* Intentional empty column */}
+          <div />
         </div>
       </div>
-      {/* <ScrollMarquee speed={0.02} className="bg-black -mt-32" /> */}
     </section>
   );
 };

@@ -3,100 +3,10 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../data/projects";
-import AnimatedMenu from "./ui/AnimatedMenu";
 import Lenis from "lenis";
-import RollingLink from "./ui/RollingLink";
+import Navbar from "../components/ui/Navbar";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// ─── Live Clock ───────────────────────────────────────────────────────────────
-const useLiveClock = (timeZone = "Asia/Kolkata") => {
-  const [time, setTime] = useState("");
-  useEffect(() => {
-    const format = () =>
-      new Date().toLocaleTimeString("en-US", {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    setTime(format());
-    const id = setInterval(() => setTime(format()), 1000);
-    return () => clearInterval(id);
-  }, [timeZone]);
-  return time;
-};
-
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-const Navbar = () => {
-  const time = useLiveClock("Asia/Kolkata");
-  return (
-    <>
-      <nav className="fixed font-inter top-0 left-0 right-0 z-40 h-[60px] bg-transparent mix-blend-difference pointer-events-none">
-        <div className="max-w-[1920px] mx-auto h-full px-6 md:px-12 lg:px-20 grid grid-cols-4 items-center">
-          <div className="flex items-center justify-start max-md:hidden pointer-events-auto">
-            <a
-              href="/"
-              className="text-white text-[20px] font-bold tracking-tight select-none hover:opacity-70 transition-opacity duration-200"
-            >
-              OGUZ<sup className="text-[8px] align-super ml-[2px]">®</sup>
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center gap-2 text-[14.5px] tracking-wide select-none max-md:hidden pointer-events-auto">
-            <span className="text-white font-medium">Mumbai (IN)</span>
-            <span className="text-white/80 font-medium tabular-nums">
-              {time}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-end gap-6 pointer-events-auto">
-            {/* Visble Rolling Link */}
-            <RollingLink
-              to="/projects"
-              label="Our Work"
-              count="12"
-              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide text-white transition-opacity duration-200"
-            />
-
-            <div className="invisible pointer-events-none select-none">
-              <AnimatedMenu />
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <nav className="fixed font-inter top-0 left-0 right-0 z-50 h-[60px] bg-transparent pointer-events-none">
-        <div className="max-w-[1920px] mx-auto h-full px-6 md:px-12 lg:px-20 grid grid-cols-4 items-center">
-          <div className="flex items-center justify-start max-md:hidden invisible">
-            <a href="/" className="text-[20px] font-bold tracking-tight">
-              OGUZ<sup className="text-[8px] align-super ml-[2px]">®</sup>
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center gap-2 text-[14.5px] tracking-wide max-md:hidden invisible">
-            <span className="font-medium">Mumbai (IN)</span>
-            <span className="font-medium tabular-nums">{time}</span>
-          </div>
-
-          <div className="flex items-center justify-end gap-6">
-            {/* Invisible Rolling Link (for layout spacing) */}
-            <RollingLink
-              to="/projects"
-              label="Our Work"
-              count="12"
-              className="hidden sm:flex items-center gap-1.5 max-md:hidden text-[14.5px] font-medium tracking-wide invisible"
-            />
-
-            <div className="pointer-events-auto">
-              <AnimatedMenu />
-            </div>
-          </div>
-        </div>
-      </nav>
-    </>
-  );
-};
 
 // ─── Image Section — with real parallax ───────────────────────────────────────
 const ImageSection = ({ section }) => {
@@ -150,7 +60,7 @@ const ImageSection = ({ section }) => {
 
 // ─── Text Section ─────────────────────────────────────────────────────────────
 const TextSection = ({ section }) => (
-  <div className="py-16 border-t border-white/10">
+  <div className="py-16 border-t border-white/20">
     {section.title && (
       <p className="text-xs text-white/40 uppercase tracking-widest mb-6">
         {section.title}
@@ -442,7 +352,7 @@ const ProjectDetails = () => {
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="border-b border-white/10 overflow-hidden"
+        className="border-b border-white/20 overflow-hidden"
       >
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 pt-40 pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-8">
@@ -503,7 +413,7 @@ const ProjectDetails = () => {
           {/* Sidebar — 30% */}
           <div
             ref={sidebarRef}
-            className="w-full lg:w-[30%] shrink-0 lg:h-screen flex flex-col justify-start pt-16 px-6 lg:px-10 xl:px-16 lg:border-r border-white/10 pb-10 lg:pb-0 mb-10 lg:mb-0"
+            className="w-full lg:w-[30%] shrink-0 lg:h-screen flex flex-col justify-start pt-16 px-6 lg:px-10 xl:px-16 lg:border-r border-white/20 pb-10 lg:pb-0 mb-10 lg:mb-0"
           >
             <div className="flex flex-col">
               {[
@@ -566,7 +476,7 @@ const ProjectDetails = () => {
       </div>
 
       {/* ── NUMBERS ───────────────────────────────────────────────────────── */}
-      <section className="border-t border-white/10" ref={numbersContainerRef}>
+      <section className="border-t border-white/20" ref={numbersContainerRef}>
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-3">
@@ -586,7 +496,7 @@ const ProjectDetails = () => {
                     {n.label}
                   </p>
                   <div
-                    className="stat-line absolute bottom-0 left-0 w-full h-[1px] bg-white/10 origin-left"
+                    className="stat-line absolute bottom-0 left-0 w-full h-[1px] bg-white/20 origin-left"
                     style={{ willChange: "transform, filter" }}
                   />
                 </div>
@@ -597,7 +507,7 @@ const ProjectDetails = () => {
       </section>
 
       {/* ── TESTIMONIAL ───────────────────────────────────────────────────── */}
-      <section className="border-t border-white/10">
+      <section className="border-t border-white/20">
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 py-28 lg:py-36">
           <div className="flex flex-col lg:flex-row gap-14 lg:gap-24 items-start">
             {/* Photo — bigger, animated */}
@@ -610,7 +520,7 @@ const ProjectDetails = () => {
               }}
             >
               <div
-                className="w-full overflow-hidden border border-white/10"
+                className="w-full overflow-hidden border border-white/20"
                 style={{ aspectRatio: "3/4" }}
               >
                 <img
@@ -643,7 +553,7 @@ const ProjectDetails = () => {
       </section>
 
       {/* ── LATEST PROJECTS ───────────────────────────────────────────────── */}
-      <section className="border-t border-white/10">
+      <section className="border-t border-white/20">
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 py-20">
           <p className="text-xs text-white/30 uppercase tracking-widest mb-10">
             Latest projects
