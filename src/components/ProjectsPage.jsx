@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { projects } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
+import Footer from "./Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -353,8 +354,9 @@ const ProjectsPage = () => {
           {visible.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
-        </div>
+        </div>{" "}
       </section>
+      <Footer />
 
       <style jsx>{`
         * {

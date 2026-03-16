@@ -84,13 +84,13 @@ const Footer = () => {
 
             {/* Contact Us */}
             <div>
-              <p className="text-[10px] text-white/30 tracking-[0.25em] uppercase font-mono mb-6">
+              <p className="text-[10px] text-white/30 tracking-[0.25em] uppercase font-mono mb-6 ">
                 Contact Us
               </p>
               <div className="flex flex-col gap-3">
                 <a
                   href="mailto:contact@oguz.design"
-                  className="text-sm text-white/70 hover:text-white transition-colors duration-200 leading-snug"
+                  className="text-sm text-white/70 hover:text-white transition-colors duration-200 leading-snug  break-all"
                 >
                   contact@oguz.design
                 </a>
@@ -111,7 +111,7 @@ const Footer = () => {
         <p
           className="text-white text-center font-bold leading-none select-none pointer-events-none"
           style={{
-            fontSize: "clamp(5rem, 18vw, 22rem)",
+            fontSize: "clamp(6rem, 18vw, 22rem)",
             letterSpacing: "-0.04em",
             lineHeight: 0.85,
             paddingLeft: "0.05em",

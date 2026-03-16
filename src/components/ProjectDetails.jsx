@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../data/projects";
 import Lenis from "lenis";
 import Navbar from "../components/ui/Navbar";
+import Footer from "./Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -575,6 +576,7 @@ const ProjectDetails = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
