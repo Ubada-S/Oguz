@@ -259,7 +259,7 @@ export default function AnimatedMenu() {
   }, []);
 
   return (
-    <div className="text-black font-google">
+    <div className="text-black font-google z-[999]">
       <style>{`
         @font-face {
           font-family: "Google Sans";

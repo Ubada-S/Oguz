@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../data/projects";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,7 +168,8 @@ const Projects = () => {
   }, []);
 
   return (
-    <main className="min-h-[900px] bg-black border-t border-white/20 font-google tracking-tighter overflow-hidden">
+    <main className="relative min-h-[900px] bg-black border-t border-white/20 font-google tracking-tighter overflow-hidden">
+      <Noise className="z-1" />
       <div className="relative w-full max-w-[1920px] mx-auto">
         {/* Section Label */}
         <div className="absolute left-0 top-0 text-white lg:pl-20 pl-7 pt-7 lg:pt-24 z-10">
@@ -207,7 +209,7 @@ const Projects = () => {
                 [12] All case studies
                 <span className="absolute bottom-0 left-0 bg-white pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
               </span>
-              <span className="text-white/60 group-hover:translate-x-1 group-hover:text-white pb-1 absolute right-14 transition-transform duration-300">
+              <span className="max-md:hidden text-white/60 group-hover:translate-x-1 group-hover:text-white pb-1 lg:absolute lg:right-14 transition-transform duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"

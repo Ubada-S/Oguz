@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,17 +84,17 @@ const ClockIcon = () => (
 
 // ─── Component ────────────────────────────────────────────────────────────────
 const ProcessSection = () => {
-  const sectionRef        = useRef(null);
+  const sectionRef = useRef(null);
   const cardsContainerRef = useRef(null);
-  const cardRefs          = useRef([]);
-  const contentRefs       = useRef([]);
-  const numberRefs        = useRef([]);
-  const dividerRefs       = useRef([]);
-  const mobileCardsRef    = useRef([]);
-  const mobileScrollRef   = useRef(null);
-  const scrollThumbRef    = useRef(null);
+  const cardRefs = useRef([]);
+  const contentRefs = useRef([]);
+  const numberRefs = useRef([]);
+  const dividerRefs = useRef([]);
+  const mobileCardsRef = useRef([]);
+  const mobileScrollRef = useRef(null);
+  const scrollThumbRef = useRef(null);
 
-  const activeCardRef     = useRef(4);
+  const activeCardRef = useRef(4);
   const [activeCard, setActiveCard] = useState(4);
 
   // ── Mobile scroll thumb ───────────────────────────────────────────────────
@@ -103,10 +104,10 @@ const ProcessSection = () => {
     if (!track || !thumb) return;
     const update = () => {
       const { scrollLeft, scrollWidth, clientWidth } = track;
-      const ratio  = scrollLeft / (scrollWidth - clientWidth);
+      const ratio = scrollLeft / (scrollWidth - clientWidth);
       const thumbW = (clientWidth / scrollWidth) * 100;
       thumb.style.width = `${thumbW}%`;
-      thumb.style.left  = `${ratio * (100 - thumbW)}%`;
+      thumb.style.left = `${ratio * (100 - thumbW)}%`;
     };
     update();
     track.addEventListener("scroll", update, { passive: true });
@@ -131,9 +132,9 @@ const ProcessSection = () => {
       if (!card) return;
       gsap.to(card, {
         flexBasis: i === index ? "420px" : "0%",
-        flexGrow:  i === index ? 0 : 1,
-        duration:  0.6,
-        ease:      "power3.out",
+        flexGrow: i === index ? 0 : 1,
+        duration: 0.6,
+        ease: "power3.out",
         overwrite: true,
       });
     });
@@ -141,9 +142,9 @@ const ProcessSection = () => {
     // Fade out previous content quickly
     if (contentRefs.current[prev]) {
       gsap.to(contentRefs.current[prev], {
-        opacity:  0,
+        opacity: 0,
         duration: 0.2,
-        ease:     "power2.out",
+        ease: "power2.out",
         overwrite: true,
       });
     }
@@ -151,10 +152,10 @@ const ProcessSection = () => {
     // Shrink and fade out previous divider
     if (dividerRefs.current[prev]) {
       gsap.to(dividerRefs.current[prev], {
-        scaleX:  0,
+        scaleX: 0,
         opacity: 0,
         duration: 0.2,
-        ease:    "power2.out",
+        ease: "power2.out",
         overwrite: true,
         transformOrigin: "left center",
       });
@@ -166,13 +167,13 @@ const ProcessSection = () => {
         contentRefs.current[index],
         { opacity: 0, y: 15 },
         {
-          opacity:  1,
-          y:        0,
+          opacity: 1,
+          y: 0,
           duration: 0.5,
-          ease:     "power3.out",
-          delay:    0.2, // waits just a beat for the card to start expanding
+          ease: "power3.out",
+          delay: 0.2, // waits just a beat for the card to start expanding
           overwrite: true,
-        }
+        },
       );
     }
 
@@ -182,17 +183,17 @@ const ProcessSection = () => {
         dividerRefs.current[index],
         { scaleX: 0, opacity: 0 },
         {
-          scaleX:   1,
-          opacity:  1,
+          scaleX: 1,
+          opacity: 1,
           duration: 0.6,
-          ease:     "power3.out",
-          delay:    0.3,
+          ease: "power3.out",
+          delay: 0.3,
           overwrite: true,
           transformOrigin: "left center",
-        }
+        },
       );
     }
-  }, []); 
+  }, []);
 
   // ── GSAP setup ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -205,7 +206,7 @@ const ProcessSection = () => {
           if (!card) return;
           gsap.set(card, {
             flexBasis: i === activeCardRef.current ? "420px" : "0%",
-            flexGrow:  i === activeCardRef.current ? 0 : 1,
+            flexGrow: i === activeCardRef.current ? 0 : 1,
           });
         });
 
@@ -235,19 +236,38 @@ const ProcessSection = () => {
             gsap.fromTo(
               sectionRef.current.querySelectorAll(".process-anim-header"),
               { opacity: 0, y: 30 },
-              { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1 }
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                stagger: 0.1,
+              },
             );
             gsap.fromTo(
               sectionRef.current.querySelectorAll(".process-info-block"),
               { opacity: 0, y: 25 },
-              { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.15, delay: 0.2 }
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: "power3.out",
+                stagger: 0.15,
+                delay: 0.2,
+              },
             );
             cardRefs.current.forEach((card, i) => {
               if (!card) return;
               gsap.fromTo(
                 card,
                 { opacity: 0, y: 40 },
-                { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: 0.3 + i * 0.08 }
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.7,
+                  ease: "power3.out",
+                  delay: 0.3 + i * 0.08,
+                },
               );
             });
           },
@@ -260,46 +280,68 @@ const ProcessSection = () => {
           sectionRef.current?.querySelectorAll(".process-anim-header"),
           { opacity: 0, y: 30 },
           {
-            opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1,
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.1,
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 85%",
               toggleActions: "play none none none",
             },
-          }
+          },
         );
-        sectionRef.current?.querySelectorAll(".process-info-block").forEach((block) => {
-          gsap.fromTo(block,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
-              scrollTrigger: { trigger: block, start: "top 85%", toggleActions: "play none none none" },
-            }
-          );
-        });
+        sectionRef.current
+          ?.querySelectorAll(".process-info-block")
+          .forEach((block) => {
+            gsap.fromTo(
+              block,
+              { opacity: 0, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: block,
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                },
+              },
+            );
+          });
         mobileCardsRef.current.forEach((card) => {
           if (!card) return;
-          gsap.fromTo(card,
+          gsap.fromTo(
+            card,
             { opacity: 0, y: 40 },
             {
-              opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
-              scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none none" },
-            }
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            },
           );
         });
       });
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []); 
+  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-black text-white border-t border-white/20"
+      className="relative bg-black text-white border-t border-white/25"
     >
-      <div className="max-w-[1920px] mx-auto">
-
+      <Noise className="z-0" />
+      <div className="max-w-[1920px] mx-auto z-[999]">
         {/* ── DESKTOP LAYOUT ─────────────────────────────────────────────── */}
         <div className="hidden lg:block">
           <div className="px-7 lg:px-20 pt-12 lg:pt-24 pb-10 lg:pb-16">
@@ -318,9 +360,9 @@ const ProcessSection = () => {
                 </h2>
                 <p className="process-anim-header text-neutral-400 max-w-[420px] leading-relaxed text-[15px]">
                   We've refined our approach over hundreds of projects. Every
-                  step is designed to minimize friction and maximize impact. From
-                  first call to final delivery, you'll know exactly where we are
-                  and where we're going.
+                  step is designed to minimize friction and maximize impact.
+                  From first call to final delivery, you'll know exactly where
+                  we are and where we're going.
                 </p>
               </div>
             </div>
@@ -336,14 +378,16 @@ const ProcessSection = () => {
                   <CalendarIcon />
                   <h4 className="text-xl font-semibold">3-5 Days</h4>
                   <p className="text-sm text-neutral-400 leading-relaxed">
-                    To kick off after signing. No lengthy onboarding, just straight to work.
+                    To kick off after signing. No lengthy onboarding, just
+                    straight to work.
                   </p>
                 </div>
                 <div className="process-info-block space-y-3">
                   <ClockIcon />
                   <h4 className="text-xl font-semibold">48 Hour</h4>
                   <p className="text-sm text-neutral-400 leading-relaxed">
-                    turnaround on most requests. Complex projects broken into manageable sprints.
+                    turnaround on most requests. Complex projects broken into
+                    manageable sprints.
                   </p>
                 </div>
               </div>
@@ -359,7 +403,7 @@ const ProcessSection = () => {
                     <div
                       key={step.id}
                       ref={(el) => (cardRefs.current[i] = el)}
-                      className="relative border border-white/20 rounded-sm overflow-hidden cursor-pointer group"
+                      className="relative bg-black border border-white/20 rounded-sm overflow-hidden cursor-pointer group"
                       style={{
                         willChange: "flex-basis",
                         minWidth: 0,
@@ -371,7 +415,10 @@ const ProcessSection = () => {
                         className={`absolute top-6 left-6 text-[48px] xl:text-[56px] font-semibold transition-colors duration-500 select-none ${
                           isActive ? "text-white/80" : "text-white/30"
                         }`}
-                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                        style={{
+                          writingMode: "vertical-rl",
+                          transform: "rotate(180deg)",
+                        }}
                       >
                         {step.index}
                       </div>
@@ -417,8 +464,9 @@ const ProcessSection = () => {
           </h2>
           <p className="process-anim-header text-sm text-neutral-400 leading-relaxed mb-12">
             We've refined our approach over hundreds of projects. Every step is
-            designed to minimize friction and maximize impact. From first call to
-            final delivery, you'll know exactly where we are and where we're going.
+            designed to minimize friction and maximize impact. From first call
+            to final delivery, you'll know exactly where we are and where we're
+            going.
           </p>
 
           <div className="space-y-10 mb-14">
@@ -426,28 +474,30 @@ const ProcessSection = () => {
               <CalendarIcon />
               <h4 className="text-xl font-semibold">3-5 Days</h4>
               <p className="text-sm text-neutral-400 leading-relaxed">
-                To kick off after signing. No lengthy onboarding, just straight to work.
+                To kick off after signing. No lengthy onboarding, just straight
+                to work.
               </p>
             </div>
             <div className="process-info-block space-y-3">
               <ClockIcon />
               <h4 className="text-xl font-semibold">48 Hour</h4>
               <p className="text-sm text-neutral-400 leading-relaxed">
-                turnaround on most requests. Complex projects broken into manageable sprints.
+                turnaround on most requests. Complex projects broken into
+                manageable sprints.
               </p>
             </div>
           </div>
 
           <div
             ref={mobileScrollRef}
-            className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory"
+            className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory "
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {processSteps.map((step, i) => (
               <div
                 key={step.id}
                 ref={(el) => (mobileCardsRef.current[i] = el)}
-                className="shrink-0 w-[85vw] sm:w-[70vw] border border-white/20 rounded-sm p-6 snap-start"
+                className="shrink-0  w-[85vw] sm:w-[70vw] border border-white/20 rounded-sm p-6 bg-black snap-start"
                 style={{ aspectRatio: "4/3" }}
               >
                 <div className="flex flex-col justify-between h-full">
@@ -455,8 +505,12 @@ const ProcessSection = () => {
                     {step.index}
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 tracking-tight">{step.title}</h3>
-                    <p className="text-sm text-neutral-400 leading-relaxed">{step.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 tracking-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -464,7 +518,7 @@ const ProcessSection = () => {
           </div>
 
           <div
-            className="relative mt-3 overflow-hidden rounded-sm"
+            className="relative mt-3 overflow-hidden "
             style={{
               height: "16px",
               background: "black",
@@ -475,14 +529,13 @@ const ProcessSection = () => {
               ref={scrollThumbRef}
               className="absolute top-0 bottom-0 transition-[left] duration-75"
               style={{
-                background: "rgba(255,255,255,0.2)",
+                background: "rgba(255,255,255,0.7)",
                 left: "0%",
                 width: "20%",
               }}
             />
           </div>
         </div>
-
       </div>
     </section>
   );

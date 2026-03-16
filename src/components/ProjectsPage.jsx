@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { projects } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
 import Footer from "./Footer";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -249,7 +250,8 @@ const ProjectsPage = () => {
   }, [visible.length]);
 
   return (
-    <div className="bg-black text-white min-h-screen font-google tracking-tighter overflow-x-hidden">
+    <div className="relative bg-black text-white min-h-screen font-google tracking-tighter overflow-x-hidden">
+      <Noise className="z-0" />
       <section
         ref={heroRef}
         className="max-w-[1920px] mx-auto px-6 lg:px-20 pt-24 md:pt-32 pb-12 md:pb-16"

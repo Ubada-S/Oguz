@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Globe } from "./ui/globe";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -159,11 +160,12 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-black text-white border-t border-white/20 overflow-hidden min-h-[900px]"
+      className="relative bg-black text-white border-t border-white/20 overflow-hidden min-h-[900px]"
     >
+      <Noise className="z-1" />
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
         {/* ── HEADER ────────────────────────────────────────────────────── */}
-        <div className="border-b border-white/10 py-20 lg:py-32 reveal-item">
+        <div className="border-b border-white/20 py-20 lg:py-32 reveal-item">
           <div className="text-sm lg:text-base font-google mb-8 text-white/80">
             [02] Why choose us
           </div>
@@ -213,7 +215,7 @@ const WhyChooseUs = () => {
               </div>
             </div>
 
-            <div className="mt-5 pt-5 border-t border-white/10">
+            <div className="mt-5 pt-5 border-t border-white/20">
               <p className="text-4xl font-bold text-white mb-1 tracking-tight">
                 2 +
               </p>
@@ -280,7 +282,7 @@ const WhyChooseUs = () => {
                   className={`text-[11px] px-3 py-1.5 rounded-xl max-w-[85%] leading-relaxed ${
                     msg.from === "us"
                       ? "bg-white text-black"
-                      : "bg-white/8 text-white/70 border border-white/10"
+                      : "bg-white/8 text-white/70 border border-white/20"
                   }`}
                 >
                   {msg.text}
@@ -330,7 +332,7 @@ const WhyChooseUs = () => {
         </div>
 
         {/* ── BOTTOM ROW — Feature text ──────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 border-t border-white/10 py-16 reveal-item">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 border-t border-white/20 py-16 reveal-item">
           <div>
             <h3 className="text-3xl lg:text-4xl font-bold mb-2 leading-tight tracking-tighter">
               Fast to launch.
@@ -340,7 +342,7 @@ const WhyChooseUs = () => {
           </div>
 
           <div>
-            <div className="w-10 h-10 border border-white/20 flex items-center justify-center mb-6">
+            <div className="w-10 bg-black h-10 border border-white/20 flex items-center justify-center mb-6">
               <svg
                 className="w-5 h-5"
                 fill="none"

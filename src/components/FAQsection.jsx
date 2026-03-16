@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -226,7 +227,8 @@ const FAQSection = () => {
       ref={sectionRef}
       className="relative bg-black text-white border-t border-white/20 py-20 lg:py-28"
     >
-      <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
+      <Noise className="z-0" />
+      <div className="max-w-[1920px] mx-auto px-7 lg:px-20 z-[999]">
         <div className="flex flex-col lg:flex-row lg:items-start gap-16 lg:gap-0">
           {/* ── Left Column ─────────────────────────────────────────────── */}
           <div

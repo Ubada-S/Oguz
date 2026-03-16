@@ -6,6 +6,7 @@ import { projects } from "../data/projects";
 import Lenis from "lenis";
 import Navbar from "../components/ui/Navbar";
 import Footer from "./Footer";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -347,13 +348,14 @@ const ProjectDetails = () => {
   }, [slug]);
 
   return (
-    <div className="bg-[#0a0a0a] text-white min-h-screen font-inter">
+    <div className="bg-black relative text-white min-h-screen font-inter">
       <Navbar />
+      <Noise className="z-0" />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="border-b border-white/20 overflow-hidden"
+        className="border-b relative border-white/20 overflow-hidden"
       >
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 pt-40 pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-8">
@@ -395,7 +397,7 @@ const ProjectDetails = () => {
                     {project.services.map((s) => (
                       <span
                         key={s}
-                        className="text-xs border border-white/15 text-white/80 px-4 py-2"
+                        className="text-xs border border-white/20 bg-black text-white/80 px-4 py-2"
                       >
                         {s}
                       </span>
@@ -434,7 +436,7 @@ const ProjectDetails = () => {
                     {value}
                   </span>
                   <div
-                    className="meta-line absolute bottom-0 left-0 w-full h-[1px] bg-white/15 origin-left"
+                    className="meta-line absolute bottom-0 left-0 w-full h-[1px] bg-white/30 origin-left"
                     style={{ willChange: "transform, filter" }}
                   />
                 </div>
@@ -497,7 +499,7 @@ const ProjectDetails = () => {
                     {n.label}
                   </p>
                   <div
-                    className="stat-line absolute bottom-0 left-0 w-full h-[1px] bg-white/20 origin-left"
+                    className="stat-line absolute bottom-0 left-0 w-full h-[1px] bg-white/30 origin-left"
                     style={{ willChange: "transform, filter" }}
                   />
                 </div>
@@ -556,7 +558,7 @@ const ProjectDetails = () => {
       {/* ── LATEST PROJECTS ───────────────────────────────────────────────── */}
       <section className="border-t border-white/20">
         <div className="max-w-[1920px] mx-auto px-6 lg:px-20 py-20">
-          <p className="text-xs text-white/30 uppercase tracking-widest mb-10">
+          <p className="text-xs text-white/40 uppercase tracking-widest mb-10">
             Latest projects
           </p>
           <div className="flex flex-wrap items-center gap-4">
@@ -564,7 +566,7 @@ const ProjectDetails = () => {
               <span key={p.slug} className="flex items-center gap-4">
                 <Link
                   to={`/projects/${p.slug}`}
-                  className="text-xl lg:text-3xl font-medium text-white/40 hover:text-white transition-colors duration-300 tracking-tight"
+                  className="text-xl lg:text-3xl font-medium text-white/50 hover:text-white transition-colors duration-300 tracking-tight"
                 >
                   {p.metadata.client}
                 </Link>

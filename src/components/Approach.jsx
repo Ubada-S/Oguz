@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TeamProfileCard from "./other/TeamProfileCard";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,15 +78,16 @@ const Approach = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-black pt-24 pb-20 lg:pt-32 lg:pb-32"
+      className="relative bg-black pt-24 pb-20 lg:pt-32 lg:pb-32 "
     >
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-16">
+      <Noise className="z-1" />
+      <div className="relative max-w-[1920px] mx-auto px-6 lg:px-16 z-[20]">
         {/* Headline Block */}
         <div className="grid grid-cols-1 lg:grid-cols-[theme(spacing.10)_1fr]">
           <div className="hidden lg:block" aria-hidden="true" />
           <div className="text-white text-[1.75rem] lg:text-[4rem] font-google tracking-tighter leading-[1.15] select-none">
             <p className="reveal-anim mb-1">
-              <span className="inline-block text-[1rem] font-bold align-top mr-4 uppercase opacity-50">
+              <span className="inline-block text-[0.8rem] font-bold align-top mr-4 tracking-normal mt-3 opacity-80">
                 [Our Approach]
               </span>
               Traditional agencies perfected the art of the pitch. We perfected

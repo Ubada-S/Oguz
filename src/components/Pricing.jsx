@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -555,6 +556,7 @@ const PricingSection = () => {
       ref={sectionRef}
       className="relative bg-black text-white py-20 lg:py-32 overflow-hidden border-t border-white/20"
     >
+      <Noise className="z-0" />
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20">
         {/* HEADER */}
         <div

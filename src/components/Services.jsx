@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Noise from "./other/noise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -304,6 +305,7 @@ const Services = () => {
       ref={sectionRef}
       className="relative bg-black text-white border-t border-white/20"
     >
+      <Noise className="z-0" />
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20 pt-12 lg:pt-24 pb-10 lg:pb-20">
         <div className="hidden lg:flex items-start gap-10">
@@ -342,7 +344,7 @@ const Services = () => {
       {/* ── DESKTOP LAYOUT ───────────────────────────────────────────────── */}
       <div className="hidden lg:block max-w-[1920px] mx-auto relative">
         <div
-          className="absolute top-0 bottom-0 w-px bg-white/10 pointer-events-none z-10"
+          className="absolute top-0 bottom-0 w-px bg-white/20 pointer-events-none z-10"
           style={{ left: "30%" }}
         />
 
@@ -379,7 +381,7 @@ const Services = () => {
               <div
                 key={service.id}
                 ref={(el) => (rightBlocksRef.current[i] = el)}
-                className="px-10 xl:px-16 py-10 border-b border-white/10"
+                className="px-10 xl:px-16 py-10 border-b border-white/20"
               >
                 <div className="relative w-full aspect-[16/9] overflow-hidden mb-8">
                   <img
@@ -388,7 +390,7 @@ const Services = () => {
                     className="svc-img absolute inset-0 w-full h-[120%] object-cover"
                     style={{ top: "-10%" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
 
                 <h3 className="text-2xl xl:text-3xl tracking-tight mb-4">
@@ -410,8 +412,8 @@ const Services = () => {
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-4 py-1.5 text-xs border border-white/15 text-neutral-400
-                                     hover:border-white/40 hover:text-white transition-all duration-300 cursor-default"
+                          className="px-4 py-1.5 bg-black text-xs border border-white/20 text-neutral-400
+                                     hover:border-white/30 hover:text-white transition-all duration-300 cursor-default"
                         >
                           {tag}
                         </span>

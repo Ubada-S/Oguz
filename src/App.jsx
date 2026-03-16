@@ -81,7 +81,6 @@ export default function App() {
         <div className="fixed inset-0 pointer-events-none z-[9999]">
           <div className="h-full mx-[7px] lg:mx-[20px] border-x border-white/20" />
         </div>
-
         {/* Fixed blur effect at bottom of viewport */}
         <div className="fixed bottom-0 left-0 right-0 pointer-events-none z-50">
           <GradualBlurMemo
@@ -94,8 +93,8 @@ export default function App() {
             opacity={0.8}
           />
         </div>
-        <ScrollProgress />
 
+        <ScrollProgress />
         <Routes>
           {/* ── HOME PAGE ───────────────────────── */}
           <Route
@@ -105,6 +104,7 @@ export default function App() {
                 <Hero />
                 <Approach />
                 <Projects />
+
                 <WhyChooseUs />
                 <Services />
                 <ProcessSection />

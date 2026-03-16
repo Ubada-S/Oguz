@@ -25,7 +25,7 @@ const Navbar = () => {
   const time = useLiveClock("Asia/Kolkata");
   return (
     <>
-      <nav className="fixed font-inter top-0 left-0 right-0 z-40 h-[60px] bg-transparent mix-blend-difference pointer-events-none">
+      <nav className="fixed font-inter top-0 left-0 right-0  h-[60px] bg-transparent mix-blend-difference pointer-events-none z-40">
         <div className="max-w-[1920px] mx-auto h-full px-6 md:px-12 lg:px-20 grid grid-cols-4 items-center">
           <div className="flex items-center justify-start max-md:hidden pointer-events-auto">
             <a
