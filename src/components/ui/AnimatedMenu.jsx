@@ -1,29 +1,80 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-const images = [
-  "1.jpg",
-  "2.jpg",
-  "3.jpg",
-  "4.jpg",
-  "5.jpg",
-  "6.jpg",
-  "7.jpg",
-  "8.jpg",
-  "9.jpg",
-  "10.jpg",
-  "11.jpg",
-  "12.jpg",
-];
+const NAV_LINKS = ["Home", "Work", "Services", "Pricing", "Contact"];
+const LETTERS = ["O", "G", "U", "Z"];
+
+const IconX = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const IconInstagram = () => (
+  <svg
+    width="15"
+    height="15"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" />
+    <circle cx="12" cy="12" r="4.5" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const IconDribbble = () => (
+  <svg
+    width="15"
+    height="15"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72" />
+    <path d="M2 12c5.5 0 9.5-.8 13-2" />
+    <path d="M12 22c.8-4.5.5-9-.5-13" />
+  </svg>
+);
+
+const IconLinkedIn = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 export default function AnimatedMenu() {
   const hamburgerRef = useRef(null);
   const closeButtonRef = useRef(null);
   const menuRef = useRef(null);
-  const imageWrapperRef = useRef(null);
-  const imageCollectionsRef = useRef(null);
   const isDoneAnimationRef = useRef(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [torontoTime, setTorontoTime] = useState("");
+
+  const letterRefs = useRef([]);
+  const captionRef = useRef(null);
+  const verticalBorderRef = useRef(null);
+  const horizontalDividerRef = useRef(null);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const time = new Date().toLocaleTimeString("en-US", {
+        timeZone: "America/Toronto",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      setTorontoTime(time);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const hamburger = hamburgerRef.current;
@@ -31,162 +82,162 @@ export default function AnimatedMenu() {
     const closeButton = closeButtonRef.current;
     const lineClose = closeButton.querySelectorAll("span");
     const menu = menuRef.current;
-    const imageWrapper = imageWrapperRef.current;
-    const hoverLinks = gsap.utils.toArray(".hover-link");
-    const imageCollections = imageCollectionsRef.current;
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-    function handleImageFunction() {
-      const srcImage = this.dataset.image;
-      const newImage = document.createElement("div");
-      newImage.classList.add("absolute", "inset-0", "w-full", "h-full");
-      newImage.style.zIndex = Date.now();
-      const newImg = document.createElement("img");
-      newImg.src = srcImage;
-      newImg.alt = "";
-      newImg.className = "w-full h-full object-cover";
-      newImage.append(newImg);
-      imageCollections.append(newImage);
-
-      if (imageCollections.childElementCount >= 15) {
-        imageCollections.firstElementChild.remove();
-      }
-
-      const tl = gsap.timeline();
-
-      tl.fromTo(
-        newImage,
-        { clipPath: "inset(100% 0 0 0)", scale: 1.3 },
-        {
-          clipPath: "inset(0% 0 0 0)",
-          scale: 1,
-          duration: 0.75,
-          ease: "power2.out",
-        },
-      );
-    }
-
-    function handleHoverEffect() {
-      if (!mediaQuery.matches) return;
-      hoverLinks.forEach((element) => {
-        element.addEventListener("mouseenter", handleImageFunction);
-      });
-    }
-
-    const tlClose = gsap.timeline({
-      paused: true,
+    gsap.set(letterRefs.current, {
+      opacity: 0,
+      y: 52,
+      rotationX: 12,
+      skewY: 2,
+      filter: "blur(7px)",
+      transformOrigin: "50% 100%",
+    });
+    gsap.set(captionRef.current, {
+      opacity: 0,
+      y: 52,
+      rotationX: 12,
+      skewY: 2,
+      filter: "blur(7px)",
+      transformOrigin: "50% 100%",
+    });
+    gsap.set(verticalBorderRef.current, {
+      scaleY: 0,
+      transformOrigin: "top center",
+    });
+    gsap.set(horizontalDividerRef.current, {
+      scaleX: 0,
+      transformOrigin: "left center",
     });
 
+    const tlClose = gsap.timeline({ paused: true });
     tlClose
-      .to(lineClose[0], {
-        x: 60,
-        duration: 0.75,
-        ease: "power3.out",
-      })
+      .to(lineClose[0], { x: 60, duration: 0.75, ease: "power3.out" })
       .to(
         lineClose[1],
-        {
-          y: 60,
-          duration: 0.75,
-          ease: "power3.out",
-        },
+        { y: 60, duration: 0.75, ease: "power3.out" },
         "<+0.25",
       );
 
-    const tlHamburger = gsap.timeline({
-      paused: true,
-    });
-
+    const tlHamburger = gsap.timeline({ paused: true });
     tlHamburger.to(lineHamburger, {
       x: 60,
-      stagger: {
-        each: 0.25,
-      },
+      stagger: { each: 0.25 },
       duration: 0.75,
       ease: "power3.out",
     });
 
-    const handleHamburgerEnter = () => {
-      tlHamburger.play();
-    };
-
-    const handleHamburgerLeave = () => {
-      tlHamburger.reverse();
-    };
+    const handleHamburgerEnter = () => tlHamburger.play();
+    const handleHamburgerLeave = () => tlHamburger.reverse();
 
     const handleHamburgerClick = () => {
       setIsMenuOpen(true);
+      // ── CHANGE 1: lock scroll ──
+      document.body.style.overflow = "hidden";
+
+      gsap.set(letterRefs.current, {
+        opacity: 0,
+        y: 52,
+        rotationX: 12,
+        skewY: 2,
+        filter: "blur(7px)",
+        transformOrigin: "50% 100%",
+      });
+      gsap.set(captionRef.current, {
+        opacity: 0,
+        y: 52,
+        rotationX: 12,
+        skewY: 2,
+        filter: "blur(7px)",
+        transformOrigin: "50% 100%",
+      });
+      gsap.set(verticalBorderRef.current, { scaleY: 0 });
+      gsap.set(horizontalDividerRef.current, { scaleX: 0 });
+
       const tlMenu = gsap.timeline({
         onComplete: () => {
           isDoneAnimationRef.current = true;
         },
       });
-      tlMenu.set(menu, {
-        clipPath: "inset(100% 0 0 0)",
-      });
-      tlMenu.set(imageWrapper, {
-        clipPath: "inset(100% 0 0 0)",
-      });
+
+      tlMenu.set(menu, { clipPath: "inset(0 0 0 100%)" });
 
       tlMenu
         .to(menu, {
-          clipPath: "inset(0% 0 0 0)",
+          clipPath: "inset(0 0 0 0%)",
           duration: 1,
           ease: "power2.inOut",
         })
         .to(
-          imageWrapper,
-          {
-            clipPath: "inset(0% 0 0 0)",
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          "<+0.075",
+          verticalBorderRef.current,
+          { scaleY: 1, duration: 0.9, ease: "power3.out" },
+          0.1,
         )
-        .from(".fade-out", {
-          opacity: 0,
-          y: 50,
-          duration: 0.5,
-          ease: "power2.inOut",
-          stagger: {
-            each: "0.05",
+        .to(
+          horizontalDividerRef.current,
+          { scaleX: 1, duration: 0.9, ease: "power3.out" },
+          0.3,
+        )
+        .from(
+          ".fade-out",
+          {
+            opacity: 0,
+            y: 40,
+            duration: 0.55,
+            ease: "power2.out",
+            stagger: { each: 0.055 },
           },
-        });
+          0.4,
+        )
+        .to(
+          letterRefs.current,
+          {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            skewY: 0,
+            filter: "blur(0px)",
+            duration: 1.05,
+            ease: "power3.out",
+            stagger: 0.09,
+          },
+          1.0,
+        )
+        .to(
+          captionRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            skewY: 0,
+            filter: "blur(0px)",
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          1.4,
+        );
     };
 
     const handleCloseClick = () => {
       const tlMenu = gsap.timeline({
         onComplete: () => {
           setIsMenuOpen(false);
+          isDoneAnimationRef.current = false;
+          // ── CHANGE 1: restore scroll ──
+          document.body.style.overflow = "";
         },
       });
 
       if (isDoneAnimationRef.current) {
-        tlMenu
-          .to(imageWrapper, {
-            clipPath: "inset(0 0 100% 0)",
-            duration: 0.75,
-            ease: "power2.inOut",
-          })
-          .to(
-            menu,
-            {
-              clipPath: "inset(0 0 100% 0)",
-              duration: 0.75,
-              ease: "power2.inOut",
-            },
-            "<+0.075",
-          );
+        // ── CHANGE 2: exit left → right (clip from left side) ──
+        tlMenu.to(menu, {
+          clipPath: "inset(0 0 0 100%)",
+          duration: 0.75,
+          ease: "power2.inOut",
+        });
       }
     };
 
-    const handleCloseEnter = () => {
-      tlClose.play();
-    };
-
-    const handleCloseLeave = () => {
-      tlClose.reverse();
-    };
+    const handleCloseEnter = () => tlClose.play();
+    const handleCloseLeave = () => tlClose.reverse();
 
     hamburger.addEventListener("mouseenter", handleHamburgerEnter);
     hamburger.addEventListener("mouseleave", handleHamburgerLeave);
@@ -195,42 +246,32 @@ export default function AnimatedMenu() {
     closeButton.addEventListener("mouseenter", handleCloseEnter);
     closeButton.addEventListener("mouseleave", handleCloseLeave);
 
-    handleHoverEffect();
-
-    const handleMediaChange = (e) => {
-      if (e.matches) handleHoverEffect();
-    };
-
-    mediaQuery.addEventListener("change", handleMediaChange);
-
     return () => {
+      // ── CHANGE 1: restore scroll on unmount ──
+      document.body.style.overflow = "";
       hamburger.removeEventListener("mouseenter", handleHamburgerEnter);
       hamburger.removeEventListener("mouseleave", handleHamburgerLeave);
       hamburger.removeEventListener("click", handleHamburgerClick);
       closeButton.removeEventListener("click", handleCloseClick);
       closeButton.removeEventListener("mouseenter", handleCloseEnter);
       closeButton.removeEventListener("mouseleave", handleCloseLeave);
-      mediaQuery.removeEventListener("change", handleMediaChange);
-      hoverLinks.forEach((element) => {
-        element.removeEventListener("mouseenter", handleImageFunction);
-      });
     };
   }, []);
 
   return (
     <div className="text-black font-google">
-      <style jsx>{`
+      <style>{`
         @font-face {
           font-family: "Google Sans";
-          font-weight: bold;
+          font-weight: 400;
           font-style: normal;
         }
       `}</style>
 
-      {/* Hamburger Button - Fixed/Sticky on viewport */}
+      {/* Hamburger Button */}
       <button
         ref={hamburgerRef}
-        className={`w-10 h-10 flex bg-transparent border-none cursor-pointer fixed overflow-hidden top-6 right-16 z-[9998] transition-opacity duration-300 mix-blend-lighten ${
+        className={`w-10 h-10 flex bg-transparent border-none cursor-pointer fixed overflow-hidden top-6 right-16 z-[9998] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
@@ -239,156 +280,166 @@ export default function AnimatedMenu() {
         <span className="h-px w-full bg-white rounded-sm absolute top-[20px] will-change-transform after:content-[''] after:absolute after:left-[-150%] after:w-full after:h-px after:rounded-sm after:bg-white"></span>
       </button>
 
-      {/* Menu */}
+      {/* ── CHANGE 3: border-l white/20 on the section itself ── */}
       <section
         ref={menuRef}
-        className="w-full h-[100dvh] bg-black z-[9999] fixed inset-0 text-white will-change-[clip-path]"
-        style={{ clipPath: "inset(100% 0 0 0)" }}
+        className="w-full h-[100dvh] z-[9999] fixed inset-0 text-white will-change-[clip-path] flex border-l border-white/20"
+        style={{
+          clipPath: "inset(0 0 0 100%)",
+          backdropFilter: "blur(45px)",
+          WebkitBackdropFilter: "blur(45px)",
+          backgroundColor: "rgba(0,0,0,0.65)",
+        }}
       >
         {/* Close Button */}
         <button
           ref={closeButtonRef}
-          className="w-10 h-10 flex bg-transparent border-none cursor-pointer absolute overflow-hidden top-8 right-12 rotate-45"
+          className="w-10 h-10 flex bg-transparent border-none cursor-pointer absolute overflow-hidden top-8 right-12 rotate-45 z-10"
         >
           <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-px w-full bg-white rounded-sm will-change-transform before:content-[''] before:absolute before:left-[-150%] before:w-full before:h-px before:bg-current before:rounded-sm"></span>
           <span className="w-px h-full bg-white rounded-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 before:content-[''] before:absolute before:top-[-150%] before:w-px before:h-full before:bg-current before:rounded-sm"></span>
         </button>
 
-        <section className="w-full h-full flex gap-4">
-          {/* Menu Image */}
-          <div className="w-[40%] h-full pr-6 hidden md:block">
+        {/* LEFT — blurred hero */}
+        <div className="flex-1 h-full hidden md:flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(0,0,0,0.55)_100%)]" />
+
+          <div
+            className="relative z-10 text-center select-none"
+            style={{ overflow: "visible" }}
+          >
             <div
-              ref={imageWrapperRef}
-              className="w-full h-full will-change-[clip-path]"
-              style={{ clipPath: "inset(100% 0 0 0)" }}
+              className="flex items-center justify-center"
+              style={{ overflow: "visible" }}
             >
-              <div
-                ref={imageCollectionsRef}
-                className="w-full h-full relative overflow-hidden"
-              >
-                <div className="absolute inset-0 w-full h-full z-[2]">
-                  <img
-                    src={`/images/${images[0]}`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+              {LETTERS.map((letter, i) => (
+                <span
+                  key={letter}
+                  ref={(el) => (letterRefs.current[i] = el)}
+                  className="text-white leading-none will-change-transform"
+                  style={{
+                    display: "inline-block",
+                    fontSize: "clamp(3rem,6vw,6rem)",
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
             </div>
+
+            <p
+              ref={captionRef}
+              className="mt-4 text-white/35 uppercase tracking-[0.28em]"
+              style={{ fontSize: "clamp(0.55rem,0.75vw,0.75rem)" }}
+            >
+              A design studio, built different
+            </p>
           </div>
 
-          {/* Menu Navigation */}
-          <div className="w-full md:w-[60%] h-full pt-24 px-8 md:px-20 pb-8 md:pb-8">
-            <div className="w-full h-full">
-              <h1 className="text-[clamp(1.5rem,3vw,3rem)]">Discover Page</h1>
+          <div className="absolute bottom-8 left-8 z-10">
+            <span className="text-[10px] text-white/15 tracking-[0.2em] uppercase font-mono">
+              Est. 2023
+            </span>
+          </div>
+        </div>
 
-              {/* Menu List */}
-              {/* Menu List */}
-              <div className="pt-6 mb-6 fade-out flex flex-col md:flex-row gap-2 md:gap-2 text-[clamp(1.5rem,3vw,3rem)]">
-                <ul className="w-full md:w-1/2 h-full flex flex-col gap-4 md:gap-2 md:justify-center">
-                  {[
-                    "Home",
-                    "Destinations",
-                    "Wellness",
-                    "Inovation",
-                    "Nature",
-                  ].map((item, i) => (
-                    <li
-                      key={item}
-                      className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                      data-image={`/images/${images[i]}`}
-                    >
-                      <span className="relative">
-                        {item}
-                        <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+        {/* Vertical Border */}
+        <div
+          ref={verticalBorderRef}
+          className="hidden md:block w-px flex-shrink-0 will-change-transform"
+          style={{ backgroundColor: "#333" }}
+        />
 
-                <ul className="w-full md:w-1/2 h-full flex flex-col gap-4 md:gap-2 md:justify-center">
-                  {[
-                    "Community",
-                    "The Story",
-                    "New Developments",
-                    "Press Room",
-                    "Careers",
-                  ].map((item, i) => (
-                    <li
-                      key={item}
-                      className="hover-link fade-out cursor-pointer h-max relative w-max group"
-                      data-image={`/images/${images[i + 5]}`}
-                    >
-                      <span className="relative">
-                        {item}
-                        <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* RIGHT — narrow nav panel */}
+        <div className="w-full bg-black md:w-[360px] h-full flex-shrink-0 flex flex-col pt-20 px-10 pb-10 overflow-y-auto">
+          <p className="fade-out text-[9px] text-white/25 tracking-[0.3em] uppercase font-mono mb-10">
+            Menu
+          </p>
 
-              {/* Contact Us */}
-              <div className="mb-6 fade-out">
-                <h2 className="text-[clamp(1rem,3vw,1.35rem)]">Contact Us</h2>
-                <div className="mt-4 flex gap-3 md:gap-4 text-[clamp(1rem,3vw,1.35rem)] flex-wrap">
-                  <a href="#" className="relative w-max group">
-                    Instagram
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                  <a href="#" className="relative w-max group">
-                    Facebook
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                  <a href="#" className="relative w-max group">
-                    Whatsapp
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                  <a href="#" className="relative w-max group">
-                    Tiktok
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                  <a href="#" className="relative w-max group">
-                    Youtube
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Stay Connected */}
-              <div className="mb-6 fade-out">
-                <h2 className="text-[clamp(1rem,3vw,1.35rem)]">
-                  Stay Connected
-                </h2>
-                <div className="mt-4 flex gap-3 md:gap-4 items-center text-[clamp(1rem,3vw,1.35rem)] flex-wrap">
-                  <a
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative w-max group"
+          <nav className="fade-out mb-auto pb-8">
+            <ul className="flex flex-col gap-0">
+              {NAV_LINKS.map((item) => (
+                <li
+                  key={item}
+                  className="cursor-pointer h-max relative w-max group py-0.5"
+                >
+                  <span
+                    className="relative tracking-tight leading-tight text-white"
+                    style={{ fontSize: "clamp(1.8rem,3vw,2.6rem)" }}
                   >
-                    info@oguz.co
+                    {item}
                     <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                  <span>|</span>
-                  <a href="#" className="relative w-max group">
-                    +62 877 8243 3529
-                    <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
-                  </a>
-                </div>
-              </div>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-              {/* Policies */}
+          {/* Connected Horizontal Divider */}
+          <div
+            ref={horizontalDividerRef}
+            className="will-change-transform mb-8"
+            style={{
+              height: "1px",
+              backgroundColor: "#333",
+              width: "calc(100% + 40px)",
+              marginLeft: "-40px",
+            }}
+          />
+
+          <div className="fade-out flex flex-col gap-5">
+            <div>
+              <p className="text-[9px] text-white/25 tracking-[0.25em] uppercase font-mono mb-2">
+                Let's Talk
+              </p>
               <a
-                href="#"
-                className="fade-out relative w-max inline-block mt-auto group text-[clamp(1rem,3vw,1.35rem)]"
+                href="mailto:contact@oguz.design"
+                className="relative w-max group flex items-center gap-1"
+                style={{ fontSize: "clamp(0.8rem,1.1vw,0.95rem)" }}
               >
-                Policies and Terms
-                <span className="absolute bottom-0 left-0 bg-current pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
+                <span className="text-white/80">contact@oguz.design</span>
+                <span className="text-white/30 text-xs">↗</span>
+                <span className="absolute bottom-0 left-0 bg-white pointer-events-none w-full h-px scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
               </a>
             </div>
+
+            <div>
+              <p className="text-[9px] text-white/25 tracking-[0.25em] uppercase font-mono mb-1">
+                Location
+              </p>
+              <p className="text-sm text-white/60">
+                Toronto (CA){" "}
+                <span className="text-white/25 font-mono text-xs">
+                  {torontoTime}
+                </span>
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[9px] text-white/25 tracking-[0.25em] uppercase font-mono mb-3">
+                Socials
+              </p>
+              <div className="flex items-center gap-5">
+                {[
+                  { icon: <IconX />, label: "X" },
+                  { icon: <IconInstagram />, label: "Instagram" },
+                  { icon: <IconDribbble />, label: "Dribbble" },
+                  { icon: <IconLinkedIn />, label: "LinkedIn" },
+                ].map(({ icon, label }) => (
+                  <a
+                    key={label}
+                    href="#"
+                    aria-label={label}
+                    className="text-white/35 hover:text-white transition-colors duration-300"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
       </section>
     </div>
   );
