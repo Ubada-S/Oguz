@@ -67,3 +67,11 @@ a:hover .roll-text,
 button:hover .roll-text {
   transform: translateY(-100%);
 }
+
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}

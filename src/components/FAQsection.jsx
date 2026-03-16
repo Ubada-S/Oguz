@@ -284,11 +284,25 @@ const FAQSection = () => {
                 href="#"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-white group"
               >
-                <span className="border-b border-white/30 pb-px group-hover:border-white transition-colors duration-200">
+                <span className="relative pb-1">
                   Ask a question
+                  <span className="absolute bottom-0 left-0 bg-white pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
                 </span>
-                <span className="text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">
-                  ↗
+                <span className="text-white/60 group-hover:translate-x-1 group-hover:text-white pb-1 transition-transform duration-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
                 </span>
               </a>
             </div>

@@ -20,6 +20,8 @@ import PricingSection from "./components/Pricing";
 import FAQSection from "./components/FAQsection";
 import ProjectDetails from "./components/ProjectDetails";
 import GradualBlurMemo from "./components/other/GradualBlur";
+import ScrollProgress from "./components/ui/ScrollBar";
+import Footer from "./components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,6 +94,7 @@ export default function App() {
             opacity={0.8}
           />
         </div>
+        <ScrollProgress />
 
         <Routes>
           {/* ── HOME PAGE ───────────────────────── */}
@@ -107,6 +110,7 @@ export default function App() {
                 <ProcessSection />
                 <PricingSection />
                 <FAQSection />
+                <Footer />
               </div>
             }
           />

@@ -103,7 +103,7 @@ const WhyChooseUs = () => {
             delay: 0.5,
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 75%",
+              start: "top 50%",
               toggleActions: "play none none none",
               once: true,
             },
@@ -121,7 +121,7 @@ const WhyChooseUs = () => {
           delay: 0.5,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 50%",
             toggleActions: "play none none none",
             once: true,
           },

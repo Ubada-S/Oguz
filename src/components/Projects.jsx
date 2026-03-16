@@ -201,14 +201,28 @@ const Projects = () => {
           <div className="mt-20 flex justify-end">
             <Link
               to="/projects"
-              className="group flex items-center gap-4 text-sm font-medium tracking-wide text-white"
+              className="group flex items-center gap-4 text-sm tracking-wide text-white"
             >
-              <span className="text-white/40">[12]</span>
-              <span className="border-b border-white/20 pb-1 group-hover:border-white transition-colors duration-300">
-                All case studies
+              <span className="relative pb-1">
+                [12] All case studies
+                <span className="absolute bottom-0 left-0 bg-white pointer-events-none w-full h-0.5 scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.24,0.43,0.15,0.97)] group-hover:scale-x-100 group-hover:origin-left"></span>
               </span>
-              <span className="text-white/40 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
-                ↗
+              <span className="text-white/60 group-hover:translate-x-1 group-hover:text-white pb-1 absolute right-14 transition-transform duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right-icon lucide-arrow-right"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </span>
             </Link>
           </div>
