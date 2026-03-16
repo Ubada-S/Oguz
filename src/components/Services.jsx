@@ -20,7 +20,7 @@ const services = [
       "Color Systems",
       "Brand Strategy",
     ],
-    image: "/images/7.jpg",
+    image: "/images/brand-identity.jpg",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const services = [
       "Microsites",
       "Web Apps",
     ],
-    image: "/images/8.jpg",
+    image: "/images/digital-design.jpg",
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ const services = [
       "User Testing",
       "Interaction Design",
     ],
-    image: "/images/9.jpg",
+    image: "/images/product-design.jpg",
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ const services = [
       "Analytics",
       "SEO",
     ],
-    image: "/images/10.jpg",
+    image: "/images/growth.jpg",
   },
   {
     id: 5,
@@ -85,7 +85,7 @@ const services = [
       "Performance",
       "Accessibility",
     ],
-    image: "/images/11.jpg",
+    image: "/images/development.jpg",
   },
 ];
 
@@ -307,7 +307,7 @@ const Services = () => {
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
       <div className="max-w-[1920px] mx-auto px-7 lg:px-20 pt-12 lg:pt-24 pb-10 lg:pb-20">
         <div className="hidden lg:flex items-start gap-10">
-          <p className="text-base font-google text-white/60 font-bold pt-[6px] shrink-0">
+          <p className="text-base font-google text-white/70 pt-[6px] shrink-0">
             [03] Services
           </p>
           <div className="lg:ml-96">
@@ -324,7 +324,7 @@ const Services = () => {
         </div>
 
         <div className="lg:hidden">
-          <p className="text-sm font-google text-white/60 font-bold mb-5">
+          <p className="text-sm font-google text-white/70 mb-5">
             [03] Services
           </p>
           <h2 className="text-5xl font-google tracking-tighter leading-none mb-4">
@@ -392,7 +392,7 @@ const Services = () => {
                 </div>
 
                 <h3 className="text-2xl xl:text-3xl tracking-tight mb-4">
-                  <span className="text-white/30 mr-2 font-light">
+                  <span className="text-white/80 mr-2 font-light">
                     [{service.index}]
                   </span>
                   <span className="font-semibold">{service.title}</span>
@@ -439,7 +439,7 @@ const Services = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>
             <h3 className="text-2xl tracking-tight mb-3">
-              <span className="text-white/30 mr-2 font-light">
+              <span className="text-white/80 mr-2 font-light">
                 [{service.index}]
               </span>
               <span className="font-semibold">{service.title}</span>
