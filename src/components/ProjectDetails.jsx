@@ -375,9 +375,11 @@ const ProjectDetails = () => {
               <div className="flex flex-col gap-16">
                 <div className="grid grid-cols-1 lg:grid-cols-9 gap-8 items-start">
                   <div className="lg:col-span-3 hero-anim">
-                    <span className="font-bold text-lg">
-                      {project.metadata.client[0]}²
-                    </span>
+                    <img
+                      className="w-32 h-32"
+                      src={project.metadata.Logo}
+                      alt=""
+                    />
                   </div>
                   <div className="lg:col-span-6 hero-anim">
                     <h3 className="text-xl lg:text-2xl font-medium mb-6 leading-snug max-w-xl">

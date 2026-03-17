@@ -1,15 +1,15 @@
 export const projects = [
   {
-    slug: "quantum-ai",
+    slug: "BiznorX",
     tag: "[O1]",
-    image: "/images/6.jpg",
-    logo: "Quantum²",
+    image: "/images/Biznor1.jpg",
+    logo: "BiznorX²",
     speed: 0.3,
-    title: "Demystifying AI through thoughtful design",
+    title: "A modern revival of old ethics.",
     intro:
-      "Quantum's breakthrough AI needed a brand that balanced cutting-edge technology with human understanding.",
+      "biznorx focuses on structured recruitment execution rather than volume-based hiring. Each engagement begins with understanding role intent, organizational structure, and business direction.",
     description:
-      "Quantum is solving problems most people don't understand with technology few can explain. In the AI gold rush, standing apart requires more than algorithms — it requires a brand that earns trust at first glance.",
+      "biznorx works across technology, manufacturing, logistics, finance, healthcare, and professional services, adapting strategies based on sector-specific workforce complexity.",
     services: [
       "Brand positioning",
       "Visual identity",
@@ -17,22 +17,23 @@ export const projects = [
       "Investor deck",
     ],
     metadata: {
-      date: "Aug 2025",
-      client: "Quantum",
-      industry: "AI / Machine Learning",
-      timeline: "24 Months",
+      date: "Jan 2026",
+      client: "BiznorX",
+      Logo: "/images/biznor-logo.png",
+      industry: "recruitment and workforce",
+      timeline: "45 Days",
     },
-    liveUrl: "#",
+    liveUrl: "https://www.biznorx.com/",
     sections: [
-      { type: "image", src: "/images/1.jpg", label: "Brand positioning" },
+      { type: "image", src: "/images/Biznor1.jpg", label: "Brand positioning" },
       {
         type: "text",
         title: "The Challenge",
         heading:
-          "Quantum is solving problems most people don't understand with technology few can explain.",
-        body: "In the AI gold rush, most companies compete on technical complexity. Quantum needed a brand that translated dense machine-learning concepts into a visual language non-technical stakeholders could immediately grasp and trust.",
+          "Rooted in integrity and honor, BiznorX blends the legacy of past generations with the speed and innovation of tomorrow’s technology.",
+        body: "In the AI gold rush, most companies compete on technical complexity. Shadab Ansari needed a brand that prioritizes execution integrity. Every recommendation is supported by verified data and clear reasoning. Speed is never chosen over alignment.",
       },
-      { type: "image", src: "/images/2.jpg" },
+      { type: "image", src: "/images/biznor2.jpg" },
       {
         type: "text",
         title: "The Solution",
@@ -40,7 +41,7 @@ export const projects = [
           "We developed a visual language inspired by neural networks and data flows.",
         body: "We created a brand system that demystifies AI through thoughtful design — clean geometry, purposeful motion, and a typographic voice that sounds confident without sounding cold. Every asset was built to work from pitch decks to production UIs.",
       },
-      { type: "image", src: "/images/3.jpg", label: "Marketing website" },
+      { type: "image", src: "/images/biznor3.jpg", label: "Marketing website" },
       {
         type: "text",
         title: "The Process",
@@ -59,7 +60,7 @@ export const projects = [
         "Explaining AI to investors is hard enough without fighting your own brand identity. Oguz gave us a system that finally does the talking for us.",
       author: "Dr. Michael Cohen",
       role: "CEO & Co-founder, Quantum",
-      image: "/images/4.jpg",
+      image: "/images/biznor4.jpeg",
     },
   },
   {
