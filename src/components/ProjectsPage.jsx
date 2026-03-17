@@ -55,26 +55,34 @@ const ProjectCard = ({ project, index }) => {
       style={{ gridRow: `span ${span}`, willChange: "transform, opacity" }}
     >
       <div className="absolute inset-0 overflow-hidden">
-        <img
-          ref={imgRef}
-          src={project.image}
-          className="parallax-img absolute inset-0 w-full h-[120%] object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        <div
+          className="absolute inset-0 w-full h-[120%] transition-[transform] duration-700 ease-out group-hover:scale-110"
           style={{ top: "-10%" }}
-          alt=""
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-500" />
+        >
+          <img
+            ref={imgRef}
+            src={project.image}
+            alt={project.metadata.client}
+            className="parallax-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+          />
+        </div>
       </div>
-      <div className="absolute top-4 left-4 md:top-5 md:left-5 z-10">
-        <span className="text-[10px] md:text-[11px] font-medium tracking-widest text-white/80 uppercase">
+
+      {/* Top Tag */}
+      <div className="absolute top-5 left-5 z-10 mix-blend-difference">
+        <span className="text-[11px] font-medium tracking-wide text-white  uppercase">
           {project.tag}
         </span>
       </div>
+
+      {/* Center Logo */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 group-hover:opacity-0 transition-all duration-500">
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
-          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-          <span className="text-xs md:text-sm font-semibold text-white">
-            {project.logo}
-          </span>
+        <div className="flex items-center border border-white/20 rounded-full bg-black gap-2.5 px-3 py-3 ">
+          <img
+            className={project.metadata.className}
+            src={project.Logo}
+            alt=""
+          />
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 bg-black z-10 p-4 md:p-5">

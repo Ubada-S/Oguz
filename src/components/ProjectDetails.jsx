@@ -376,7 +376,7 @@ const ProjectDetails = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-9 gap-8 items-start">
                   <div className="lg:col-span-3 hero-anim">
                     <img
-                      className="w-32 h-32"
+                      className={project.metadata.className}
                       src={project.metadata.Logo}
                       alt=""
                     />

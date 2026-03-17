@@ -3,7 +3,7 @@ export const projects = [
     slug: "BiznorX",
     tag: "[O1]",
     image: "/images/Biznor1.jpg",
-    logo: "BiznorX²",
+    Logo: "/images/biznor-logo.png",
     speed: 0.3,
     title: "A modern revival of old ethics.",
     intro:
@@ -20,6 +20,7 @@ export const projects = [
       date: "Jan 2026",
       client: "BiznorX",
       Logo: "/images/biznor-logo.png",
+      className: "h-20",
       industry: "recruitment and workforce",
       timeline: "45 Days",
     },
@@ -31,35 +32,36 @@ export const projects = [
         title: "The Challenge",
         heading:
           "Rooted in integrity and honor, BiznorX blends the legacy of past generations with the speed and innovation of tomorrow’s technology.",
-        body: "In the AI gold rush, most companies compete on technical complexity. Shadab Ansari needed a brand that prioritizes execution integrity. Every recommendation is supported by verified data and clear reasoning. Speed is never chosen over alignment.",
+        body: "In the AI gold rush, most companies compete on technical complexity. Our client Mr. Shadab Ansari needed a brand that prioritizes execution integrity. Every recommendation is supported by verified data and clear reasoning. Speed is never chosen over alignment.",
       },
       { type: "image", src: "/images/biznor2.jpg" },
       {
         type: "text",
         title: "The Solution",
-        heading:
-          "We developed a visual language inspired by neural networks and data flows.",
-        body: "We created a brand system that demystifies AI through thoughtful design — clean geometry, purposeful motion, and a typographic voice that sounds confident without sounding cold. Every asset was built to work from pitch decks to production UIs.",
+        heading: "Designing clarity into every layer of the brand",
+        body: "We developed a visual and strategic system rooted in simplicity and precision. The identity avoids unnecessary complexity, instead focusing on clean typography, balanced layouts, and a restrained color palette that communicates authority without excess. Every element — from the website to presentation materials — was designed to reflect structured thinking and intentional execution, aligning with the company’s philosophy of clarity and collaboration.",
       },
       { type: "image", src: "/images/biznor3.jpg", label: "Marketing website" },
       {
         type: "text",
         title: "The Process",
-        heading:
-          "Brand positioning, visual identity, platform design, and investor deck delivered over 24 weeks.",
-        body: "Through extensive stakeholder interviews, competitive audits, and three rounds of identity exploration, we landed on a system that has since been used in Series B materials, conference keynotes, and a full product redesign.",
+        heading: "A structured approach to brand and platform development",
+        body: "The process began with understanding the business at its core — its positioning, target industries, and operational philosophy. Through research, stakeholder discussions, and iterative design exploration, we shaped a system that translates strategy into a consistent visual language. The final outcome included brand positioning, visual identity, platform design, and investor communication assets — all built to scale with the business as it grows.",
       },
     ],
     numbers: [
-      { value: "85%", label: "Non-technical stakeholder comprehension" },
-      { value: "2.1x", label: "Investor meeting success rate" },
-      { value: "2.1x", label: "Investor meeting success rate" },
+      {
+        value: "85%",
+        label: "Improved stakeholder clarity in hiring decisions",
+      },
+      { value: "40%", label: "Reduction in misaligned candidate shortlists" },
+      { value: "2x", label: "Faster role-to-decision alignment" },
     ],
     testimonial: {
       quote:
-        "Explaining AI to investors is hard enough without fighting your own brand identity. Oguz gave us a system that finally does the talking for us.",
-      author: "Dr. Michael Cohen",
-      role: "CEO & Co-founder, Quantum",
+        "Explaining complex systems to investors requires more than just data, it requires clarity. Oguz Studio gave us a structured voice that communicates our thinking with confidence.",
+      author: "Mr. Shadab Ansari",
+      role: "CEO & Co-founder, BiznorX",
       image: "/images/biznor4.jpeg",
     },
   },

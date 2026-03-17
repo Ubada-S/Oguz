@@ -55,36 +55,38 @@ const ProjectCard = ({ project, index }) => {
       className="project-card group relative cursor-pointer overflow-hidden border border-white/10 bg-zinc-900 block"
       style={{
         gridRow: `span ${span}`,
-        willChange: "transform, opacity",
       }}
     >
       {/* Image with Parallax */}
       <div className="absolute inset-0 overflow-hidden">
-        <img
-          ref={imgRef}
-          src={project.image}
-          alt={project.metadata.client}
-          className="parallax-img absolute inset-0 w-full h-[120%] object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        <div
+          className="absolute inset-0 w-full h-[120%] transition-[transform] duration-700 ease-out group-hover:scale-110"
           style={{ top: "-10%" }}
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-500" />
+        >
+          <img
+            ref={imgRef}
+            src={project.image}
+            alt={project.metadata.client}
+            className="parallax-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+          />
+        </div>
       </div>
 
       {/* Top Tag */}
-      <div className="absolute top-5 left-5 z-10">
-        <span className="text-[11px] font-medium tracking-widest text-white/80 uppercase">
+      <div className="absolute top-5 left-5 z-10 mix-blend-difference">
+        <span className="text-[11px] font-medium tracking-wide text-white  uppercase">
           {project.tag}
         </span>
       </div>
 
       {/* Center Logo */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 group-hover:opacity-0 transition-all duration-500">
-        <div className="flex items-center gap-2.5 px-5 py-3 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
-          <div className="w-2 h-2 bg-white rounded-full" />
-          <span className="text-sm font-semibold text-white">
-            {project.logo}
-          </span>
+        <div className="flex items-center border border-white/20 rounded-full bg-black gap-2.5 px-3 py-3 ">
+          <img
+            className={project.metadata.className}
+            src={project.Logo}
+            alt=""
+          />
         </div>
       </div>
 
