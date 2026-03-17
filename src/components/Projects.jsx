@@ -81,7 +81,7 @@ const ProjectCard = ({ project, index }) => {
 
       {/* Center Logo */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 group-hover:opacity-0 transition-all duration-500">
-        <div className="flex items-center border border-white/20 rounded-full bg-black gap-2.5 px-3 py-3 ">
+        <div className="flex items-center  gap-2.5 px-3 py-3 ">
           <img
             className={project.metadata.className}
             src={project.Logo}

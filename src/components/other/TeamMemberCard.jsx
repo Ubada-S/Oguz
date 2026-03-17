@@ -1,13 +1,11 @@
-import cardImage from "../other/card.jpg";
-
 export default function TeamMemberCard() {
   return (
     <div className="w-64 lg:h-[25rem] bg-black border border-white/10 overflow-hidden">
       {/* Image Section */}
       <div className="relative">
         <img
-          src={cardImage}
-          alt="Sarah Park"
+          src="/images/profile-pic.jpeg"
+          alt="Ubada Siddiqi"
           className="w-full h-64 object-cover"
         />
 

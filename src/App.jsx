@@ -22,6 +22,7 @@ import ProjectDetails from "./components/ProjectDetails";
 import GradualBlurMemo from "./components/other/GradualBlur";
 import ScrollProgress from "./components/ui/ScrollBar";
 import Footer from "./components/Footer";
+import ClickSpark from "./components/ui/ClickSpark";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,31 +96,39 @@ export default function App() {
         </div>
 
         <ScrollProgress />
-        <Routes>
-          {/* ── HOME PAGE ───────────────────────── */}
-          <Route
-            path="/"
-            element={
-              <div className="overflow-hidden bg-black">
-                <Hero />
-                <Approach />
-                <Projects />
+        <ClickSpark
+          sparkColor="#fff"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          <Routes>
+            {/* ── HOME PAGE ───────────────────────── */}
+            <Route
+              path="/"
+              element={
+                <div className="overflow-hidden bg-black">
+                  <Hero />
+                  <Approach />
+                  <Projects />
 
-                <WhyChooseUs />
-                <Services />
-                <ProcessSection />
-                <PricingSection />
-                <FAQSection />
-                <Footer />
-              </div>
-            }
-          />
+                  <WhyChooseUs />
+                  <Services />
+                  <ProcessSection />
+                  <PricingSection />
+                  <FAQSection />
+                  <Footer />
+                </div>
+              }
+            />
 
-          <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
 
-          {/* ── PROJECT DETAILS PAGE ───────────── */}
-          <Route path="/projects/:slug" element={<ProjectDetails />} />
-        </Routes>
+            {/* ── PROJECT DETAILS PAGE ───────────── */}
+            <Route path="/projects/:slug" element={<ProjectDetails />} />
+          </Routes>
+        </ClickSpark>
       </>
     </Router>
   );

@@ -35,9 +35,9 @@ const Hero = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10  mx-auto pointer-events-none">
+        <div className="relative z-10   pointer-events-none">
           <Noise className="z-0" />
-          <div className="flex flex-col max-w-[1920px] min-h-[900px] px-6 md:px-12 lg:px-20 pt-[4rem] pb-16 z-[999]">
+          <div className="flex flex-col max-w-[1920px] min-h-[900px] mx-auto px-6 md:px-12 lg:px-20 pt-[4rem] pb-16 z-[999]">
             {/* ── Headline block ── */}
             <div className="font-inter flex-shrink-0 mb-10">
               {/* OGUZ line */}
