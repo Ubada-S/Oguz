@@ -23,6 +23,7 @@ import GradualBlurMemo from "./components/other/GradualBlur";
 import ScrollProgress from "./components/ui/ScrollBar";
 import Footer from "./components/Footer";
 import ClickSpark from "./components/ui/ClickSpark";
+import Preloader from "./components/other/Preloader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,6 +110,7 @@ export default function App() {
               path="/"
               element={
                 <div className="overflow-hidden bg-black">
+                  <Preloader />
                   <Hero />
                   <Approach />
                   <Projects />
