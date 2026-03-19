@@ -39,14 +39,14 @@ export const projects = [
         type: "text",
         title: "The Solution",
         heading: "Designing clarity into every layer of the brand",
-        body: "We developed a visual and strategic system rooted in simplicity and precision. The identity avoids unnecessary complexity, instead focusing on clean typography, balanced layouts, and a restrained color palette that communicates authority without excess. Every element — from the website to presentation materials — was designed to reflect structured thinking and intentional execution, aligning with the company’s philosophy of clarity and collaboration.",
+        body: "We developed a visual and strategic system rooted in simplicity and precision. The identity avoids unnecessary complexity, instead focusing on clean typography, balanced layouts, and a restrained color palette that communicates authority without excess. Every element from the website to presentation materials was designed to reflect structured thinking and intentional execution, aligning with the company’s philosophy of clarity and collaboration.",
       },
       { type: "image", src: "/images/biznor3.jpg", label: "Marketing website" },
       {
         type: "text",
         title: "The Process",
         heading: "A structured approach to brand and platform development",
-        body: "The process began with understanding the business at its core — its positioning, target industries, and operational philosophy. Through research, stakeholder discussions, and iterative design exploration, we shaped a system that translates strategy into a consistent visual language. The final outcome included brand positioning, visual identity, platform design, and investor communication assets — all built to scale with the business as it grows.",
+        body: "The process began with understanding the business at its core its positioning, target industries, and operational philosophy. Through research, stakeholder discussions, and iterative design exploration, we shaped a system that translates strategy into a consistent visual language. The final outcome included brand positioning, visual identity, platform design, and investor communication assets all built to scale with the business as it grows.",
       },
     ],
     numbers: [
@@ -66,63 +66,88 @@ export const projects = [
     },
   },
   {
-    slug: "cubekit",
+    slug: "baghdad",
     tag: "[O2]",
-    image: "/images/6.jpg",
-    logo: "Cubedlt",
+    image: "/images/baghdad1.jpg",
+    Logo: "/images/baghdad-logo.png",
     speed: 0.5,
-    title: "A design system built for teams that move fast",
+
+    title: "A digital experience rooted in culture and hospitality",
+
     intro:
-      "CubeKit needed a component library and brand that scaled with their product without slowing it down.",
+      "Baghdad Restaurant required a digital presence that reflects the warmth, authenticity, and richness of traditional Iraqi dining while maintaining a clean and modern user experience.",
+
     description:
-      "CubeKit is a SaaS design system platform. Their brand and documentation had fallen behind their product. We rebuilt both from scratch — in parallel.",
+      "Baghdad is a Middle Eastern restaurant offering authentic Iraqi cuisine. The goal was to create a website that captures both the visual appeal of the food and the emotional depth of the dining experience balancing tradition with clarity in design.",
+
     services: [
-      "Brand identity",
-      "Design system",
-      "Documentation design",
-      "Web design",
+      "Brand direction",
+      "Visual identity",
+      "Website design",
+      "Content structure",
     ],
+
     metadata: {
       date: "Mar 2025",
-      client: "CubeKit",
-      industry: "SaaS / Design Tools",
-      timeline: "12 Months",
+      client: "Baghdad Restaurant",
+      Logo: "/images/baghdad-logo.png",
+      className: "h-14",
+      industry: "Food & Hospitality",
+      timeline: "3 Weeks",
     },
-    liveUrl: "#",
+
+    liveUrl: "https://baghdadrestaurant.top/",
+
     sections: [
-      { type: "image", src: "/images/5.jpg", label: "Identity system" },
+      { type: "image", src: "/images/baghdad2.jpg", label: "Visual direction" },
+
       {
         type: "text",
         title: "The Challenge",
-        heading: "A product loved by its users but invisible to everyone else.",
-        body: "CubeKit had strong retention but poor acquisition. The brand communicated nothing — a generic logo, no visual hierarchy, and documentation that felt like it was written for robots. New users bounced before they ever experienced the value.",
+        heading:
+          "Translating a rich cultural dining experience into a simple digital interface.",
+        body: "Most restaurant websites rely heavily on menus without communicating the atmosphere behind the food. Baghdad needed a platform that reflects authenticity not only through dishes, but through emotion, tradition, and hospitality. The challenge was to create something visually engaging while keeping the experience intuitive and easy to navigate.",
       },
-      { type: "image", src: "/images/6.jpg" },
+
+      { type: "image", src: "/images/baghdad5.jpg" },
+
       {
         type: "text",
         title: "The Solution",
         heading:
-          "We rebuilt the brand and documentation as a single unified system.",
-        body: "A new identity rooted in modularity — reflecting the product's own composable nature. Documentation was redesigned to feel like a product, not a wiki. Every touchpoint was rebuilt with conversion in mind.",
+          "A warm, image-driven design that prioritizes experience over complexity.",
+        body: "We designed a clean and structured layout supported by rich food imagery and warm tones. The interface guides users naturally from discovery to action, highlighting key sections such as menu, story, and contact. Typography and spacing were used to maintain clarity while allowing the visuals to carry the emotional weight of the experience.",
       },
-      { type: "image", src: "/images/7.jpg", label: "Documentation redesign" },
+
+      {
+        type: "image",
+        src: "/images/baghdad4.jpg",
+        label: "Design Planning",
+      },
+
       {
         type: "text",
-        title: "The Outcome",
-        heading: "Trial signups increased 3x within 60 days of launch.",
-        body: "The rebrand coincided with a Product Hunt launch that hit #1 for the day. More importantly, the new onboarding experience reduced time-to-value from 4 days to under 6 hours.",
+        title: "The Process",
+        heading: "From brand essence to a clear and inviting user journey.",
+        body: "We began by identifying the core values of the restaurant authenticity, comfort, and cultural identity. These insights shaped the visual direction and content hierarchy. The final system ensures consistency across all touchpoints while keeping the experience simple, accessible, and focused on conversion.",
       },
     ],
+
     numbers: [
-      { value: "3x", label: "Trial signup increase in 60 days" },
-      { value: "#1", label: "Product Hunt launch day ranking" },
+      { value: "60%", label: "Faster access to menu and contact information" },
+      { value: "35%", label: "Reduction in navigation friction across pages" },
+      {
+        value: "2x",
+        label: "Improvement in content visibility and engagement",
+      },
     ],
+
     testimonial: {
       quote:
-        "We always knew the product was good. Oguz made it look like it too.",
-      author: "Priya Sharma",
-      role: "Head of Product, CubeKit",
-      image: "/images/8.jpg",
+        "The website reflects exactly how we want people to feel when they walk into our restaurant warm, welcome, and not too over-complicated!",
+      author: "Baghdad Restaurant Team",
+      role: "11098 Patriot Hwy, Fredericksburg, VA 22408.",
+      image: "/images/NA.jpg",
     },
   },
   {
@@ -172,8 +197,8 @@ export const projects = [
       {
         type: "text",
         title: "The Solution",
-        heading: "An identity built on forward motion — literally.",
-        body: "Every element of the brand system angles forward. The wordmark, the icon, the motion language — all derived from a single directional geometry. The result is a brand that communicates speed without saying a word.",
+        heading: "An identity built on forward motion literally.",
+        body: "Every element of the brand system angles forward. The wordmark, the icon, the motion language all derived from a single directional geometry. The result is a brand that communicates speed without saying a word.",
       },
       { type: "image", src: "/images/11.jpg", label: "Fleet livery" },
       {
@@ -191,7 +216,7 @@ export const projects = [
     ],
     testimonial: {
       quote:
-        "Every agency promised fast. Oguz was actually fast — and the work was better for it.",
+        "Every agency promised fast. Oguz was actually fast and the work was better for it.",
       author: "James Okafor",
       role: "Founder & CEO, Warpspeed",
       image: "/images/12.jpg",

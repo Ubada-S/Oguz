@@ -2,15 +2,15 @@
 export const teamMembers = [
   {
     id: 1,
-    name: "John Doe",
-    designation: "Creative Director",
-    image: "",
+    name: "Shadab Ansari",
+    designation: "CEO, BiznorX.com",
+    image: "/tooltip/1.jpeg",
   },
   {
     id: 2,
-    name: "Sarah Johnson",
-    designation: "Lead Designer",
-    image: "",
+    name: "Baghdad Restro",
+    designation: "Team",
+    image: "/tooltip/2.jpg",
   },
   {
     id: 3,
