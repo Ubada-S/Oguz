@@ -4,7 +4,7 @@ export default function TeamMemberCard() {
       {/* Image Section */}
       <div className="relative">
         <img
-          src="/images/profile-pic.jpeg"
+          src="/images/profile-taha.jpeg"
           alt="Ubada Siddiqi"
           className="w-full h-64 object-cover"
         />
@@ -16,13 +16,13 @@ export default function TeamMemberCard() {
             {[...Array(5)].map((_, i) => (
               <div
                 key={i}
-                className={`w-[3px] rounded-full transition-all duration-1000 ${
-                  i < 2 ? "bg-emerald-400" : "bg-white/20"
+                className={`w-[3px]  transition-all duration-1000 ${
+                  i < 3 ? "bg-emerald-400" : "bg-white/20"
                 }`}
                 style={{
                   height: i < 2 ? "100%" : "40%",
                   animation:
-                    i < 2
+                    i < 3
                       ? `pulse-bar 2s ease-in-out infinite ${i * 0.3}s`
                       : "none",
                 }}
@@ -30,7 +30,7 @@ export default function TeamMemberCard() {
             ))}
           </div>
           <span className="text-white text-sm">
-            <span className="font-semibold">2 slots open</span> Sept&apos;25
+            <span className="font-semibold">3 slots open</span> Apr&apos;26
           </span>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function TeamMemberCard() {
       <div className="p-4 space-y-3 ">
         {/* Name and Title */}
         <div>
-          <h3 className="text-white text-xl font-semibold">Ubada Siddiqi</h3>
+          <h3 className="text-white text-xl font-semibold">Taha Shaikh</h3>
           <p className="text-gray-400 text-sm">Project manager</p>
         </div>
 

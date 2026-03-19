@@ -9,7 +9,7 @@ export default function TeamProfileCard() {
       {/* Image Section with Hover Effect */}
       <div className="relative w-full h-auto md:h-[27.192rem] overflow-hidden group cursor-pointer">
         <img
-          src={cardImage}
+          src="/images/profile-pic.jpeg"
           alt="Alex West"
           className={`w-full h-full object-cover transition-all duration-700 ease-out ${
             isHovered ? "scale-110 blur-sm" : "scale-100 blur-0"
@@ -22,8 +22,8 @@ export default function TeamProfileCard() {
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          <p className="text-white text-center text-lg font-light leading-relaxed">
-            With over years in digital design, Ubada founded Oguz Studio to
+          <p className="text-white text-center text-lg font-light leading-relaxed ">
+            With over years in digital design, I founded Oguz Studio to
             reimagine how creative teams collaborate with businesses.
           </p>
         </div>

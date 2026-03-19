@@ -64,7 +64,7 @@ export default function AnimatedMenu() {
   useEffect(() => {
     const updateTime = () => {
       const time = new Date().toLocaleTimeString("en-US", {
-        timeZone: "America/Toronto",
+        timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
         hour12: true,
@@ -409,7 +409,7 @@ export default function AnimatedMenu() {
                 Location
               </p>
               <p className="text-sm text-white/60">
-                Toronto (CA){" "}
+                Mumbai (IN) &nbsp;
                 <span className="text-white/25 font-mono text-xs">
                   {torontoTime}
                 </span>
