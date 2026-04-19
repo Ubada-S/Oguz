@@ -153,7 +153,7 @@ export const projects = [
   {
     slug: "ephemeral",
     tag: "[O3]",
-    image: "/images/6.jpg",
+    image: "/images/2.jpg",
     logo: "Ephemeral",
     speed: 0.4,
     title: "Ephemeral",
@@ -169,7 +169,7 @@ export const projects = [
   {
     slug: "warpspeed",
     tag: "[O4]",
-    image: "/images/6.jpg",
+    image: "/images/3.jpg",
     logo: "Warpspeed",
     speed: 0.6,
     title: "Branding a logistics startup that never slows down",
@@ -225,7 +225,7 @@ export const projects = [
   {
     slug: "global-bank",
     tag: "[O5]",
-    image: "/images/6.jpg",
+    image: "/images/4.jpg",
     logo: "GlobalBank",
     speed: 0.35,
     title: "Global Bank",
@@ -246,7 +246,7 @@ export const projects = [
   {
     slug: "magnolia",
     tag: "[O6]",
-    image: "/images/6.jpg",
+    image: "/images/8.jpg",
     logo: "Magnolia",
     speed: 0.45,
     title: "Magnolia",

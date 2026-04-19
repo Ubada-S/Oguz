@@ -266,14 +266,12 @@ const FAQSection = () => {
                 <div className="w-10 h-10 rounded-none overflow-hidden bg-white/10 shrink-0 border border-white/20">
                   {/* Placeholder avatar — replace with real image */}
                   <div className="w-full h-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center">
-                    <span className="text-xs text-white/40 font-medium">
-                      SP
-                    </span>
+                    <img src="/images/taha-profile.jpg" alt="" />
                   </div>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white leading-tight">
-                    Sarah Park
+                    Taha Shaikh
                   </p>
                   <p className="text-xs text-white/40 leading-tight mt-0.5">
                     Project Manager

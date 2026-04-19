@@ -67,7 +67,7 @@ const ProjectCard = ({ project, index }) => {
             ref={imgRef}
             src={project.image}
             alt={project.metadata.client}
-            className="parallax-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+            className="parallax-img w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity duration-700"
           />
         </div>
       </div>

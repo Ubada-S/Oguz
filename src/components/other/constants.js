@@ -16,18 +16,18 @@ export const teamMembers = [
     id: 3,
     name: "Michael Chen",
     designation: "Art Director",
-    image: "",
+    image: "/tooltip/3.jpg",
   },
   {
     id: 4,
     name: "Emily Davis",
     designation: "UX Designer",
-    image: "",
+    image: "/tooltip/4.jpg",
   },
   {
     id: 5,
     name: "Alex Martinez",
     designation: "Brand Strategist",
-    image: "",
+    image: "/tooltip/5.jpeg",
   },
 ];
