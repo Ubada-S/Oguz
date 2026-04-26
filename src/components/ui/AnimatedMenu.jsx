@@ -271,7 +271,7 @@ export default function AnimatedMenu() {
       {/* Hamburger Button */}
       <button
         ref={hamburgerRef}
-        className={`w-10 h-10 flex bg-transparent border-none cursor-pointer fixed overflow-hidden top-6 right-16 z-[9998] transition-opacity duration-300 ${
+        className={`lg:w-10 lg:h-10 w-8 h-8 flex bg-transparent border-none cursor-pointer fixed overflow-hidden right-8 lg:top-6 lg:right-16 z-[9998] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
