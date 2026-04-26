@@ -266,7 +266,7 @@ const PricingCard = ({ plan, yearly, cardRef, onToggle }) => {
       onMouseLeave={handleCardLeave}
       className={`relative flex flex-col bg-black p-8 ${
         plan.highlighted
-          ? "border border-dashed border-white/40"
+          ? "border border border-white/40"
           : "border border-white/20"
       }`}
     >

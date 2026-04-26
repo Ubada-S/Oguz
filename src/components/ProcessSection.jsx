@@ -439,7 +439,7 @@ const ProcessSection = () => {
                         </p>
                         <div
                           ref={(el) => (dividerRefs.current[i] = el)}
-                          className="w-full h-px border-t border-dashed border-white/30 mt-2"
+                          className="w-full h-px border-t border border-white/30 mt-2"
                           style={{ transformOrigin: "left center" }}
                         />
                       </div>
