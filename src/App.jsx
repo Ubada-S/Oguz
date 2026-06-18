@@ -97,40 +97,33 @@ export default function App() {
         </div>
 
         <ScrollProgress />
-        <ClickSpark
-          sparkColor="#fff"
-          sparkSize={10}
-          sparkRadius={15}
-          sparkCount={8}
-          duration={400}
-        >
-          <Routes>
-            {/* ── HOME PAGE ───────────────────────── */}
-            <Route
-              path="/"
-              element={
-                <div className="overflow-hidden bg-black">
-                  <Preloader />
-                  <Hero />
-                  <Approach />
-                  <Projects />
 
-                  <WhyChooseUs />
-                  <Services />
-                  <ProcessSection />
-                  <PricingSection />
-                  <FAQSection />
-                  <Footer />
-                </div>
-              }
-            />
+        <Routes>
+          {/* ── HOME PAGE ───────────────────────── */}
+          <Route
+            path="/"
+            element={
+              <div className="overflow-hidden bg-black">
+                <Preloader />
+                <Hero />
+                <Approach />
+                <Projects />
 
-            <Route path="/projects" element={<ProjectsPage />} />
+                <WhyChooseUs />
+                <Services />
+                <ProcessSection />
+                <PricingSection />
+                <FAQSection />
+                <Footer />
+              </div>
+            }
+          />
 
-            {/* ── PROJECT DETAILS PAGE ───────────── */}
-            <Route path="/projects/:slug" element={<ProjectDetails />} />
-          </Routes>
-        </ClickSpark>
+          <Route path="/projects" element={<ProjectsPage />} />
+
+          {/* ── PROJECT DETAILS PAGE ───────────── */}
+          <Route path="/projects/:slug" element={<ProjectDetails />} />
+        </Routes>
       </>
     </Router>
   );
